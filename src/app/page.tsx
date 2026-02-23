@@ -542,8 +542,12 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="mt-8 pt-4 border-t border-black/5 text-center">
+          <div className="mt-8 pt-4 border-t border-black/5 flex items-center justify-between">
             <p className="text-[10px] text-[var(--mid-gray)]/30">© 2026 Groundwork. All rights reserved.</p>
+            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-[10px] text-[var(--mid-gray)]/30 hover:text-[var(--mid-gray)] transition-colors flex items-center gap-1" aria-label="Back to top">
+              Back to top
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="18,15 12,9 6,15"/></svg>
+            </button>
           </div>
         </div>
       </footer>
