@@ -182,3 +182,28 @@ input, textarea, button, select {
   background: var(--black);
   color: var(--white);
 }
+
+/* Mobile touch improvements */
+@media (max-width: 640px) {
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Prevent horizontal overflow */
+  html, body {
+    overflow-x: hidden;
+  }
+  
+  /* Better touch targets */
+  details summary {
+    min-height: 44px;
+  }
+}
+
+/* Print styles for PDF export */
+@media print {
+  aside, header, nav { display: none !important; }
+  main { padding: 0 !important; margin: 0 !important; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .print-hidden { display: none !important; }
+}

@@ -62,7 +62,7 @@ function ScaleReveal({ children, className = "", delay = 0 }: { children: React.
 
 function HeroCTA({ label = "Get Your Free Report", dark = false }: { label?: string; dark?: boolean }) {
   return (
-    <Link href="/questionnaire" className={`group relative inline-flex items-center gap-3 font-semibold px-10 py-5 rounded-full text-base overflow-hidden transition-all duration-300 active:scale-[0.97] ${dark ? "bg-white text-[var(--black)] hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] animate-pulse-glow-white" : "bg-[var(--black)] text-white hover:shadow-[0_4px_50px_rgba(0,0,0,0.3)] animate-pulse-glow"}`}>
+    <Link href="/questionnaire" className={`group relative inline-flex items-center gap-2 sm:gap-3 font-semibold px-7 sm:px-10 py-4 sm:py-5 rounded-full text-sm sm:text-base overflow-hidden transition-all duration-300 active:scale-[0.97] ${dark ? "bg-white text-[var(--black)] hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] animate-pulse-glow-white" : "bg-[var(--black)] text-white hover:shadow-[0_4px_50px_rgba(0,0,0,0.3)] animate-pulse-glow"}`}>
       <span className={`absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[800ms] ease-out ${dark ? "bg-gradient-to-r from-transparent via-black/5 to-transparent" : "bg-gradient-to-r from-transparent via-white/20 to-transparent"}`} />
       <span className="relative z-10">{label}</span>
       <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300">
@@ -123,23 +123,23 @@ export default function Home() {
       <Navbar />
 
       {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative min-h-screen flex items-center justify-center px-6">
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20 sm:pt-0">
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(0,0,0,0.02), transparent)" }} />
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <RevealSection>
-            <div className="inline-flex items-center gap-2 bg-[var(--light-surface)] border border-black/5 rounded-full px-4 py-1.5 mb-8 animate-float">
+            <div className="inline-flex items-center gap-2 bg-[var(--light-surface)] border border-black/5 rounded-full px-3 sm:px-4 py-1.5 mb-6 sm:mb-8 animate-float">
               <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-xs font-medium text-[var(--mid-gray)]">Free AI opportunity report for your business</span>
+              <span className="text-[10px] sm:text-xs font-medium text-[var(--mid-gray)]">Free AI opportunity report for your business</span>
             </div>
           </RevealSection>
           <RevealSection delay={150}>
-            <h1 className="text-[40px] sm:text-[52px] md:text-[62px] font-extrabold tracking-[-0.035em] leading-[1.08] mb-6">
+            <h1 className="text-[32px] sm:text-[52px] md:text-[62px] font-extrabold tracking-[-0.035em] leading-[1.08] mb-5 sm:mb-6">
               We implement AI<br />into your business.<br />
               <span className="text-[var(--mid-gray)]">You grow and scale.</span>
             </h1>
           </RevealSection>
           <RevealSection delay={300}>
-            <p className="text-lg text-[var(--mid-gray)] max-w-xl mx-auto mb-10 leading-relaxed">
+            <p className="text-base sm:text-lg text-[var(--mid-gray)] max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
               Most businesses lose thousands every month on problems AI already solves. We find exactly where, show you the dollar amount, and then implement every solution for you.
             </p>
           </RevealSection>
@@ -171,22 +171,22 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ THE PROBLEM ═══════════════ */}
-      <section className="py-28 px-6">
+      <section className="py-16 sm:py-28 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
-          <RevealSection className="text-center mb-16">
+          <RevealSection className="text-center mb-10 sm:mb-16">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-4">The Problem</p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-6">AI is not optional anymore. It is the new standard.</h2>
-            <p className="text-[var(--mid-gray)] text-lg max-w-2xl mx-auto leading-relaxed">The businesses that figure out AI first will dominate their market. The ones that wait will spend the next five years wondering what happened.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4 sm:mb-6">AI is not optional anymore. It is the new standard.</h2>
+            <p className="text-[var(--mid-gray)] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">The businesses that figure out AI first will dominate their market. The ones that wait will spend the next five years wondering what happened.</p>
           </RevealSection>
-          <div className="grid sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             {[
               { value: 72, suffix: "%", label: "of business owners want to use AI but have no idea where to start" },
               { value: 27400, prefix: "$", label: "in average monthly savings discovered per business we analyze" },
               { value: 3, suffix: "x", label: "faster growth for businesses that implement AI across operations" },
             ].map((stat, i) => (
               <ScaleReveal key={i} delay={i * 150}>
-                <div className="text-center p-8 bg-white border border-black/5 rounded-2xl hover:border-black/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
-                  <div className="text-4xl sm:text-5xl font-extrabold mb-3"><AnimatedStat value={stat.value} prefix={stat.prefix} suffix={stat.suffix} /></div>
+                <div className="text-center p-6 sm:p-8 bg-white border border-black/5 rounded-2xl hover:border-black/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-3"><AnimatedStat value={stat.value} prefix={stat.prefix} suffix={stat.suffix} /></div>
                   <p className="text-sm text-[var(--mid-gray)] leading-relaxed">{stat.label}</p>
                 </div>
               </ScaleReveal>
@@ -198,12 +198,12 @@ export default function Home() {
       <div className="h-px w-full animate-gradient-line" />
 
       {/* ═══════════════ HOW IT WORKS ═══════════════ */}
-      <section id="how-it-works" className="py-28 px-6 bg-[var(--light-surface)]">
+      <section id="how-it-works" className="py-16 sm:py-28 px-4 sm:px-6 bg-[var(--light-surface)]">
         <div className="max-w-5xl mx-auto">
-          <RevealSection className="text-center mb-20">
+          <RevealSection className="text-center mb-12 sm:mb-20">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">How It Works</p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">From blind spots to bottom line</h2>
-            <p className="text-[var(--mid-gray)] mt-4 max-w-lg mx-auto">Three steps. No jargon. No mystery.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight">From blind spots to bottom line</h2>
+            <p className="text-[var(--mid-gray)] mt-3 sm:mt-4 max-w-lg mx-auto text-sm sm:text-base">Three steps. No jargon. No mystery.</p>
           </RevealSection>
 
           <div className="space-y-8">
@@ -268,14 +268,14 @@ export default function Home() {
               },
             ].map((step, i) => (
               <ScaleReveal key={i} delay={i * 120}>
-                <div className="group grid md:grid-cols-2 gap-8 bg-white border border-black/5 rounded-3xl p-8 md:p-10 hover:border-black/10 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500">
+                <div className="group grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 bg-white border border-black/5 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 hover:border-black/10 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500">
                   <div className="flex flex-col justify-center">
-                    <div className="flex items-center gap-3 mb-5">
-                      <span className="w-8 h-8 bg-[var(--black)] text-white rounded-full flex items-center justify-center text-xs font-bold">{i + 1}</span>
+                    <div className="flex items-center gap-3 mb-4 sm:mb-5">
+                      <span className="w-7 sm:w-8 h-7 sm:h-8 bg-[var(--black)] text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">{i + 1}</span>
                       <span className="h-px flex-1 bg-black/5" />
                     </div>
-                    <h3 className="text-2xl font-bold tracking-tight mb-3">{step.title}</h3>
-                    <p className="text-[var(--mid-gray)] leading-relaxed text-[15px]">{step.desc}</p>
+                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-2 sm:mb-3">{step.title}</h3>
+                    <p className="text-[var(--mid-gray)] leading-relaxed text-sm sm:text-[15px]">{step.desc}</p>
                   </div>
                   <div className="bg-[var(--light-surface)] group-hover:bg-black/[0.03] rounded-2xl p-6 md:p-8 transition-colors duration-500">
                     {step.visual}
@@ -288,14 +288,14 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ WHAT YOU GET ═══════════════ */}
-      <section id="features" className="py-28 px-6">
+      <section id="features" className="py-16 sm:py-28 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
-          <RevealSection className="text-center mb-20">
+          <RevealSection className="text-center mb-12 sm:mb-20">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">What You Get</p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">Not just a report. A growth engine.</h2>
-            <p className="text-[var(--mid-gray)] mt-4 max-w-lg mx-auto">We find the AI opportunities hiding in your business, build the implementation plan, and walk you through every step until it is running.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight">Not just a report. A growth engine.</h2>
+            <p className="text-[var(--mid-gray)] mt-3 sm:mt-4 max-w-lg mx-auto text-sm sm:text-base">We find the AI opportunities hiding in your business, build the implementation plan, and walk you through every step until it is running.</p>
           </RevealSection>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {valueStack.map((item, i) => (
               <ScaleReveal key={i} delay={i * 80}>
                 <div className="group h-full bg-white border border-black/5 rounded-2xl p-7 hover:border-black/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
@@ -314,40 +314,40 @@ export default function Home() {
         <section className="relative overflow-hidden">
           {/* Top edge */}
 
-          <div className="bg-[var(--black)] text-white relative px-6 py-24">
+          <div className="bg-[var(--black)] text-white relative px-4 sm:px-6 py-16 sm:py-24">
             {/* Dot grid */}
             <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
 
             {/* Animated glow orb */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-[0.04] pointer-events-none" style={{ background: "radial-gradient(circle, rgba(255,100,100,0.4), transparent 70%)" }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full opacity-[0.04] pointer-events-none" style={{ background: "radial-gradient(circle, rgba(255,100,100,0.4), transparent 70%)" }} />
 
             <div className="max-w-3xl mx-auto text-center relative z-10">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30 mb-6">The Reality Check</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30 mb-4 sm:mb-6">The Reality Check</p>
 
-              <h2 className="text-3xl sm:text-5xl md:text-[56px] font-extrabold tracking-tight mb-10 leading-tight">
+              <h2 className="text-2xl sm:text-4xl md:text-[56px] font-extrabold tracking-tight mb-8 sm:mb-10 leading-tight">
                 While you are figuring out AI,
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-500">your competitors already did.</span>
               </h2>
 
               {/* Stats row */}
-              <div className="grid grid-cols-3 gap-4 max-w-xl mx-auto mb-10">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-xl mx-auto mb-8 sm:mb-10">
                 {[
                   { num: "47%", label: "of SMBs now use AI" },
                   { num: "2.3x", label: "faster deal cycles" },
                   { num: "$328K", label: "avg annual savings" },
                 ].map((s) => (
                   <div key={s.label} className="text-center">
-                    <div className="text-2xl sm:text-3xl font-extrabold mb-1">{s.num}</div>
-                    <div className="text-[10px] text-white/40 uppercase tracking-wider">{s.label}</div>
+                    <div className="text-xl sm:text-2xl md:text-3xl font-extrabold mb-1">{s.num}</div>
+                    <div className="text-[9px] sm:text-[10px] text-white/40 uppercase tracking-wider">{s.label}</div>
                   </div>
                 ))}
               </div>
 
-              <p className="text-white text-lg max-w-xl mx-auto mb-4 leading-relaxed">
+              <p className="text-white text-base sm:text-lg max-w-xl mx-auto mb-4 leading-relaxed">
                 They are closing deals faster. Spending less on operations. Scaling without adding headcount. Every week you wait, the gap between you and them gets wider.
               </p>
-              <p className="text-white/60 text-base max-w-lg mx-auto mb-12 leading-relaxed">
+              <p className="text-white/60 text-sm sm:text-base max-w-lg mx-auto mb-8 sm:mb-12 leading-relaxed">
                 The free report takes 15 minutes. It will show you exactly what they are doing that you are not. The only risk is not looking.
               </p>
               <HeroCTA label="See What You Are Missing" dark />
@@ -360,13 +360,13 @@ export default function Home() {
 
       {/* ═══════════════ FINAL CTA ═══════════════ */}
       <RevealSection>
-        <section className="py-28 px-6">
+        <section className="py-16 sm:py-28 px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <LogoIcon className="h-10 w-10 mx-auto mb-8 opacity-10 animate-float" />
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+            <LogoIcon className="h-8 sm:h-10 w-8 sm:w-10 mx-auto mb-6 sm:mb-8 opacity-10 animate-float" />
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
               The businesses that move first<br />win the most.
             </h2>
-            <p className="text-[var(--mid-gray)] text-lg mb-12 max-w-lg mx-auto leading-relaxed">
+            <p className="text-[var(--mid-gray)] text-base sm:text-lg mb-8 sm:mb-12 max-w-lg mx-auto leading-relaxed">
               Get the free report. See the numbers. Then let us implement it.
               <br /><span className="font-medium text-[var(--black)]">There is literally nothing to lose.</span>
             </p>
@@ -376,7 +376,7 @@ export default function Home() {
       </RevealSection>
 
       {/* ═══════════════ FOOTER ═══════════════ */}
-      <footer className="border-t border-black/5 py-12 px-6">
+      <footer className="border-t border-black/5 py-8 sm:py-12 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <LogoFull className="h-5 w-auto opacity-30" />
           <p className="text-[11px] text-[var(--mid-gray)]/40">© 2026 Groundwork. All rights reserved.</p>

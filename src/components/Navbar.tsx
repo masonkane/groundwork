@@ -6,6 +6,7 @@ import { LogoFull } from "./Logo";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -16,16 +17,16 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || menuOpen
           ? "bg-white/80 backdrop-blur-xl border-b border-black/5 shadow-sm"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
         <Link href="/">
-          <LogoFull className="h-8 w-auto" />
+          <LogoFull className="h-6 sm:h-8 w-auto" />
         </Link>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 sm:gap-6">
           <Link
             href="#how-it-works"
             className="text-sm text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors hidden sm:block"
@@ -40,7 +41,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/questionnaire"
-            className="group relative bg-[var(--black)] text-white text-sm font-semibold px-5 py-2.5 rounded-full overflow-hidden transition-all hover:shadow-[0_2px_20px_rgba(0,0,0,0.2)]"
+            className="group relative bg-[var(--black)] text-white text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-full overflow-hidden transition-all hover:shadow-[0_2px_20px_rgba(0,0,0,0.2)]"
           >
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
             <span className="relative z-10">Get Your Report</span>

@@ -142,9 +142,9 @@ export default function DashboardOverview() {
   return (
     <div className="max-w-7xl mx-auto space-y-6 print:space-y-4">
       {/* Header */}
-      <div className="flex items-start justify-between flex-wrap gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold tracking-tight">Dashboard</h1>
+          <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">Dashboard</h1>
           <p className="text-[var(--mid-gray)] text-sm mt-1">Your personalized AI opportunity analysis.</p>
         </div>
         <div className="flex items-center gap-2 print:hidden">
@@ -157,19 +157,19 @@ export default function DashboardOverview() {
       </div>
 
       {/* ═══ PROJECTED SAVINGS HERO ═══ */}
-      <div className="bg-white border border-black/5 rounded-2xl p-6 md:p-8">
-        <div className="grid md:grid-cols-[1fr_auto] gap-8 items-start">
+      <div className="bg-white border border-black/5 rounded-2xl p-4 sm:p-6 md:p-8">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 md:gap-8 items-start">
           <div>
             <p className="text-[var(--mid-gray)] text-[10px] font-semibold uppercase tracking-widest mb-2">Projected Annual Savings</p>
-            <div className="text-5xl md:text-6xl font-extrabold tracking-tight mb-3">${totalSavings.toLocaleString()}</div>
-            <div className="flex flex-wrap items-center gap-3 mb-5">
-              <span className="bg-green-50 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-green-100">580% ROI</span>
-              <span className="bg-[var(--light-surface)] text-[var(--mid-gray)] text-xs font-semibold px-3 py-1.5 rounded-full border border-black/5">18 opportunities found</span>
-              <span className="bg-[var(--light-surface)] text-[var(--mid-gray)] text-xs font-semibold px-3 py-1.5 rounded-full border border-black/5">4 business areas</span>
+            <div className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-3">${totalSavings.toLocaleString()}</div>
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-5">
+              <span className="bg-green-50 text-green-700 text-[10px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-green-100">580% ROI</span>
+              <span className="bg-[var(--light-surface)] text-[var(--mid-gray)] text-[10px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-black/5">18 opportunities found</span>
+              <span className="bg-[var(--light-surface)] text-[var(--mid-gray)] text-[10px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-black/5">4 business areas</span>
             </div>
-            <p className="text-[var(--mid-gray)] text-sm leading-relaxed max-w-lg">Based on your questionnaire responses, industry benchmarks, and current operational costs. These savings are achievable within 12 months of full implementation.</p>
+            <p className="text-[var(--mid-gray)] text-xs sm:text-sm leading-relaxed max-w-lg">Based on your questionnaire responses, industry benchmarks, and current operational costs. These savings are achievable within 12 months of full implementation.</p>
           </div>
-          <div className="grid grid-cols-2 gap-3 min-w-[280px]">
+          <div className="grid grid-cols-2 gap-3 sm:min-w-[280px]">
             {[
               { label: "Monthly Savings", value: `$${monthlySavings.toLocaleString()}`, sub: "per month" },
               { label: "Quick Wins Ready", value: "5", sub: "implement this week" },
@@ -187,9 +187,9 @@ export default function DashboardOverview() {
       </div>
 
       {/* ═══ COST OF INACTION ═══ */}
-      <div className="bg-white border border-red-100 rounded-2xl p-6 relative overflow-hidden">
+      <div className="bg-white border border-red-100 rounded-2xl p-4 sm:p-6 relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-red-500 to-red-400" />
-        <div className="flex items-start justify-between flex-wrap gap-4 mb-5">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 mb-4 sm:mb-5">
           <div>
             <h2 className="text-lg font-bold flex items-center gap-2">
               Cost of Inaction
@@ -218,10 +218,10 @@ export default function DashboardOverview() {
       </div>
 
       {/* ═══ QUICK WINS ═══ */}
-      <div className="bg-white border border-black/5 rounded-2xl p-6">
-        <div className="flex items-center justify-between mb-5">
+      <div className="bg-white border border-black/5 rounded-2xl p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4 sm:mb-5">
           <div>
-            <h2 className="text-lg font-bold">Quick Wins</h2>
+            <h2 className="text-base sm:text-lg font-bold">Quick Wins</h2>
             <p className="text-xs text-[var(--mid-gray)]">5 high-impact changes you can implement this week. Click any to see the full plan.</p>
           </div>
           <div className="text-right">
@@ -262,7 +262,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* ═══ OPPORTUNITIES BY AREA ═══ */}
-      <div className="bg-white border border-black/5 rounded-2xl p-6">
+      <div className="bg-white border border-black/5 rounded-2xl p-4 sm:p-6">
         <div className="flex items-center justify-between mb-5">
           <div>
             <h2 className="text-lg font-bold">Opportunities by Business Area</h2>
@@ -308,7 +308,7 @@ export default function DashboardOverview() {
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* ═══ 12-MONTH SAVINGS PROJECTION ═══ */}
-        <div className="lg:col-span-2 bg-white border border-black/5 rounded-2xl p-6">
+        <div className="lg:col-span-2 bg-white border border-black/5 rounded-2xl p-4 sm:p-6">
           <div className="flex items-center justify-between mb-1">
             <h2 className="text-lg font-bold">12-Month Savings Projection</h2>
             <div className="text-right">
@@ -320,7 +320,7 @@ export default function DashboardOverview() {
           
           {/* Chart */}
           <div className="relative">
-            <div className="flex items-end gap-1.5 h-48">
+            <div className="flex items-end gap-1 sm:gap-1.5 h-36 sm:h-48">
               {savingsData.map((d, i) => (
                 <div 
                   key={d.month} 
@@ -353,7 +353,7 @@ export default function DashboardOverview() {
           </div>
 
           {/* Phase markers */}
-          <div className="grid grid-cols-4 gap-2 mt-4 pt-4 border-t border-black/5">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 pt-4 border-t border-black/5">
             {[
               { label: "Quick Wins", months: "Mo 1", color: "bg-green-500" },
               { label: "Core Automations", months: "Mo 1-2", color: "bg-blue-500" },
@@ -398,7 +398,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* ═══ IMPLEMENTATION TIMELINE ═══ */}
-      <div className="bg-white border border-black/5 rounded-2xl p-6">
+      <div className="bg-white border border-black/5 rounded-2xl p-4 sm:p-6">
         <div className="flex items-center justify-between mb-5">
           <div>
             <h2 className="text-lg font-bold">Implementation Timeline</h2>
@@ -406,7 +406,7 @@ export default function DashboardOverview() {
           </div>
           <Link href="/dashboard/playbooks" className="text-xs font-medium text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors print:hidden">View playbooks →</Link>
         </div>
-        <div className="grid md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {implementationPhases.map((phase, i) => (
             <DetailCard key={phase.phase} title={phase.title} subtitle={phase.phase}>
               <p className="text-xs text-[var(--mid-gray)] leading-relaxed mb-3">{phase.description}</p>
@@ -427,8 +427,8 @@ export default function DashboardOverview() {
       </div>
 
       {/* ═══ COMPETITIVE INTELLIGENCE ═══ */}
-      <div className="grid lg:grid-cols-2 gap-6">
-        <div className="bg-white border border-black/5 rounded-2xl p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+        <div className="bg-white border border-black/5 rounded-2xl p-4 sm:p-6">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-lg font-bold">Competitive Intelligence</h2>
             <Link href="/dashboard/competitors" className="text-xs font-medium text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors print:hidden">Full analysis →</Link>
@@ -457,7 +457,7 @@ export default function DashboardOverview() {
         </div>
 
         {/* ═══ RECOMMENDED TOOLS ═══ */}
-        <div className="bg-white border border-black/5 rounded-2xl p-6">
+        <div className="bg-white border border-black/5 rounded-2xl p-4 sm:p-6">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-lg font-bold">Recommended Tools</h2>
             <Link href="/dashboard/vendors" className="text-xs font-medium text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors print:hidden">All tools →</Link>
@@ -481,7 +481,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* ═══ TEAM TRAINING + NEXT AUDIT ═══ */}
-      <div className="grid lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         <Link href="/dashboard/training" className="block bg-white border border-black/5 rounded-2xl p-6 hover:border-black/10 hover:shadow-sm transition-all duration-300 print:shadow-none">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center shrink-0">

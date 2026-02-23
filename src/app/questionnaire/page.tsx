@@ -209,7 +209,7 @@ function ScaleInput({ q, value, onChange }: { q: Question; value: string; onChan
         <span>{q.scaleLabels?.low}</span>
         <span>{q.scaleLabels?.high}</span>
       </div>
-      <div className="grid grid-cols-5 gap-3">
+      <div className="grid grid-cols-5 gap-2 sm:gap-3">
         {[1, 2, 3, 4, 5].map((n) => {
           const selected = value === String(n);
           return (
@@ -380,25 +380,25 @@ function RankInput({ q, value, onChange }: { q: Question; value: string[]; onCha
 /* ── Welcome Modal ────────────────────────────────── */
 function WelcomeModal({ onStart }: { onStart: () => void }) {
   return (
-    <div className="fixed inset-0 z-[100] bg-white flex items-center justify-center px-6">
-      <div className="max-w-lg w-full text-center">
+    <div className="fixed inset-0 z-[100] bg-white flex items-center justify-center px-4 sm:px-6 overflow-y-auto">
+      <div className="max-w-lg w-full text-center py-8 sm:py-0">
         {/* Groundwork logo - centered */}
-        <div className="flex justify-center mb-8">
-          <LogoFull className="h-7 w-auto" />
+        <div className="flex justify-center mb-6 sm:mb-8">
+          <LogoFull className="h-6 sm:h-7 w-auto" />
         </div>
-        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4">
+        <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight mb-3 sm:mb-4">
           Before You Start
         </h2>
-        <p className="text-[var(--mid-gray)] leading-relaxed mb-3">
+        <p className="text-[var(--mid-gray)] leading-relaxed mb-2 sm:mb-3 text-sm sm:text-base">
           The more detailed your answers, the better your report.
         </p>
-        <p className="text-[var(--mid-gray)] leading-relaxed mb-8 text-sm">
+        <p className="text-[var(--mid-gray)] leading-relaxed mb-6 sm:mb-8 text-xs sm:text-sm">
           This is not a generic survey. Our engine uses every word you write to build a
           personalized analysis of your specific business. Vague answers get vague results.
           <span className="font-semibold text-[var(--black)]"> Be specific, be honest, and you will get a report worth thousands.</span>
         </p>
         <div className="flex flex-col items-center gap-3">
-          <div className="grid grid-cols-3 gap-3 w-full mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 w-full mb-4 sm:mb-6">
             {[
               {
                 icon: (
@@ -433,7 +433,7 @@ function WelcomeModal({ onStart }: { onStart: () => void }) {
           </div>
           <button
             onClick={onStart}
-            className="group relative inline-flex items-center gap-3 bg-[var(--black)] text-white font-semibold px-8 py-4 rounded-full text-base overflow-hidden transition-all duration-300 hover:shadow-[0_4px_40px_rgba(0,0,0,0.25)] active:scale-[0.97]"
+            className="group relative inline-flex items-center gap-3 bg-[var(--black)] text-white font-semibold px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm sm:text-base overflow-hidden transition-all duration-300 hover:shadow-[0_4px_40px_rgba(0,0,0,0.25)] active:scale-[0.97]"
           >
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[800ms] ease-out" />
             <span className="relative z-10">Let&apos;s Go</span>
@@ -570,7 +570,7 @@ export default function QuestionnairePage() {
     <div className="min-h-screen bg-[var(--light-surface)] flex flex-col">
       {/* Top bar */}
       <div className="sticky top-0 z-50 bg-white border-b border-black/5">
-        <div className="max-w-2xl mx-auto px-6 py-3.5 flex items-center justify-between">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-3 sm:py-3.5 flex items-center justify-between">
           <Link href="/">
             <LogoFull className="h-6 w-auto" />
           </Link>
@@ -587,7 +587,7 @@ export default function QuestionnairePage() {
       </div>
 
       {/* Main */}
-      <div className="flex-1 flex items-start justify-center px-6 pt-10 pb-32">
+      <div className="flex-1 flex items-start justify-center px-4 sm:px-6 pt-6 sm:pt-10 pb-24 sm:pb-32">
         <div className="w-full max-w-xl" key={animKey}>
           {/* Section badge */}
           <div className="flex items-center gap-2.5 mb-8">
@@ -601,8 +601,8 @@ export default function QuestionnairePage() {
           </div>
 
           {/* Question card */}
-          <div className="bg-white rounded-2xl border border-black/5 p-8 shadow-sm slide-up">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-8 leading-snug">
+          <div className="bg-white rounded-2xl border border-black/5 p-5 sm:p-8 shadow-sm slide-up">
+            <h2 className="text-lg sm:text-2xl font-bold tracking-tight mb-5 sm:mb-8 leading-snug">
               {question.question}
             </h2>
 

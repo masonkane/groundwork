@@ -137,7 +137,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
         </header>
 
         {/* Page content */}
-        <main className="p-6 md:p-8">{children}</main>
+        <main className="p-4 sm:p-6 md:p-8">{children}</main>
       </div>
     </div>
   );
