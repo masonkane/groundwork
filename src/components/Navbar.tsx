@@ -23,7 +23,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/">
-          <LogoFull className="h-7 w-auto" />
+          <LogoFull className="h-8 w-auto" />
         </Link>
         <div className="flex items-center gap-6">
           <Link
@@ -40,9 +40,10 @@ export default function Navbar() {
           </Link>
           <Link
             href="/questionnaire"
-            className="bg-[var(--black)] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[var(--dark-surface)] transition-colors"
+            className="group relative bg-[var(--black)] text-white text-sm font-semibold px-5 py-2.5 rounded-full overflow-hidden transition-all hover:shadow-[0_2px_20px_rgba(0,0,0,0.2)]"
           >
-            Get Your Report
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
+            <span className="relative z-10">Get Your Report</span>
           </Link>
         </div>
       </div>
