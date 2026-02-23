@@ -21,30 +21,31 @@ export default function VendorsPage() {
         <p className="text-[var(--mid-gray)] text-sm mt-1">AI tools matched to your business needs, ranked by compatibility with your current stack.</p>
       </div>
 
-      <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6">
-        <h2 className="text-sm font-bold text-blue-900 mb-1">Why These Tools?</h2>
-        <p className="text-xs text-blue-800/60 leading-relaxed">Each tool is scored based on your industry, tech stack, team comfort level, business size, and specific pain points from your questionnaire. Match percentage reflects how well each tool fits your exact situation.</p>
+      {/* Your Recommended Stack */}
+      <div className="bg-white border-2 border-black/[0.06] rounded-2xl p-5 sm:p-6 shadow-[0_1px_40px_rgba(0,0,0,0.04)]">
+        <h2 className="text-sm font-bold uppercase tracking-wider text-[var(--mid-gray)]/50 mb-4">Your Recommended Stack</h2>
+        <div className="flex items-center justify-center gap-4 flex-wrap mb-5">
+          <div className="text-center p-4 bg-red-50 rounded-xl border border-red-100 min-w-[130px]">
+            <div className="text-xl font-extrabold text-red-600">$416/mo</div>
+            <div className="text-[10px] text-red-400 mt-0.5">Total tool cost</div>
+          </div>
+          <span className="text-xl font-extrabold text-[var(--mid-gray)]">vs</span>
+          <div className="text-center p-4 bg-green-50 rounded-xl border border-green-100 min-w-[130px]">
+            <div className="text-xl font-extrabold text-green-600">$11,900/mo</div>
+            <div className="text-[10px] text-green-500 mt-0.5">Projected savings</div>
+          </div>
+          <span className="text-xl font-extrabold text-[var(--mid-gray)]">=</span>
+          <div className="text-center p-4 bg-[var(--black)] rounded-xl min-w-[130px]">
+            <div className="text-xl font-extrabold text-white">28.6x ROI</div>
+            <div className="text-[10px] text-white/40 mt-0.5">Return on investment</div>
+          </div>
+        </div>
+        <p className="text-xs text-[var(--mid-gray)] text-center leading-relaxed">You do not need all 10 tools. Start with your top 3-4 based on Quick Wins, then add tools as you progress through the implementation phases.</p>
       </div>
 
-      <div className="bg-white border border-black/5 rounded-2xl p-6">
-        <div className="flex items-center gap-3 mb-5">
-          <h2 className="text-lg font-bold">Benchmark Pricing</h2>
-          <span className="text-[10px] bg-[var(--light-surface)] px-2.5 py-1 rounded-full font-medium text-[var(--mid-gray)]">Based on industry averages</span>
-        </div>
-        <div className="grid grid-cols-3 gap-4">
-          <div className="text-center p-4 bg-[var(--light-surface)] rounded-xl">
-            <div className="text-2xl font-extrabold">$237</div>
-            <div className="text-[10px] text-[var(--mid-gray)]">Avg. monthly AI tool spend</div>
-          </div>
-          <div className="text-center p-4 bg-[var(--light-surface)] rounded-xl">
-            <div className="text-2xl font-extrabold text-green-600">14.2x</div>
-            <div className="text-[10px] text-[var(--mid-gray)]">Avg. ROI on AI tool investment</div>
-          </div>
-          <div className="text-center p-4 bg-[var(--light-surface)] rounded-xl">
-            <div className="text-2xl font-extrabold">3-6</div>
-            <div className="text-[10px] text-[var(--mid-gray)]">Weeks to see first results</div>
-          </div>
-        </div>
+      <div className="bg-blue-50 border border-blue-100 rounded-2xl p-5 sm:p-6">
+        <h2 className="text-sm font-bold text-blue-900 mb-1">Why These Tools?</h2>
+        <p className="text-xs text-blue-800/60 leading-relaxed">Each tool is scored based on your industry, tech stack, team comfort level, business size, and specific pain points from your questionnaire. Match percentage reflects how well each tool fits your exact situation.</p>
       </div>
 
       <div className="space-y-4">
