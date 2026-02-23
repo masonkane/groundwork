@@ -148,6 +148,16 @@ export default function Home() {
             <div className="flex flex-col items-center gap-3">
               <HeroCTA />
               <p className="text-[11px] text-[var(--mid-gray)]/40">Free · No credit card · Takes about 15 minutes</p>
+              <div className="flex items-center gap-4 mt-4">
+                <div className="flex -space-x-2">
+                  {[...Array(4)].map((_, i) => (
+                    <div key={i} className="w-7 h-7 rounded-full bg-[var(--light-surface)] border-2 border-white flex items-center justify-center text-[8px] font-bold text-[var(--mid-gray)]">
+                      {["JF", "SK", "MR", "AL"][i]}
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[11px] text-[var(--mid-gray)]/50"><span className="font-semibold text-[var(--mid-gray)]">127 businesses</span> analyzed this month</p>
+              </div>
             </div>
           </RevealSection>
         </div>

@@ -214,6 +214,18 @@ select:focus-visible,
   top: 0;
 }
 
+/* Focus-visible for keyboard accessibility */
+:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 2px;
+}
+
 /* Mobile touch improvements */
 @media (max-width: 640px) {
   button, a {
