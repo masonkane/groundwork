@@ -44,6 +44,46 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <meta name="theme-color" content="#080808" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "Groundwork",
+              "applicationCategory": "BusinessApplication",
+              "description": "AI implementation intelligence for businesses. Free assessment shows exactly where AI saves money, then we implement it.",
+              "url": "https://groundwork-swart.vercel.app",
+              "offers": {
+                "@type": "AggregateOffer",
+                "lowPrice": "0",
+                "highPrice": "997",
+                "priceCurrency": "USD",
+                "offerCount": "3"
+              },
+              "operatingSystem": "Web",
+              "creator": {
+                "@type": "Organization",
+                "name": "Groundwork"
+              }
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                { "@type": "Question", "name": "Is the report actually free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The AI opportunity report, readiness score, and competitive analysis are 100% free. No credit card. No sales call." }},
+                { "@type": "Question", "name": "How long does the questionnaire take?", "acceptedAnswer": { "@type": "Answer", "text": "About 15 minutes. 37 questions across 7 sections." }},
+                { "@type": "Question", "name": "How accurate are the savings projections?", "acceptedAnswer": { "@type": "Answer", "text": "We use conservative estimates (70% of maximum reported savings). Most businesses hit 80-120% of projected savings within 90 days." }},
+                { "@type": "Question", "name": "What industries do you cover?", "acceptedAnswer": { "@type": "Answer", "text": "All of them. Construction, healthcare, real estate, e-commerce, professional services, trades, SaaS, and more." }},
+              ]
+            }),
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>
