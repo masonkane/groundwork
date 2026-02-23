@@ -115,115 +115,7 @@ const valueStack = [
   { icon: (<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18" /><polyline points="17,6 23,6 23,12" /></svg>), title: "Stay Ahead Permanently", desc: "AI moves fast. Every quarter we reassess your business and find new opportunities. Your competitors scramble to keep up while you are already two steps ahead." },
 ];
 
-/* ── Cal.com style mockup illustrations ───────────── */
-function QuestionnaireVisual() {
-  return (
-    <div className="bg-white rounded-2xl border border-black/5 p-5 shadow-sm">
-      {/* Form header */}
-      <div className="flex items-center gap-2 mb-4">
-        <div className="w-2 h-2 rounded-full bg-black/10" />
-        <div className="w-2 h-2 rounded-full bg-black/10" />
-        <div className="w-2 h-2 rounded-full bg-black/10" />
-      </div>
-      {/* Progress bar */}
-      <div className="h-1 bg-black/5 rounded-full mb-5">
-        <div className="h-full w-3/5 bg-[var(--black)] rounded-full" />
-      </div>
-      {/* Question */}
-      <div className="mb-4">
-        <div className="h-3 w-48 bg-black/8 rounded mb-4" />
-        <div className="h-2 w-64 bg-black/4 rounded mb-6" />
-      </div>
-      {/* Options */}
-      {[true, false, false].map((selected, i) => (
-        <div key={i} className={`flex items-center gap-3 px-4 py-3 rounded-xl mb-2 border-2 transition-all ${selected ? "border-[var(--black)] bg-black/[0.02]" : "border-black/5"}`}>
-          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selected ? "border-[var(--black)]" : "border-black/10"}`}>
-            {selected && <div className="w-2.5 h-2.5 rounded-full bg-[var(--black)]" />}
-          </div>
-          <div className={`h-2 rounded ${selected ? "w-32 bg-black/15" : i === 1 ? "w-40 bg-black/5" : "w-28 bg-black/5"}`} />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function AnalysisVisual() {
-  return (
-    <div className="bg-white rounded-2xl border border-black/5 p-5 shadow-sm">
-      <div className="flex items-center gap-2 mb-4">
-        <div className="w-2 h-2 rounded-full bg-black/10" />
-        <div className="w-2 h-2 rounded-full bg-black/10" />
-        <div className="w-2 h-2 rounded-full bg-black/10" />
-      </div>
-      {/* Processing indicator */}
-      <div className="flex items-center gap-3 mb-5">
-        <div className="w-3 h-3 bg-[var(--black)] rounded-full animate-pulse" />
-        <div className="h-2 w-36 bg-black/8 rounded" />
-      </div>
-      {/* Data categories being analyzed */}
-      <div className="grid grid-cols-2 gap-3 mb-4">
-        {[78, 62, 91, 45].map((pct, i) => (
-          <div key={i} className="p-3 bg-[var(--light-surface)] rounded-xl">
-            <div className="h-2 w-16 bg-black/8 rounded mb-2" />
-            <div className="h-1.5 bg-black/5 rounded-full">
-              <div className="h-full bg-[var(--black)] rounded-full" style={{ width: `${pct}%` }} />
-            </div>
-          </div>
-        ))}
-      </div>
-      {/* Connections visualization */}
-      <div className="flex items-center justify-between px-2">
-        {[1,2,3,4,5].map((n) => (
-          <div key={n} className="flex flex-col items-center gap-1">
-            <div className="w-8 h-8 rounded-lg bg-black/[0.03] border border-black/5 flex items-center justify-center">
-              <div className="w-3 h-3 rounded bg-black/10" />
-            </div>
-            <div className="h-0.5 w-0.5 bg-black/10 rounded-full" />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function ReportVisual() {
-  return (
-    <div className="bg-white rounded-2xl border border-black/5 p-5 shadow-sm">
-      <div className="flex items-center gap-2 mb-4">
-        <div className="w-2 h-2 rounded-full bg-black/10" />
-        <div className="w-2 h-2 rounded-full bg-black/10" />
-        <div className="w-2 h-2 rounded-full bg-black/10" />
-      </div>
-      {/* Big savings number */}
-      <div className="mb-4">
-        <div className="text-[10px] font-bold text-[var(--mid-gray)] mb-1">Projected Annual Savings</div>
-        <div className="text-2xl font-extrabold tracking-tight">$142,800</div>
-        <div className="flex gap-2 mt-2">
-          <span className="bg-green-50 text-green-700 text-[9px] font-semibold px-2 py-0.5 rounded-full">↑ 580% ROI</span>
-          <span className="bg-black/[0.03] text-[var(--mid-gray)] text-[9px] font-semibold px-2 py-0.5 rounded-full">18 found</span>
-        </div>
-      </div>
-      {/* Mini chart */}
-      <div className="flex items-end gap-1.5 h-16 mb-4 px-1">
-        {[35, 55, 40, 70, 50, 85, 60, 95, 75, 100, 80, 90].map((h, i) => (
-          <div key={i} className="flex-1 bg-[var(--black)] rounded-t" style={{ height: `${h}%`, opacity: 0.1 + (h / 120) }} />
-        ))}
-      </div>
-      {/* Quick wins list */}
-      <div className="border-t border-black/5 pt-3">
-        <div className="text-[9px] font-bold text-[var(--mid-gray)] mb-2">Quick Wins</div>
-        {["Invoice automation", "AI lead follow-up", "Smart scheduling"].map((w) => (
-          <div key={w} className="flex items-center gap-2 py-1">
-            <div className="w-4 h-4 rounded bg-green-50 flex items-center justify-center">
-              <svg width="8" height="8" viewBox="0 0 12 12" fill="none" stroke="#22c55e" strokeWidth="2" strokeLinecap="round"><path d="M2 6L5 9L10 3" /></svg>
-            </div>
-            <span className="text-[10px] font-medium">{w}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+/* ── How It Works step visuals ─────────────────────── */
 
 export default function Home() {
   return (
@@ -305,44 +197,89 @@ export default function Home() {
 
       <div className="h-px w-full animate-gradient-line" />
 
-      {/* ═══════════════ HOW IT WORKS (cal.com style) ═══════════════ */}
+      {/* ═══════════════ HOW IT WORKS ═══════════════ */}
       <section id="how-it-works" className="py-28 px-6 bg-[var(--light-surface)]">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <RevealSection className="text-center mb-20">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">How It Works</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">From blind spots to bottom line</h2>
             <p className="text-[var(--mid-gray)] mt-4 max-w-lg mx-auto">Three steps. No jargon. No mystery.</p>
           </RevealSection>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="space-y-8">
             {[
               {
-                num: "01",
-                title: "Answer the questionnaire",
-                desc: "Tell us about your operations, customers, tech stack, and goals. Takes about 15 minutes.",
-                visual: <QuestionnaireVisual />,
+                title: "Tell us about your business",
+                desc: "Answer questions about your operations, customers, tech stack, and goals. Like sitting down with a consultant who actually listens, except it takes 15 minutes, not 15 meetings.",
+                visual: (
+                  <div className="space-y-2.5">
+                    {["Company & Industry", "Operations & Workflows", "Technology Stack", "Customers & Revenue", "Goals & Priorities"].map((s, i) => (
+                      <div key={s} className="flex items-center gap-3">
+                        <span className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${i < 3 ? "bg-[var(--black)] text-white" : "bg-black/5 text-[var(--mid-gray)]"}`}>
+                          {i < 3 ? (<svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M2.5 7L5.5 10L11.5 4" /></svg>) : String(i + 1)}
+                        </span>
+                        <span className={`text-sm ${i < 3 ? "font-medium" : "text-[var(--mid-gray)]"}`}>{s}</span>
+                      </div>
+                    ))}
+                  </div>
+                ),
               },
               {
-                num: "02",
                 title: "We analyze everything",
-                desc: "Your answers are cross-referenced against industry benchmarks, cost data, and competitive intelligence.",
-                visual: <AnalysisVisual />,
+                desc: "Your answers are cross-referenced against industry benchmarks, cost data, and competitive intelligence to build a report specific to your business, not a generic template.",
+                visual: (
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 text-xs">
+                      <span className="w-2 h-2 bg-[var(--black)] rounded-full animate-pulse" />
+                      <span className="text-[var(--mid-gray)]">Processing business data...</span>
+                    </div>
+                    <div className="h-2 bg-black/5 rounded-full overflow-hidden">
+                      <div className="h-full bg-[var(--black)] rounded-full" style={{ width: "78%" }} />
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 mt-3">
+                      {["Industry Benchmarks", "Cost Analysis", "Tool Mapping", "Competitor Data"].map((label) => (
+                        <div key={label} className="bg-black/[0.03] rounded-lg px-3 py-2 text-[11px] font-medium text-[var(--mid-gray)]">{label}</div>
+                      ))}
+                    </div>
+                  </div>
+                ),
               },
               {
-                num: "03",
-                title: "Get your roadmap, we build it",
-                desc: "Receive a dollar-amount report with quick wins. Then we implement every recommendation for you.",
-                visual: <ReportVisual />,
+                title: "Get your roadmap, then we build it",
+                desc: "You receive a detailed report with dollar-amount projections and quick wins. Then Groundwork helps you implement every recommendation: tools, training, vendor selection, full rollout.",
+                visual: (
+                  <div className="space-y-3">
+                    <div className="text-xs font-bold text-[var(--mid-gray)]">Projected Annual Savings</div>
+                    <div className="text-3xl font-extrabold tracking-tight">$142,800</div>
+                    <div className="flex gap-2">
+                      <span className="bg-green-50 text-green-700 text-[11px] font-semibold px-2.5 py-1 rounded-full">↑ 580% ROI</span>
+                      <span className="bg-black/[0.03] text-[var(--mid-gray)] text-[11px] font-semibold px-2.5 py-1 rounded-full">18 opportunities</span>
+                    </div>
+                    <div className="border-t border-black/5 pt-3 mt-1">
+                      <div className="text-[11px] font-bold text-[var(--mid-gray)] mb-2">Quick Wins</div>
+                      {["Automate invoice processing", "AI-powered lead follow-up", "Smart scheduling system"].map((w) => (
+                        <div key={w} className="flex items-center gap-2 text-xs py-1">
+                          <span className="w-1.5 h-1.5 bg-[var(--black)] rounded-full" />{w}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ),
               },
             ].map((step, i) => (
               <ScaleReveal key={i} delay={i * 120}>
-                <div className="group bg-white border border-black/5 rounded-3xl p-6 hover:border-black/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-full flex flex-col">
-                  <div className="mb-4">
-                    <span className="inline-block px-3 py-1 bg-[var(--light-surface)] border border-black/5 rounded-lg text-xs font-bold text-[var(--mid-gray)]">{step.num}</span>
+                <div className="group grid md:grid-cols-2 gap-8 bg-white border border-black/5 rounded-3xl p-8 md:p-10 hover:border-black/10 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500">
+                  <div className="flex flex-col justify-center">
+                    <div className="flex items-center gap-3 mb-5">
+                      <span className="w-8 h-8 bg-[var(--black)] text-white rounded-full flex items-center justify-center text-xs font-bold">{i + 1}</span>
+                      <span className="h-px flex-1 bg-black/5" />
+                    </div>
+                    <h3 className="text-2xl font-bold tracking-tight mb-3">{step.title}</h3>
+                    <p className="text-[var(--mid-gray)] leading-relaxed text-[15px]">{step.desc}</p>
                   </div>
-                  <h3 className="text-lg font-bold tracking-tight mb-2">{step.title}</h3>
-                  <p className="text-[var(--mid-gray)] text-sm leading-relaxed mb-5">{step.desc}</p>
-                  <div className="mt-auto">{step.visual}</div>
+                  <div className="bg-[var(--light-surface)] group-hover:bg-black/[0.03] rounded-2xl p-6 md:p-8 transition-colors duration-500">
+                    {step.visual}
+                  </div>
                 </div>
               </ScaleReveal>
             ))}
