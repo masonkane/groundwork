@@ -394,7 +394,7 @@ function WelcomeModal({ onStart }: { onStart: () => void }) {
           The more detailed your answers, the better your report.
         </p>
         <p className="text-[var(--mid-gray)] leading-relaxed mb-8 text-sm">
-          This isn&apos;t a generic survey — our engine uses every word you write to build a
+          This isn&apos;t a generic survey. our engine uses every word you write to build a
           personalized analysis of your specific business. Vague answers get vague results.
           <span className="font-semibold text-[var(--black)]"> Be specific, be honest, and you&apos;ll get a report worth thousands.</span>
         </p>
@@ -403,7 +403,7 @@ function WelcomeModal({ onStart }: { onStart: () => void }) {
             {[
               { icon: "🎯", label: "Be specific about your daily operations" },
               { icon: "💰", label: "Include real numbers when you can" },
-              { icon: "🗣️", label: "Write in your own words — don't overthink it" },
+              { icon: "🗣️", label: "Write in your own words. don't overthink it" },
             ].map((tip) => (
               <div key={tip.label} className="bg-[var(--light-surface)] rounded-xl p-3 text-center">
                 <span className="text-lg block mb-1">{tip.icon}</span>

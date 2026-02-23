@@ -107,7 +107,7 @@ export const sections: Section[] = [
     questions: [
       {
         id: 8,
-        question: "Walk us through a typical day or week — what takes up the most time?",
+        question: "Walk us through a typical day or week. what takes up the most time?",
         type: "textarea",
         placeholder: "Describe your typical workflow...",
         suggestions: [
@@ -316,7 +316,7 @@ export const sections: Section[] = [
           "We use a CRM with reminders",
           "Automated email or text sequences",
           "We don't really have a follow-up system",
-          "It's inconsistent — depends on how busy we are",
+          "It's inconsistent. depends on how busy we are",
         ],
       },
       {
@@ -330,7 +330,7 @@ export const sections: Section[] = [
           "Use AI tools (ChatGPT, Canva, etc.)",
           "Post occasionally but no real strategy",
           "We don't really do marketing",
-          "Our work speaks for itself — we rely on reputation",
+          "Our work speaks for itself. we rely on reputation",
         ],
       },
       {
@@ -394,8 +394,8 @@ export const sections: Section[] = [
           "Most of our revenue is repeat customers",
           "We get a good amount of repeat and referral business",
           "Some, but we could do better",
-          "Rarely — most customers are one-time",
-          "Not applicable — our business is naturally one-time",
+          "Rarely. most customers are one-time",
+          "Not applicable. our business is naturally one-time",
         ],
       },
       {
@@ -407,7 +407,7 @@ export const sections: Section[] = [
           "Occasional emails or newsletters",
           "We reach out when we have something to sell",
           "Social media only",
-          "We don't — once the job is done, we move on",
+          "We don't. once the job is done, we move on",
           "We want to but don't have time",
         ],
       },
@@ -415,7 +415,7 @@ export const sections: Section[] = [
         id: 28,
         question: "What do your customers complain about most, or where do you lose them?",
         type: "textarea",
-        placeholder: "Be honest — this shapes your report.",
+        placeholder: "Be honest. this shapes your report.",
         suggestions: [
           "Slow to return calls",
           "Project timelines slip",
@@ -471,7 +471,7 @@ export const sections: Section[] = [
         id: 31,
         question: "What is the single biggest challenge holding your business back right now?",
         type: "textarea",
-        placeholder: "Be real with us — this shapes everything.",
+        placeholder: "Be real with us. this shapes everything.",
         suggestions: [
           "Not enough leads or customers",
           "Can't find or keep good employees",
@@ -536,7 +536,7 @@ export const sections: Section[] = [
         question: "How quickly are you looking to make changes?",
         type: "select",
         options: [
-          "As soon as possible — we need help now",
+          "As soon as possible. we need help now",
           "Within 1–3 months",
           "Within 3–6 months",
           "Sometime this year",
@@ -556,7 +556,7 @@ export const sections: Section[] = [
           "Worried about data privacy or security",
           "It won't work for my type of business",
           "Concerned about losing the personal touch",
-          "No concerns — I'm ready to go",
+          "No concerns. I'm ready to go",
         ],
       },
       {

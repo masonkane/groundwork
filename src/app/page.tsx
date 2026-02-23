@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import { LogoIcon, LogoFull } from "@/components/Logo";
@@ -35,7 +35,6 @@ function RevealSection({ children, className = "", delay = 0 }: { children: Reac
   );
 }
 
-/* ── Animated CTA Button ──────────────────────────── */
 function HeroCTA({ label = "Get Your Free Report", dark = false }: { label?: string; dark?: boolean }) {
   return (
     <Link
@@ -46,26 +45,18 @@ function HeroCTA({ label = "Get Your Free Report", dark = false }: { label?: str
           : "bg-[var(--black)] text-white hover:shadow-[0_4px_40px_rgba(0,0,0,0.25)]"
       }`}
     >
-      {/* Shimmer sweep */}
       <span className={`absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[800ms] ease-out ${
         dark ? "bg-gradient-to-r from-transparent via-black/5 to-transparent" : "bg-gradient-to-r from-transparent via-white/15 to-transparent"
       }`} />
-
-      {/* Glow border */}
       <span className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
         dark ? "" : "shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]"
       }`} />
-
       <span className="relative z-10">{label}</span>
-
-      {/* Arrow with bounce */}
       <span className="relative z-10 group-hover:translate-x-1.5 transition-transform duration-300">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
           <path d="M4 9H14M10 4.5L14.5 9L10 13.5" />
         </svg>
       </span>
-
-      {/* Outer pulse ring */}
       <span className={`absolute -inset-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 ${
         dark ? "" : "shadow-[0_0_0_2px_rgba(0,0,0,0.05)]"
       }`} />
@@ -73,7 +64,6 @@ function HeroCTA({ label = "Get Your Free Report", dark = false }: { label?: str
   );
 }
 
-/* ── Industry grid with icons ─────────────────────── */
 const industryItems = [
   { name: "Construction", icon: "🏗️" },
   { name: "Healthcare", icon: "🏥" },
@@ -93,56 +83,55 @@ const industryItems = [
   { name: "Nonprofits", icon: "❤️" },
 ];
 
-/* ── What we actually do (the stack) ──────────────── */
 const valueStack = [
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14,2 14,8 20,8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>
     ),
-    title: "Personalized AI Opportunity Report",
-    desc: "A detailed breakdown of every place AI can save you money, grow revenue, or eliminate wasted time — specific to your business, not generic advice.",
+    title: "Custom AI Roadmap for Your Business",
+    desc: "We map every AI opportunity across your operations, sales, customer service, and back office. You see exactly what to implement, in what order, and what each change is worth in dollars.",
   },
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" /></svg>
     ),
-    title: "Dollar-Amount ROI Projections",
-    desc: "Not vague promises. Actual numbers — projected savings, revenue gains, and cost-of-inaction calculations so you know exactly what's at stake.",
+    title: "Automate What Drains Your Time",
+    desc: "Invoicing, scheduling, follow-ups, data entry, reporting. We identify the tasks eating your hours and implement AI systems that handle them automatically so your team can focus on revenue.",
   },
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10" /></svg>
     ),
-    title: "Quick Wins You Can Act On This Week",
-    desc: "Immediate, low-effort changes that start saving you money before you even commit to a plan. Results from day one.",
+    title: "Scale Without Hiring",
+    desc: "AI lets a 10-person team operate like a 30-person team. We show you exactly where AI agents, chatbots, and automation can replace the need to hire, saving you six figures in payroll.",
   },
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14,2 14,8 20,8" /><path d="M9 15l2 2 4-4" /></svg>
     ),
-    title: "Step-by-Step Implementation Playbooks",
-    desc: "For every recommendation — the exact tools, timeline, costs, and steps. Just follow the playbook. No guesswork.",
+    title: "Full Implementation, Not Just Advice",
+    desc: "We do not hand you a PDF and wish you luck. Groundwork walks your team through every tool, every integration, every workflow change. Training, setup, vendor selection, rollout. All of it.",
   },
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>
     ),
-    title: "Hands-On Implementation Support",
-    desc: "Not just a report you'll never read. We walk you through it — training, vendor selection, team onboarding, the full rollout.",
+    title: "Win More Customers with AI",
+    desc: "AI-powered lead follow-up, proposal generation, review management, and customer communication. Close more deals faster and never let a lead slip through the cracks again.",
   },
   {
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18" /><polyline points="17,6 23,6 23,12" /></svg>
     ),
-    title: "Ongoing Optimization & Quarterly Audits",
-    desc: "AI evolves fast. We reassess your business every quarter and surface new opportunities automatically. You stay ahead — permanently.",
+    title: "Stay Ahead Permanently",
+    desc: "AI moves fast. Every quarter we reassess your business and find new opportunities. Your competitors scramble to keep up while you are already two steps ahead.",
   },
 ];
 
 const steps = [
   {
     title: "Tell us about your business",
-    desc: "Answer questions about your operations, customers, tech stack, and goals. Think of it like sitting down with a consultant who actually listens — except it takes 15 minutes, not 15 meetings.",
+    desc: "Answer questions about your operations, customers, tech stack, and goals. Like sitting down with a consultant who actually listens, except it takes 15 minutes, not 15 meetings.",
     visual: (
       <div className="space-y-2.5">
         {["Company & Industry", "Operations & Workflows", "Technology Stack", "Customers & Revenue", "Goals & Priorities"].map((s, i) => (
@@ -160,7 +149,7 @@ const steps = [
   },
   {
     title: "We analyze everything",
-    desc: "Your answers are cross-referenced against industry benchmarks, cost data, and competitive intelligence to build a report that's specific to your business — not a template.",
+    desc: "Your answers are cross-referenced against industry benchmarks, cost data, and competitive intelligence to build a report specific to your business, not a generic template.",
     visual: (
       <div className="space-y-3">
         <div className="flex items-center gap-3 text-xs">
@@ -179,21 +168,21 @@ const steps = [
     ),
   },
   {
-    title: "Get your roadmap — then we build it",
-    desc: "You get a detailed, dollar-amount report with quick wins and strategic plays. Then Groundwork helps you implement every recommendation — tools, training, rollout, everything.",
+    title: "Get your roadmap, then we build it",
+    desc: "You receive a detailed report with dollar-amount projections and quick wins. Then Groundwork helps you implement every recommendation: tools, training, vendor selection, full rollout.",
     visual: (
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <span className="text-xs font-bold text-[var(--mid-gray)]">Projected Annual Savings</span>
         </div>
-        <div className="text-3xl font-extrabold tracking-tight">$47,200</div>
+        <div className="text-3xl font-extrabold tracking-tight">$142,800</div>
         <div className="flex gap-2">
-          <span className="bg-green-50 text-green-700 text-[11px] font-semibold px-2.5 py-1 rounded-full">↑ 340% ROI</span>
-          <span className="bg-black/[0.03] text-[var(--mid-gray)] text-[11px] font-semibold px-2.5 py-1 rounded-full">12 opportunities</span>
+          <span className="bg-green-50 text-green-700 text-[11px] font-semibold px-2.5 py-1 rounded-full">↑ 580% ROI</span>
+          <span className="bg-black/[0.03] text-[var(--mid-gray)] text-[11px] font-semibold px-2.5 py-1 rounded-full">18 opportunities</span>
         </div>
         <div className="border-t border-black/5 pt-3 mt-1">
           <div className="text-[11px] font-bold text-[var(--mid-gray)] mb-2">Quick Wins</div>
-          {["Automate invoice processing", "AI customer follow-ups", "Smart scheduling"].map((w) => (
+          {["Automate invoice processing", "AI-powered lead follow-up", "Smart scheduling system"].map((w) => (
             <div key={w} className="flex items-center gap-2 text-xs py-1">
               <span className="w-1.5 h-1.5 bg-[var(--black)] rounded-full" />{w}
             </div>
@@ -217,24 +206,24 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 bg-[var(--light-surface)] border border-black/5 rounded-full px-4 py-1.5 mb-8">
               <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
               <span className="text-xs font-medium text-[var(--mid-gray)]">
-                Trusted by businesses across 15+ industries
+                Now accepting new businesses
               </span>
             </div>
           </RevealSection>
 
           <RevealSection delay={100}>
             <h1 className="text-[44px] sm:text-[56px] md:text-[68px] font-extrabold tracking-[-0.035em] leading-[1.08] mb-6">
-              We find the AI your
+              We implement AI
               <br />
-              business is missing.
+              into your business.
               <br />
-              <span className="text-[var(--mid-gray)]">Then we build it for you.</span>
+              <span className="text-[var(--mid-gray)]">You grow and scale.</span>
             </h1>
           </RevealSection>
 
           <RevealSection delay={200}>
             <p className="text-lg sm:text-xl text-[var(--mid-gray)] max-w-xl mx-auto mb-12 leading-relaxed">
-              Most businesses are bleeding thousands a month on problems AI already solves — they just don&apos;t know where to start. We do. Get your free report and see exactly what you&apos;re missing.
+              Most businesses lose thousands every month on problems AI already solves. We find exactly where, show you the dollar amount, and then implement every solution for you.
             </p>
           </RevealSection>
 
@@ -242,7 +231,7 @@ export default function Home() {
             <div className="flex flex-col items-center gap-4">
               <HeroCTA />
               <p className="text-[11px] text-[var(--mid-gray)]/40">
-                Free · No credit card · Takes ~15 minutes
+                Free · No credit card · Takes about 15 minutes
               </p>
             </div>
           </RevealSection>
@@ -254,7 +243,7 @@ export default function Home() {
         <section className="py-16 border-y border-black/5">
           <div className="max-w-5xl mx-auto px-6">
             <p className="text-center text-sm font-medium text-[var(--mid-gray)] mb-8">
-              We&apos;ve analyzed businesses in every one of these industries — and found money left on the table in all of them.
+              We have analyzed businesses across every one of these industries and found untapped AI opportunities in all of them.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
               {industryItems.map((ind) => (
@@ -274,17 +263,17 @@ export default function Home() {
           <RevealSection className="text-center mb-16">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">The Problem</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-              You know AI can help your business.
+              You know AI can transform your business.
               <br />
-              <span className="text-[var(--mid-gray)]">You just don&apos;t know where — or how.</span>
+              <span className="text-[var(--mid-gray)]">You just need someone to show you how.</span>
             </h2>
           </RevealSection>
 
           <div className="grid sm:grid-cols-3 gap-5">
             {[
-              { num: "72%", label: "of business owners say they want to use AI but don't know where to start" },
-              { num: "$4,200", label: "average monthly savings discovered in a Groundwork analysis" },
-              { num: "3 hrs", label: "average weekly time saved per employee after AI implementation" },
+              { num: "72%", label: "of business owners want to use AI but do not know where to start" },
+              { num: "$11,900", label: "average monthly savings discovered per business we analyze" },
+              { num: "3x", label: "faster growth for businesses that implement AI across operations" },
             ].map((stat, i) => (
               <RevealSection key={i} delay={i * 100}>
                 <div className="text-center p-6 bg-white border border-black/5 rounded-2xl">
@@ -332,17 +321,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════ THE FULL STACK (what you actually get) ═══════════════ */}
+      {/* ═══════════════ WHAT YOU GET ═══════════════ */}
       <section id="features" className="py-28 px-6">
         <div className="max-w-5xl mx-auto">
           <RevealSection className="text-center mb-20">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">What You Get</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
-              Not just a report. A partner.
+              Not just a report. A growth engine.
             </h2>
             <p className="text-[var(--mid-gray)] mt-4 max-w-lg mx-auto">
-              Groundwork doesn&apos;t hand you a PDF and walk away. We find the opportunities,
-              build the roadmap, and help you implement every step.
+              We find the AI opportunities hiding in your business, build the implementation plan, and walk you through every step until it is running.
             </p>
           </RevealSection>
 
@@ -362,20 +350,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════ SHOCK MOMENT ═══════════════ */}
+      {/* ═══════════════ WAKE-UP CALL ═══════════════ */}
       <RevealSection>
         <section className="py-28 px-6 bg-[var(--black)] text-white relative overflow-hidden">
           <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
           <div className="max-w-3xl mx-auto text-center relative z-10">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/20 mb-6">The Question You Need To Ask</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/20 mb-6">The Reality Check</p>
             <h2 className="text-3xl sm:text-5xl md:text-[56px] font-extrabold tracking-tight mb-6 leading-tight">
-              If your competitors are already using AI and you&apos;re not —
+              While you are figuring out AI,
               <br />
-              <span className="text-red-400">how long before it shows?</span>
+              <span className="text-red-400">your competitors already did.</span>
             </h2>
-            <p className="text-white/40 text-lg max-w-xl mx-auto mb-12 leading-relaxed">
-              Every month you wait, the gap gets wider. The report is free.
-              The cost of doing nothing isn&apos;t.
+            <p className="text-white/50 text-lg max-w-xl mx-auto mb-4 leading-relaxed">
+              They are closing deals faster, spending less on operations, and scaling without adding headcount. Every week you wait, the gap between you and them gets wider.
+            </p>
+            <p className="text-white/30 text-base max-w-lg mx-auto mb-12 leading-relaxed">
+              The free report takes 15 minutes. It will show you exactly what they are doing that you are not. The only risk is not looking.
             </p>
             <HeroCTA label="See What You're Missing" dark />
           </div>
@@ -388,14 +378,14 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center">
             <LogoIcon className="h-10 w-10 mx-auto mb-8 opacity-10" />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
-              Your business has AI opportunities
+              The businesses that move first
               <br />
-              you haven&apos;t found yet.
+              win the most.
             </h2>
             <p className="text-[var(--mid-gray)] text-lg mb-12 max-w-lg mx-auto leading-relaxed">
-              Get the free report. See the numbers. Then decide if you want us to build it.
+              Get the free report. See the numbers. Then let us implement it.
               <br />
-              <span className="font-medium text-[var(--black)]">There&apos;s literally nothing to lose.</span>
+              <span className="font-medium text-[var(--black)]">There is literally nothing to lose.</span>
             </p>
             <HeroCTA />
           </div>
