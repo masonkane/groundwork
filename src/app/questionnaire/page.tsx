@@ -588,6 +588,7 @@ export default function QuestionnairePage() {
             <LogoFull className="h-6 w-auto" />
           </Link>
           <div className="flex items-center gap-3">
+            <span className="text-[10px] font-medium text-[var(--mid-gray)] hidden sm:inline">{section.title}</span>
             <span className="text-[10px] font-semibold text-[var(--mid-gray)]/40">{Math.round(progress)}%</span>
             <span className="text-xs font-medium text-[var(--mid-gray)]">
               {answeredCount}/{totalQuestions}
@@ -597,6 +598,12 @@ export default function QuestionnairePage() {
         {/* Progress */}
         <div className="h-1 bg-black/5">
           <div className="h-full bg-[var(--black)] progress-bar rounded-r-full transition-all duration-500 ease-out" style={{ width: `${progress}%` }} />
+        </div>
+        {/* Section dots */}
+        <div className="flex items-center justify-center gap-1.5 py-1.5 bg-white/50">
+          {sections.map((s, i) => (
+            <div key={s.title} className={`h-1 rounded-full transition-all duration-300 ${i === sectionIndex ? "w-5 bg-[var(--black)]" : i < sectionIndex ? "w-2 bg-[var(--black)]/40" : "w-2 bg-black/10"}`} title={s.title} />
+          ))}
         </div>
       </div>
 
