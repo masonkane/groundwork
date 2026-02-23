@@ -189,7 +189,7 @@ export default function DashboardOverview() {
             { label: "AI Readiness", value: "67/100", sub: "room to grow", accent: "" },
             { label: "Competitive Gap", value: "31%", sub: "behind industry avg", accent: "text-amber-600" },
           ].map((stat) => (
-            <div key={stat.label} className="bg-[var(--light-surface)] rounded-xl p-3 sm:p-4 border border-black/5">
+            <div key={stat.label} className="bg-[var(--light-surface)] rounded-xl p-3 sm:p-4 border border-black/5 hover:border-black/10 hover:shadow-sm transition-all duration-200 cursor-default">
               <div className="text-[var(--mid-gray)] text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider mb-1">{stat.label}</div>
               <div className={`text-lg sm:text-xl font-extrabold ${stat.accent}`}>{stat.value}</div>
               <div className="text-[var(--mid-gray)] text-[9px] sm:text-[10px] mt-0.5">{stat.sub}</div>
@@ -217,7 +217,7 @@ export default function DashboardOverview() {
             { period: "Per Month", amount: monthlySavings, highlight: true },
             { period: "Per Year", amount: totalSavings, highlight: true },
           ].map((t) => (
-            <div key={t.period} className={`text-center p-4 rounded-xl border ${t.highlight ? "bg-red-50 border-red-100" : "bg-[var(--light-surface)] border-black/5"}`}>
+            <div key={t.period} className={`text-center p-4 rounded-xl border transition-all duration-200 ${t.highlight ? "bg-red-50 border-red-100 hover:border-red-200 hover:shadow-sm" : "bg-[var(--light-surface)] border-black/5 hover:border-black/10 hover:shadow-sm"}`}>
               <div className={`text-lg sm:text-xl font-extrabold ${t.highlight ? "text-red-600" : ""}`}>${t.amount.toLocaleString()}</div>
               <div className={`text-[10px] font-medium mt-1 ${t.highlight ? "text-red-400" : "text-[var(--mid-gray)]"}`}>{t.period}</div>
             </div>
