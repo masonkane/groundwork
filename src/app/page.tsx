@@ -62,7 +62,7 @@ function ScaleReveal({ children, className = "", delay = 0 }: { children: React.
 
 function HeroCTA({ label = "Get Your Free Report", dark = false }: { label?: string; dark?: boolean }) {
   return (
-    <Link href="/questionnaire" className={`group relative inline-flex items-center gap-2 sm:gap-3 font-semibold px-7 sm:px-10 py-4 sm:py-5 rounded-full text-sm sm:text-base overflow-hidden transition-all duration-300 active:scale-[0.97] ${dark ? "bg-white text-[var(--black)] hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] animate-pulse-glow-white" : "bg-[var(--black)] text-white hover:shadow-[0_4px_50px_rgba(0,0,0,0.3)] animate-pulse-glow"}`}>
+    <Link href="/questionnaire" aria-label={label} className={`group relative inline-flex items-center gap-2 sm:gap-3 font-semibold px-7 sm:px-10 py-4 sm:py-5 rounded-full text-sm sm:text-base overflow-hidden transition-all duration-300 active:scale-[0.97] ${dark ? "bg-white text-[var(--black)] hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] animate-pulse-glow-white" : "bg-[var(--black)] text-white hover:shadow-[0_4px_50px_rgba(0,0,0,0.3)] animate-pulse-glow"}`}>
       <span className={`absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[800ms] ease-out ${dark ? "bg-gradient-to-r from-transparent via-black/5 to-transparent" : "bg-gradient-to-r from-transparent via-white/20 to-transparent"}`} />
       <span className="relative z-10">{label}</span>
       <span className="relative z-10 group-hover:translate-x-2 transition-transform duration-300">
@@ -120,10 +120,11 @@ const valueStack = [
 export default function Home() {
   return (
     <main className="dot-grid min-h-screen">
+      <a href="#how-it-works" className="skip-link">Skip to content</a>
       <Navbar />
 
       {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20 sm:pt-0">
+      <section aria-label="Hero" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20 sm:pt-0">
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(0,0,0,0.02), transparent)" }} />
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <RevealSection>
@@ -153,7 +154,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ INDUSTRY TICKER ═══════════════ */}
-      <section className="border-y border-black/5 overflow-hidden">
+      <section aria-label="Industries served" className="border-y border-black/5 overflow-hidden">
         <div className="py-4 px-6">
           <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-4">Trusted across industries</p>
         </div>
@@ -171,7 +172,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ THE PROBLEM ═══════════════ */}
-      <section className="py-16 sm:py-28 px-4 sm:px-6">
+      <section aria-label="The problem AI solves" className="py-16 sm:py-28 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <RevealSection className="text-center mb-10 sm:mb-16">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-4">The Problem</p>
@@ -376,7 +377,7 @@ export default function Home() {
       </RevealSection>
 
       {/* ═══════════════ FOOTER ═══════════════ */}
-      <footer className="border-t border-black/5 py-8 sm:py-12 px-4 sm:px-6">
+      <footer aria-label="Footer" className="border-t border-black/5 py-8 sm:py-12 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <LogoFull className="h-5 w-auto opacity-30" />
           <p className="text-[11px] text-[var(--mid-gray)]/40">© 2026 Groundwork. All rights reserved.</p>
