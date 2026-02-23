@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 const recommendations = [
   {
     category: "Operations",
@@ -42,11 +44,41 @@ const recommendations = [
 ];
 
 export default function ReportPage() {
+  const [filter, setFilter] = useState<string>("All");
+  const filters = ["All", "High Impact", "Low Effort", "Quick Start"];
+
+  const allItems = recommendations.flatMap(cat => cat.items.map(item => ({ ...item, category: cat.category })));
+  
+  const getFiltered = () => {
+    if (filter === "High Impact") return recommendations.map(cat => ({ ...cat, items: cat.items.filter(i => i.impact === "High") })).filter(c => c.items.length > 0);
+    if (filter === "Low Effort") return recommendations.map(cat => ({ ...cat, items: cat.items.filter(i => i.effort === "Low") })).filter(c => c.items.length > 0);
+    if (filter === "Quick Start") return recommendations.map(cat => ({ ...cat, items: cat.items.filter(i => i.timeline.includes("1-2") || i.timeline.includes("2-3")) })).filter(c => c.items.length > 0);
+    return recommendations;
+  };
+
+  const filtered = getFiltered();
+  const filteredCount = filtered.reduce((s, c) => s + c.items.length, 0);
+
   return (
     <div className="max-w-5xl mx-auto space-y-6">
-      <div>
-        <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">AI Opportunity Report</h1>
-        <p className="text-[var(--mid-gray)] text-xs sm:text-sm mt-1">18 AI opportunities identified across 4 business areas. Click any to see details.</p>
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">AI Opportunity Report</h1>
+          <p className="text-[var(--mid-gray)] text-xs sm:text-sm mt-1">18 AI opportunities identified across 4 business areas. Click any to see details.</p>
+        </div>
+        <button onClick={() => window.print()} className="flex items-center gap-2 text-xs font-medium bg-white border border-black/10 px-4 py-2.5 rounded-xl hover:bg-[var(--light-surface)] transition-colors print:hidden shrink-0">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export Report
+        </button>
+      </div>
+
+      {/* Filters */}
+      <div className="flex flex-wrap gap-2 print:hidden">
+        {filters.map(f => (
+          <button key={f} onClick={() => setFilter(f)} className={`text-xs font-medium px-4 py-2 rounded-lg transition-colors ${filter === f ? "bg-[var(--black)] text-white" : "bg-white border border-black/5 text-[var(--mid-gray)] hover:bg-[var(--light-surface)]"}`}>
+            {f}{filter === f && f !== "All" ? ` (${filteredCount})` : ""}
+          </button>
+        ))}
       </div>
 
       {/* Summary bar */}
@@ -92,7 +124,7 @@ export default function ReportPage() {
       </div>
 
       {/* Recommendations by category */}
-      {recommendations.map((cat) => (
+      {filtered.map((cat) => (
         <div key={cat.category}>
           <div className="flex items-center gap-3 mb-4">
             <h2 className="text-lg font-bold">{cat.category}</h2>
