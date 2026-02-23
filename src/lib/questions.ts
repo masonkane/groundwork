@@ -1,0 +1,465 @@
+export type QuestionType = "text" | "textarea" | "select" | "multi-select" | "scale" | "email" | "rank";
+
+export interface Question {
+  id: number;
+  question: string;
+  type: QuestionType;
+  options?: string[];
+  placeholder?: string;
+  examples?: string;
+  conditional?: { questionId: number; notValue: string };
+  scaleLabels?: { low: string; high: string };
+}
+
+export interface Section {
+  id: number;
+  title: string;
+  subtitle: string;
+  questions: Question[];
+}
+
+export const sections: Section[] = [
+  {
+    id: 1,
+    title: "Company Fundamentals",
+    subtitle: "Tell us about your business so we can tailor everything to your industry and size.",
+    questions: [
+      { id: 1, question: "What is your company name?", type: "text", placeholder: "Acme Construction LLC" },
+      {
+        id: 2,
+        question: "What industry or trade is your business in?",
+        type: "select",
+        options: [
+          "Construction",
+          "Trades & Home Services (HVAC, Plumbing, Electrical, etc.)",
+          "Healthcare & Medical",
+          "Finance & Insurance",
+          "E-commerce & Retail",
+          "Manufacturing",
+          "Professional Services (Consulting, Accounting, Legal)",
+          "Real Estate",
+          "Marketing & Creative Agency",
+          "Hospitality & Food Service",
+          "Transportation & Logistics",
+          "Education & Training",
+          "Technology & SaaS",
+          "Agriculture",
+          "Automotive",
+          "Nonprofit",
+          "Fitness & Wellness",
+          "Other",
+        ],
+      },
+      {
+        id: 3,
+        question: "Briefly describe what your business does and who you serve.",
+        type: "textarea",
+        placeholder: "We're a residential remodeling company serving homeowners in the Dallas area...",
+      },
+      {
+        id: 4,
+        question: "What is your annual revenue?",
+        type: "select",
+        options: ["Under $500K", "$500K–$1M", "$1M–$5M", "$5M–$10M", "$10M–$50M", "$50M–$100M", "$100M+"],
+      },
+      {
+        id: 5,
+        question: "How many employees does your company have?",
+        type: "select",
+        options: ["Just me", "2–5", "6–20", "21–50", "51–100", "101–500", "500+"],
+      },
+      {
+        id: 6,
+        question: "How many years has your business been operating?",
+        type: "select",
+        options: ["Less than 1 year", "1–3 years", "3–5 years", "5–10 years", "10+ years"],
+      },
+      {
+        id: 7,
+        question: "How does your business primarily make money?",
+        type: "multi-select",
+        options: [
+          "One-time projects or jobs",
+          "Recurring service contracts",
+          "Product sales",
+          "Subscriptions or memberships",
+          "Hourly or daily billing",
+          "Commission-based",
+          "Licensing or royalties",
+          "Other",
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Daily Operations & Workflows",
+    subtitle: "Help us find the biggest time and money drains in your day-to-day.",
+    questions: [
+      {
+        id: 8,
+        question: "Walk us through a typical day or week — what takes up the most time?",
+        type: "textarea",
+        placeholder: "Mondays are spent scheduling crews and ordering materials...",
+      },
+      {
+        id: 9,
+        question: "What tasks feel like a waste of time but you can't stop doing them?",
+        type: "textarea",
+        placeholder: "Data entry, chasing payments, scheduling back-and-forth...",
+      },
+      {
+        id: 10,
+        question: "How many hours per week does your team spend on repetitive, manual tasks?",
+        type: "select",
+        options: ["Under 5 hours", "5–10 hours", "10–20 hours", "20–40 hours", "40–80 hours", "80+ hours", "Not sure"],
+      },
+      {
+        id: 11,
+        question: "Where do things most often fall through the cracks or go wrong?",
+        type: "textarea",
+        placeholder: "We lose track of which jobs are pending approval...",
+      },
+      {
+        id: 12,
+        question: "How do you currently handle estimates, bids, proposals, or pricing?",
+        type: "select",
+        options: [
+          "By hand or mental math",
+          "Spreadsheets",
+          "Templates we fill in",
+          "Dedicated software",
+          "Automated system",
+          "Not applicable to our business",
+        ],
+      },
+      {
+        id: 13,
+        question: "How does your team communicate and stay coordinated day to day?",
+        type: "multi-select",
+        options: [
+          "Phone calls and texts",
+          "Email",
+          "Slack, Teams, or group messaging",
+          "In-person",
+          "Whiteboards or paper",
+          "Project management tool",
+          "Shared documents or folders",
+          "Radios or walkies",
+          "We don't have a consistent system",
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "Current Technology & Tools",
+    subtitle: "Let's map your tech stack to find integration points and gaps.",
+    questions: [
+      {
+        id: 14,
+        question: "What software, apps, or tools does your business currently rely on?",
+        type: "textarea",
+        placeholder: "QuickBooks, Google Workspace, Buildertrend, Excel...",
+      },
+      {
+        id: 15,
+        question: "How would you rate your team's comfort level with technology?",
+        type: "scale",
+        scaleLabels: { low: "We struggle with basic tools", high: "We're early adopters" },
+      },
+      {
+        id: 16,
+        question: "Has your business tried using any AI tools before?",
+        type: "select",
+        options: [
+          "No, never",
+          "We've looked into it but haven't tried anything",
+          "Yes, but it didn't stick",
+          "Yes, we use a few basic AI tools",
+          "Yes, AI is already part of how we work",
+        ],
+      },
+      {
+        id: 17,
+        question: "What happened with AI? What are you currently using?",
+        type: "textarea",
+        placeholder: "We tried ChatGPT for writing emails but...",
+        conditional: { questionId: 16, notValue: "No, never" },
+      },
+      {
+        id: 18,
+        question: "How does your business currently keep track of important information and data?",
+        type: "multi-select",
+        options: [
+          "Spreadsheets (Excel, Google Sheets)",
+          "CRM or database",
+          "Industry-specific software",
+          "Cloud storage (Google Drive, Dropbox, etc.)",
+          "Paper files and filing cabinets",
+          "Notes app or personal system",
+          "Email threads",
+          "We don't really have a system",
+          "Other",
+        ],
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: "Getting Customers & Growing Revenue",
+    subtitle: "Let's find where AI can help you win more business.",
+    questions: [
+      {
+        id: 19,
+        question: "How do new customers or clients typically find you?",
+        type: "multi-select",
+        options: [
+          "Word of mouth",
+          "Referrals from past clients",
+          "Google search or SEO",
+          "Social media",
+          "Paid advertising",
+          "Home service platforms (Angi, Thumbtack, etc.)",
+          "Direct outreach or cold calling",
+          "Networking or trade shows",
+          "Yard signs, truck wraps, or local visibility",
+          "Online marketplace or directory",
+          "Repeat customers",
+          "We struggle to get new customers",
+        ],
+      },
+      {
+        id: 20,
+        question: "From first contact to closed deal, how long does it typically take?",
+        type: "select",
+        options: ["Same day", "A few days", "1–4 weeks", "1–3 months", "3–6 months", "6+ months", "It varies a lot"],
+      },
+      {
+        id: 21,
+        question: "How do you currently follow up with leads?",
+        type: "select",
+        options: [
+          "I personally call or text them",
+          "Team member handles it manually",
+          "We use a CRM with reminders",
+          "Automated email or text sequences",
+          "We don't really have a follow-up system",
+          "It's inconsistent — depends on how busy we are",
+        ],
+      },
+      {
+        id: 22,
+        question: "How do you currently promote your business and create marketing content?",
+        type: "multi-select",
+        options: [
+          "I do it myself",
+          "In-house team handles it",
+          "Outsource to agency or freelancers",
+          "Use AI tools (ChatGPT, Canva, etc.)",
+          "Post occasionally but no real strategy",
+          "We don't really do marketing",
+          "Our work speaks for itself — we rely on reputation",
+        ],
+      },
+      {
+        id: 23,
+        question: "Do you know approximately what it costs you to acquire a new customer?",
+        type: "select",
+        options: [
+          "Yes, under $50",
+          "Yes, $50–$200",
+          "Yes, $200–$500",
+          "Yes, $500–$1,000",
+          "Yes, over $1,000",
+          "I have a rough idea",
+          "I have no idea",
+        ],
+      },
+      {
+        id: 24,
+        question: "What is a typical customer or project worth to you over time?",
+        type: "select",
+        options: [
+          "Under $500",
+          "$500–$2,000",
+          "$2,000–$10,000",
+          "$10,000–$50,000",
+          "$50,000–$100,000",
+          "Over $100,000",
+          "It varies too much to say",
+          "I'm not sure",
+        ],
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "Customer Experience & Reputation",
+    subtitle: "Let's find AI opportunities across every customer touchpoint.",
+    questions: [
+      {
+        id: 25,
+        question: "How do your customers typically interact with your business?",
+        type: "multi-select",
+        options: [
+          "Phone calls",
+          "Text messages",
+          "Email",
+          "In-person visits",
+          "Website or online portal",
+          "Social media DMs",
+          "Through a receptionist or office manager",
+          "Mobile app",
+          "Third-party platform (Yelp, Angi, etc.)",
+          "On-site at their location",
+        ],
+      },
+      {
+        id: 26,
+        question: "Do customers come back for repeat business or referrals?",
+        type: "select",
+        options: [
+          "Most of our revenue is repeat customers",
+          "We get a good amount of repeat and referral business",
+          "Some, but we could do better",
+          "Rarely — most customers are one-time",
+          "Not applicable — our business is naturally one-time",
+        ],
+      },
+      {
+        id: 27,
+        question: "How do you currently keep in touch with past customers?",
+        type: "select",
+        options: [
+          "We stay in regular contact",
+          "Occasional emails or newsletters",
+          "We reach out when we have something to sell",
+          "Social media only",
+          "We don't — once the job is done, we move on",
+          "We want to but don't have time",
+        ],
+      },
+      {
+        id: 28,
+        question: "What do your customers complain about most, or where do you lose them?",
+        type: "textarea",
+        placeholder: "Slow to return calls, project timelines slip...",
+      },
+      {
+        id: 29,
+        question: "How does your business currently handle reviews and online reputation?",
+        type: "select",
+        options: [
+          "We actively ask for reviews and respond to all of them",
+          "We have reviews but don't manage them",
+          "We get some reviews organically",
+          "We've gotten negative reviews we haven't addressed",
+          "We don't really have an online presence",
+          "Reviews don't apply to our business",
+        ],
+      },
+    ],
+  },
+  {
+    id: 6,
+    title: "Goals, Pain Points & Priorities",
+    subtitle: "Let's align recommendations with what matters most to you.",
+    questions: [
+      {
+        id: 30,
+        question: "What are your top 3 goals for the business over the next 12 months?",
+        type: "textarea",
+        placeholder: "Increase revenue, reduce overhead, spend less time in the business...",
+      },
+      {
+        id: 31,
+        question: "What is the single biggest challenge holding your business back right now?",
+        type: "textarea",
+        placeholder: "Be honest — this shapes the entire report.",
+      },
+      {
+        id: 32,
+        question: "Rank these priorities from most to least important:",
+        type: "rank",
+        options: [
+          "Reducing costs and overhead",
+          "Increasing revenue and winning more business",
+          "Improving customer experience and reputation",
+          "Saving time and eliminating busywork",
+          "Growing without adding more staff",
+          "Staying ahead of competitors",
+          "Making better decisions with data",
+        ],
+      },
+      {
+        id: 33,
+        question: "How much are you currently spending monthly on software, tools, and outside services?",
+        type: "select",
+        options: [
+          "Under $500",
+          "$500–$1,000",
+          "$1,000–$3,000",
+          "$3,000–$5,000",
+          "$5,000–$10,000",
+          "Over $10,000",
+          "I'm not sure",
+        ],
+      },
+    ],
+  },
+  {
+    id: 7,
+    title: "Readiness & Next Steps",
+    subtitle: "Almost done. Let's make sure your report is calibrated to your timeline.",
+    questions: [
+      {
+        id: 34,
+        question: "Are you the person who makes decisions about technology and operations?",
+        type: "select",
+        options: [
+          "Yes, I make these decisions",
+          "I'm one of the decision-makers",
+          "I influence decisions but don't have final say",
+          "Someone else decides",
+        ],
+      },
+      {
+        id: 35,
+        question: "How quickly are you looking to make changes?",
+        type: "select",
+        options: [
+          "As soon as possible — we need help now",
+          "Within 1–3 months",
+          "Within 3–6 months",
+          "Sometime this year",
+          "Just exploring what's possible",
+        ],
+      },
+      {
+        id: 36,
+        question: "What concerns do you have about bringing AI into your business?",
+        type: "multi-select",
+        options: [
+          "It'll cost too much",
+          "It's too complicated for us",
+          "I don't trust AI with my business",
+          "My team won't use it",
+          "I don't know where to start",
+          "Worried about data privacy or security",
+          "It won't work for my type of business",
+          "Concerned about losing the personal touch",
+          "No concerns — I'm ready to go",
+        ],
+      },
+      {
+        id: 37,
+        question: "What is your email address?",
+        type: "email",
+        placeholder: "you@company.com",
+      },
+    ],
+  },
+];
+
+export const totalQuestions = sections.reduce((acc, s) => acc + s.questions.length, 0);
