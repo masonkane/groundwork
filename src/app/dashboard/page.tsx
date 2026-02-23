@@ -156,6 +156,22 @@ export default function DashboardOverview() {
         </div>
       </div>
 
+      {/* ═══ GETTING STARTED ═══ */}
+      <div className="bg-gradient-to-r from-[var(--light-surface)] to-white border border-black/5 rounded-2xl p-4 sm:p-5 print:hidden">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 bg-green-50 rounded-xl flex items-center justify-center shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2" strokeLinecap="round"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>
+            </div>
+            <div>
+              <div className="text-sm font-bold">Start with Quick Win #1: Invoice Automation</div>
+              <div className="text-[10px] sm:text-xs text-[var(--mid-gray)]">Takes 1-2 weeks. Saves $2,400/mo. No technical skills required.</div>
+            </div>
+          </div>
+          <Link href="/dashboard/quick-wins" className="text-xs font-semibold bg-[var(--black)] text-white px-4 py-2 rounded-lg hover:bg-[var(--dark-surface)] transition-colors whitespace-nowrap">View Quick Wins</Link>
+        </div>
+      </div>
+
       {/* ═══ PROJECTED SAVINGS HERO ═══ */}
       <div className="bg-white border-2 border-black/[0.06] rounded-2xl p-5 sm:p-7 md:p-10 shadow-[0_1px_40px_rgba(0,0,0,0.04)]">
         <p className="text-[var(--mid-gray)] text-[10px] font-semibold uppercase tracking-widest mb-3">Projected Annual Savings</p>
