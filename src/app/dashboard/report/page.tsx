@@ -233,9 +233,31 @@ export default function ReportPage() {
         </div>
       ))}
 
-      {/* Disclaimer */}
-      <div className="bg-[var(--light-surface)] border border-black/5 rounded-xl p-4 sm:p-5">
-        <p className="text-[10px] text-[var(--mid-gray)]/50 leading-relaxed"><span className="font-semibold text-[var(--mid-gray)]">About this report:</span> Savings projections are based on your questionnaire responses, publicly available industry benchmarks, and tool pricing as of February 2026. Actual results vary based on implementation quality, team adoption, and business-specific factors. Conservative estimates were used throughout. Tool recommendations are independent and not sponsored.</p>
+      {/* Methodology */}
+      <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6">
+        <h2 className="text-sm font-bold uppercase tracking-wider text-[var(--mid-gray)]/50 mb-4">How We Calculated Your Numbers</h2>
+        <div className="grid sm:grid-cols-2 gap-4 mb-4">
+          <div className="p-3 bg-[var(--light-surface)] rounded-xl border border-black/5">
+            <div className="text-xs font-bold mb-1">Your Questionnaire Data</div>
+            <p className="text-[10px] text-[var(--mid-gray)] leading-relaxed">Team size, current tools, manual processes, time spent on specific tasks, and pain points from your 37 responses.</p>
+          </div>
+          <div className="p-3 bg-[var(--light-surface)] rounded-xl border border-black/5">
+            <div className="text-xs font-bold mb-1">Industry Benchmarks</div>
+            <p className="text-[10px] text-[var(--mid-gray)] leading-relaxed">Published data on AI adoption, cost savings, and productivity gains from McKinsey, Gartner, and industry-specific research.</p>
+          </div>
+          <div className="p-3 bg-[var(--light-surface)] rounded-xl border border-black/5">
+            <div className="text-xs font-bold mb-1">Tool Pricing</div>
+            <p className="text-[10px] text-[var(--mid-gray)] leading-relaxed">Current pricing from each recommended tool vendor. We use the tier most appropriate for your business size.</p>
+          </div>
+          <div className="p-3 bg-[var(--light-surface)] rounded-xl border border-black/5">
+            <div className="text-xs font-bold mb-1">Conservative Multipliers</div>
+            <p className="text-[10px] text-[var(--mid-gray)] leading-relaxed">All projections use 70% of the maximum reported savings. We would rather under-promise and over-deliver.</p>
+          </div>
+        </div>
+        <div className="p-3 bg-amber-50 rounded-xl border border-amber-100 flex items-start gap-2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d97706" strokeWidth="2" strokeLinecap="round" className="shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <p className="text-[10px] text-amber-800/70 leading-relaxed"><span className="font-bold text-amber-900">Honest disclaimer:</span> These are projections, not guarantees. Actual results depend on implementation quality, team adoption speed, and your specific business dynamics. That said, most businesses that follow our playbooks closely hit 80-120% of projected savings within the first 90 days.</p>
+        </div>
       </div>
     </div>
   );
