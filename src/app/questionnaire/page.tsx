@@ -382,31 +382,51 @@ function WelcomeModal({ onStart }: { onStart: () => void }) {
   return (
     <div className="fixed inset-0 z-[100] bg-white flex items-center justify-center px-6">
       <div className="max-w-lg w-full text-center">
-        <div className="w-14 h-14 bg-[var(--light-surface)] rounded-2xl flex items-center justify-center mx-auto mb-6">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#080808" strokeWidth="1.5" strokeLinecap="round">
-            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10" />
-          </svg>
+        {/* Groundwork logo */}
+        <div className="mb-8">
+          <LogoFull className="h-7 w-auto mx-auto" />
         </div>
         <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4">
-          Before you start
+          Before You Start
         </h2>
         <p className="text-[var(--mid-gray)] leading-relaxed mb-3">
           The more detailed your answers, the better your report.
         </p>
         <p className="text-[var(--mid-gray)] leading-relaxed mb-8 text-sm">
-          This isn&apos;t a generic survey. our engine uses every word you write to build a
+          This is not a generic survey. Our engine uses every word you write to build a
           personalized analysis of your specific business. Vague answers get vague results.
-          <span className="font-semibold text-[var(--black)]"> Be specific, be honest, and you&apos;ll get a report worth thousands.</span>
+          <span className="font-semibold text-[var(--black)]"> Be specific, be honest, and you will get a report worth thousands.</span>
         </p>
         <div className="flex flex-col items-center gap-3">
           <div className="grid grid-cols-3 gap-3 w-full mb-6">
             {[
-              { icon: "🎯", label: "Be specific about your daily operations" },
-              { icon: "💰", label: "Include real numbers when you can" },
-              { icon: "🗣️", label: "Write in your own words. don't overthink it" },
+              {
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#080808" strokeWidth="1.5" strokeLinecap="round">
+                    <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
+                  </svg>
+                ),
+                label: "Be specific about your daily operations",
+              },
+              {
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#080808" strokeWidth="1.5" strokeLinecap="round">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                  </svg>
+                ),
+                label: "Include real numbers when you can",
+              },
+              {
+                icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#080808" strokeWidth="1.5" strokeLinecap="round">
+                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                  </svg>
+                ),
+                label: "Write in your own words. Do not overthink it",
+              },
             ].map((tip) => (
-              <div key={tip.label} className="bg-[var(--light-surface)] rounded-xl p-3 text-center">
-                <span className="text-lg block mb-1">{tip.icon}</span>
+              <div key={tip.label} className="bg-[var(--light-surface)] rounded-xl p-4 text-center">
+                <div className="flex justify-center mb-2">{tip.icon}</div>
                 <span className="text-[10px] text-[var(--mid-gray)] leading-tight block">{tip.label}</span>
               </div>
             ))}
