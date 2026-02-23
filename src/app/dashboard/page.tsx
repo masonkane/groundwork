@@ -269,32 +269,44 @@ export default function DashboardOverview() {
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
           {opportunities.map((opp) => (
-            <div key={opp.area} className="border border-black/5 rounded-xl overflow-hidden">
+            <div key={opp.area} className="border border-black/5 rounded-xl overflow-hidden hover:border-black/10 hover:shadow-sm transition-all duration-200">
               <button onClick={() => setExpandedOpp(expandedOpp === opp.area ? null : opp.area)} className="w-full p-5 flex items-center justify-between text-left hover:bg-black/[0.01] transition-colors">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center font-extrabold text-white text-sm" style={{ backgroundColor: opp.color }}>{opp.pct}%</div>
                   <div>
                     <div className="text-sm font-bold">{opp.area}</div>
-                    <div className="text-[10px] text-[var(--mid-gray)]">{opp.count} opportunities</div>
+                    <div className="text-[10px] text-[var(--mid-gray)]">{opp.count} opportunities · {opp.items.filter(i => i.status === "Quick Win").length} quick wins</div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-lg font-extrabold">${(opp.savings / 1000).toFixed(1)}K</div>
-                  <div className="text-[10px] text-[var(--mid-gray)]">per year</div>
+                <div className="text-right flex items-center gap-3">
+                  <div>
+                    <div className="text-lg font-extrabold">${(opp.savings / 1000).toFixed(1)}K</div>
+                    <div className="text-[10px] text-[var(--mid-gray)]">per year</div>
+                  </div>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={`text-[var(--mid-gray)] transition-transform ${expandedOpp === opp.area ? "rotate-180" : ""}`}><polyline points="6,9 12,15 18,9"/></svg>
                 </div>
               </button>
               {expandedOpp === opp.area && (
                 <div className="px-5 pb-5 border-t border-black/5 pt-4">
                   <div className="space-y-2">
                     {opp.items.map(item => (
-                      <div key={item.name} className="flex items-center justify-between p-3 bg-[var(--light-surface)] rounded-lg">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium">{item.name}</span>
-                          <span className={`text-[9px] font-semibold px-2 py-0.5 rounded-full ${item.status === "Quick Win" ? "bg-green-50 text-green-700 border border-green-100" : item.status === "Medium-term" ? "bg-blue-50 text-blue-700 border border-blue-100" : "bg-gray-50 text-gray-600 border border-gray-200"}`}>{item.status}</span>
+                      <div key={item.name} className="p-3 bg-[var(--light-surface)] rounded-lg">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm font-medium">{item.name}</span>
+                            <span className={`text-[9px] font-semibold px-2 py-0.5 rounded-full ${item.status === "Quick Win" ? "bg-green-50 text-green-700 border border-green-100" : item.status === "Medium-term" ? "bg-blue-50 text-blue-700 border border-blue-100" : "bg-gray-50 text-gray-600 border border-gray-200"}`}>{item.status}</span>
+                          </div>
+                          <span className="text-sm font-bold">${item.savings.toLocaleString()}/yr</span>
                         </div>
-                        <span className="text-sm font-bold">${item.savings.toLocaleString()}/yr</span>
+                        <div className="h-1 bg-black/5 rounded-full overflow-hidden">
+                          <div className="h-full rounded-full transition-all duration-500" style={{ width: `${(item.savings / opp.savings) * 100}%`, backgroundColor: opp.color }} />
+                        </div>
                       </div>
                     ))}
+                  </div>
+                  <div className="mt-3 flex items-center justify-between text-[10px] text-[var(--mid-gray)]">
+                    <span>{opp.pct}% of total projected savings</span>
+                    <span>${(opp.savings / 12).toLocaleString()}/mo</span>
                   </div>
                 </div>
               )}
