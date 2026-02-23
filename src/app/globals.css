@@ -281,6 +281,16 @@ a:focus-visible, button:focus-visible {
   border-radius: 4px;
 }
 
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset for fixed navbar when scrolling to anchors */
+[id] {
+  scroll-margin-top: 80px;
+}
+
 /* Skip to content link for accessibility */
 .skip-link {
   position: absolute;
