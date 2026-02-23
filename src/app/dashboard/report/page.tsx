@@ -54,7 +54,7 @@ export default function ReportPage() {
         {[
           { label: "Total Opportunities", value: "18" },
           { label: "Projected Savings", value: "$142,800/yr" },
-          { label: "Quick Wins", value: "3 ready now" },
+          { label: "Quick Wins", value: "5 ready now" },
           { label: "Avg. Implementation", value: "3-4 weeks" },
         ].map((stat) => (
           <div key={stat.label} className="bg-white border border-black/5 rounded-xl p-4 text-center">
@@ -62,6 +62,33 @@ export default function ReportPage() {
             <div className="text-[11px] text-[var(--mid-gray)] mt-1">{stat.label}</div>
           </div>
         ))}
+      </div>
+
+      {/* Savings distribution bar */}
+      <div className="bg-white border border-black/5 rounded-xl p-4 sm:p-5">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-xs font-bold">Savings Distribution</span>
+          <span className="text-xs text-[var(--mid-gray)]">$142,800 total</span>
+        </div>
+        <div className="flex h-3 rounded-full overflow-hidden gap-0.5">
+          <div className="bg-[#080808] rounded-l-full" style={{ width: "34%" }} title="Operations: $93,600" />
+          <div className="bg-[#2563eb]" style={{ width: "28%" }} title="Sales & Marketing: $86,400" />
+          <div className="bg-[#7c3aed]" style={{ width: "22%" }} title="Customer Experience: $50,400" />
+          <div className="bg-[#059669] rounded-r-full" style={{ width: "16%" }} title="Back Office: $31,200" />
+        </div>
+        <div className="flex flex-wrap gap-x-5 gap-y-1 mt-3">
+          {[
+            { label: "Operations", color: "bg-[#080808]", pct: "34%" },
+            { label: "Sales & Marketing", color: "bg-[#2563eb]", pct: "28%" },
+            { label: "Customer Experience", color: "bg-[#7c3aed]", pct: "22%" },
+            { label: "Back Office", color: "bg-[#059669]", pct: "16%" },
+          ].map((item) => (
+            <div key={item.label} className="flex items-center gap-1.5">
+              <div className={`w-2 h-2 rounded-sm ${item.color}`} />
+              <span className="text-[10px] text-[var(--mid-gray)]">{item.label} ({item.pct})</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Recommendations by category */}
