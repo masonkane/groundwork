@@ -479,6 +479,58 @@ export default function Home() {
         </section>
       </RevealSection>
 
+      {/* ═══════════════ COMPARISON ═══════════════ */}
+      <RevealSection>
+        <section className="py-16 sm:py-24 px-4 sm:px-6 bg-[var(--light-surface)]">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-10 sm:mb-14">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">The Alternative</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">&quot;Can&apos;t I just hire an AI consultant?&quot;</h2>
+              <p className="text-[var(--mid-gray)] text-sm sm:text-base mt-3 max-w-lg mx-auto">You can. But 61% of businesses that did saw zero measurable ROI.</p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+              <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6">
+                <div className="text-xs font-bold uppercase tracking-wider text-red-500/60 mb-3">Typical AI Consultant</div>
+                <div className="space-y-3">
+                  {[
+                    "$5,000 to $25,000+ per engagement",
+                    "Weeks of discovery calls and meetings",
+                    "Delivers a PDF that collects dust",
+                    "No implementation support",
+                    "One-time analysis, no updates",
+                    "Generic recommendations across clients",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-2">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" className="shrink-0 mt-0.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                      <span className="text-xs text-[var(--mid-gray)] leading-relaxed">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="bg-white border-2 border-[var(--black)] rounded-2xl p-5 sm:p-6 relative">
+                <div className="absolute -top-3 left-5 bg-[var(--black)] text-white text-[9px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Groundwork</div>
+                <div className="text-xs font-bold uppercase tracking-wider text-green-600/60 mb-3 mt-1">What You Get Instead</div>
+                <div className="space-y-3">
+                  {[
+                    "Free AI opportunity report with exact dollar savings",
+                    "15 minutes, not 15 meetings",
+                    "Interactive dashboard, not a static PDF",
+                    "Step-by-step implementation playbooks included",
+                    "Quarterly reassessments as AI evolves",
+                    "Personalized to your business, not recycled templates",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-2">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" className="shrink-0 mt-0.5"><polyline points="20,6 9,17 4,12"/></svg>
+                      <span className="text-xs leading-relaxed">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </RevealSection>
+
       {/* ═══════════════ FINAL CTA ═══════════════ */}
       <RevealSection>
         <section className="py-16 sm:py-28 px-4 sm:px-6">
