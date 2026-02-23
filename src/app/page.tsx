@@ -466,43 +466,6 @@ export default function Home() {
         </section>
       </RevealSection>
 
-      {/* ═══════════════ COMPARISON ═══════════════ */}
-      <RevealSection>
-        <section className="py-16 sm:py-24 px-4 sm:px-6 bg-[var(--light-surface)]">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-10 sm:mb-14">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">The Alternative</p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">Hire a consultant. Or don&apos;t.</h2>
-              <p className="text-[var(--mid-gray)] mt-3 text-sm sm:text-base max-w-lg mx-auto">61% of businesses that hired AI consultants saw no measurable ROI. Here is why.</p>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6">
-                <div className="text-xs font-bold uppercase tracking-wider text-[var(--mid-gray)]/40 mb-4">Traditional AI Consulting</div>
-                <div className="space-y-3">
-                  {["$5,000 to $25,000 per engagement", "Static PDF deliverable", "Weeks of back-and-forth meetings", "Generic recommendations", "No implementation support", "No ongoing tracking", "61% see no measurable ROI"].map((item) => (
-                    <div key={item} className="flex items-start gap-2">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" className="shrink-0 mt-0.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                      <span className="text-sm text-[var(--mid-gray)]">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="bg-[var(--black)] text-white rounded-2xl p-5 sm:p-6">
-                <div className="text-xs font-bold uppercase tracking-wider text-white/30 mb-4">Groundwork</div>
-                <div className="space-y-3">
-                  {["Free to start, $297/mo to implement", "Interactive living dashboard", "15-minute questionnaire, instant results", "Specific to your business and industry", "Step-by-step implementation playbooks", "Quarterly reassessments and ROI tracking", "Built on real benchmarks, not guesswork"].map((item) => (
-                    <div key={item} className="flex items-start gap-2">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" className="shrink-0 mt-0.5"><polyline points="20,6 9,17 4,12"/></svg>
-                      <span className="text-sm text-white/80">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </RevealSection>
-
       {/* ═══════════════ FAQ ═══════════════ */}
       <RevealSection>
         <section className="py-16 sm:py-24 px-4 sm:px-6">
@@ -534,57 +497,6 @@ export default function Home() {
                   </div>
                 </details>
               ))}
-            </div>
-          </div>
-        </section>
-      </RevealSection>
-
-      {/* ═══════════════ COMPARISON ═══════════════ */}
-      <RevealSection>
-        <section className="py-12 sm:py-20 px-4 sm:px-6 bg-[var(--light-surface)]">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-8 sm:mb-12">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">The Alternative</p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">What most businesses do instead</h2>
-            </div>
-            <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-              <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6">
-                <div className="text-xs font-bold uppercase tracking-wider text-red-500/60 mb-4">Hire an AI Consultant</div>
-                <div className="space-y-3">
-                  {[
-                    "$5,000 - $25,000 per engagement",
-                    "4-8 weeks to deliver a PDF",
-                    "61% see no measurable ROI",
-                    "No implementation included",
-                    "Recommendations go stale in months",
-                    "One-time engagement, no ongoing support",
-                  ].map((item) => (
-                    <div key={item} className="flex items-start gap-2.5">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" className="shrink-0 mt-0.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                      <span className="text-sm text-[var(--mid-gray)]">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="bg-white border-2 border-[var(--black)] rounded-2xl p-5 sm:p-6 relative">
-                <div className="absolute -top-3 left-5 bg-[var(--black)] text-white text-[9px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Groundwork</div>
-                <div className="text-xs font-bold uppercase tracking-wider text-green-600/60 mb-4 mt-1">Free Report + $297/mo</div>
-                <div className="space-y-3">
-                  {[
-                    "Free AI opportunity report in 15 minutes",
-                    "Interactive dashboard, not a static PDF",
-                    "Dollar-specific savings for your business",
-                    "Step-by-step implementation playbooks",
-                    "Quarterly reassessments keep it current",
-                    "ROI tracking to prove it is working",
-                  ].map((item) => (
-                    <div key={item} className="flex items-start gap-2.5">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" className="shrink-0 mt-0.5"><polyline points="20,6 9,17 4,12"/></svg>
-                      <span className="text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </section>
