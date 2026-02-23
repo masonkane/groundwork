@@ -502,6 +502,25 @@ export default function Home() {
         </section>
       </RevealSection>
 
+      {/* ═══════════════ TRUST BAR ═══════════════ */}
+      <RevealSection>
+        <section className="py-10 sm:py-14 px-4 sm:px-6 bg-[var(--light-surface)]">
+          <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
+            {[
+              { value: "15 min", label: "Average questionnaire time" },
+              { value: "$0", label: "Cost for your full report" },
+              { value: "18+", label: "AI opportunities per business" },
+              { value: "90 days", label: "To see measurable savings" },
+            ].map((item) => (
+              <div key={item.label}>
+                <div className="text-xl sm:text-2xl font-extrabold">{item.value}</div>
+                <div className="text-[10px] sm:text-xs text-[var(--mid-gray)] mt-1">{item.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </RevealSection>
+
       {/* ═══════════════ FINAL CTA ═══════════════ */}
       <RevealSection>
         <section className="py-16 sm:py-28 px-4 sm:px-6">
