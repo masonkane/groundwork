@@ -1,4 +1,4 @@
-export type QuestionType = "text" | "textarea" | "select" | "multi-select" | "scale" | "email" | "rank";
+export type QuestionType = "text" | "textarea" | "select" | "select-other" | "multi-select" | "scale" | "email" | "rank";
 
 export interface Question {
   id: number;
@@ -6,7 +6,7 @@ export interface Question {
   type: QuestionType;
   options?: string[];
   placeholder?: string;
-  examples?: string;
+  suggestions?: string[];
   conditional?: { questionId: number; notValue: string };
   scaleLabels?: { low: string; high: string };
 }
@@ -28,7 +28,7 @@ export const sections: Section[] = [
       {
         id: 2,
         question: "What industry or trade is your business in?",
-        type: "select",
+        type: "select-other",
         options: [
           "Construction",
           "Trades & Home Services (HVAC, Plumbing, Electrical, etc.)",
@@ -47,14 +47,23 @@ export const sections: Section[] = [
           "Automotive",
           "Nonprofit",
           "Fitness & Wellness",
-          "Other",
         ],
       },
       {
         id: 3,
         question: "Briefly describe what your business does and who you serve.",
         type: "textarea",
-        placeholder: "We're a residential remodeling company serving homeowners in the Dallas area...",
+        placeholder: "Tell us about your business in your own words...",
+        suggestions: [
+          "Residential remodeling for homeowners",
+          "Commercial general contracting",
+          "Multi-location dental practice",
+          "Direct-to-consumer e-commerce",
+          "B2B SaaS platform",
+          "Local service area business",
+          "Franchise operation",
+          "Government contracting",
+        ],
       },
       {
         id: 4,
@@ -100,13 +109,37 @@ export const sections: Section[] = [
         id: 8,
         question: "Walk us through a typical day or week — what takes up the most time?",
         type: "textarea",
-        placeholder: "Mondays are spent scheduling crews and ordering materials...",
+        placeholder: "Describe your typical workflow...",
+        suggestions: [
+          "Scheduling crews and managing calendars",
+          "Ordering materials and supplies",
+          "On-site job management",
+          "Client meetings and calls",
+          "Invoicing and billing",
+          "Email and admin work",
+          "Driving between locations",
+          "Training and supervising staff",
+          "Handling customer inquiries",
+          "Bookkeeping and payroll",
+        ],
       },
       {
         id: 9,
         question: "What tasks feel like a waste of time but you can't stop doing them?",
         type: "textarea",
-        placeholder: "Data entry, chasing payments, scheduling back-and-forth...",
+        placeholder: "What drains your energy?",
+        suggestions: [
+          "Data entry",
+          "Chasing payments",
+          "Scheduling back-and-forth",
+          "Writing the same emails over and over",
+          "Updating spreadsheets",
+          "Creating reports",
+          "Manual inventory counts",
+          "Following up on approvals",
+          "Filing paperwork",
+          "Answering the same questions repeatedly",
+        ],
       },
       {
         id: 10,
@@ -118,7 +151,19 @@ export const sections: Section[] = [
         id: 11,
         question: "Where do things most often fall through the cracks or go wrong?",
         type: "textarea",
-        placeholder: "We lose track of which jobs are pending approval...",
+        placeholder: "Where do you lose track of things?",
+        suggestions: [
+          "Jobs pending approval get forgotten",
+          "Leads slip through after initial contact",
+          "Inventory counts are always off",
+          "Crews show up without right materials",
+          "Missed follow-ups with customers",
+          "Scheduling conflicts and double-bookings",
+          "Miscommunication between office and field",
+          "Deadlines get missed",
+          "Quality control issues",
+          "Lost or misfiled documents",
+        ],
       },
       {
         id: 12,
@@ -160,7 +205,21 @@ export const sections: Section[] = [
         id: 14,
         question: "What software, apps, or tools does your business currently rely on?",
         type: "textarea",
-        placeholder: "QuickBooks, Google Workspace, Buildertrend, Excel...",
+        placeholder: "List everything you use to run your business...",
+        suggestions: [
+          "QuickBooks / Xero",
+          "Google Workspace / Microsoft 365",
+          "Salesforce / HubSpot CRM",
+          "Slack / Microsoft Teams",
+          "Excel / Google Sheets",
+          "Buildertrend / Jobber / ServiceTitan",
+          "Square / Stripe / PayPal",
+          "Canva / Adobe Creative Suite",
+          "Mailchimp / Constant Contact",
+          "Asana / Monday / Trello",
+          "Shopify / WooCommerce",
+          "Zoom / Google Meet",
+        ],
       },
       {
         id: 15,
@@ -184,7 +243,19 @@ export const sections: Section[] = [
         id: 17,
         question: "What happened with AI? What are you currently using?",
         type: "textarea",
-        placeholder: "We tried ChatGPT for writing emails but...",
+        placeholder: "Tell us about your AI experience...",
+        suggestions: [
+          "ChatGPT for writing and emails",
+          "AI image generation (Midjourney, DALL-E)",
+          "AI customer service chatbot",
+          "AI scheduling assistant",
+          "Copilot / code assistance",
+          "AI analytics or forecasting",
+          "Didn't know how to implement it",
+          "Team didn't adopt it",
+          "Too expensive for the value",
+          "Results weren't good enough",
+        ],
         conditional: { questionId: 16, notValue: "No, never" },
       },
       {
@@ -344,7 +415,19 @@ export const sections: Section[] = [
         id: 28,
         question: "What do your customers complain about most, or where do you lose them?",
         type: "textarea",
-        placeholder: "Slow to return calls, project timelines slip...",
+        placeholder: "Be honest — this shapes your report.",
+        suggestions: [
+          "Slow to return calls",
+          "Project timelines slip",
+          "They price shop and go cheaper",
+          "They forget about us after the first job",
+          "Hard to reach / bad communication",
+          "Long wait times",
+          "Inconsistent quality",
+          "Billing confusion or surprises",
+          "Not enough updates during projects",
+          "I'm honestly not sure",
+        ],
       },
       {
         id: 29,
@@ -370,13 +453,37 @@ export const sections: Section[] = [
         id: 30,
         question: "What are your top 3 goals for the business over the next 12 months?",
         type: "textarea",
-        placeholder: "Increase revenue, reduce overhead, spend less time in the business...",
+        placeholder: "What are you working toward?",
+        suggestions: [
+          "Increase revenue",
+          "Take on bigger projects",
+          "Reduce overhead costs",
+          "Hire and train a team",
+          "Open a second location",
+          "Spend less time in the business",
+          "Improve profit margins",
+          "Get more consistent leads",
+          "Improve customer retention",
+          "Automate manual processes",
+        ],
       },
       {
         id: 31,
         question: "What is the single biggest challenge holding your business back right now?",
         type: "textarea",
-        placeholder: "Be honest — this shapes the entire report.",
+        placeholder: "Be real with us — this shapes everything.",
+        suggestions: [
+          "Not enough leads or customers",
+          "Can't find or keep good employees",
+          "Cash flow is tight",
+          "Too much time on admin work",
+          "Can't scale without burning out",
+          "Competition is undercutting on price",
+          "Outdated systems and processes",
+          "Marketing isn't working",
+          "No time to work ON the business",
+          "Don't know what to focus on",
+        ],
       },
       {
         id: 32,

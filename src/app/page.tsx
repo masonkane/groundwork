@@ -389,7 +389,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-black/5 py-12 px-6">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <LogoFull className="opacity-50" />
+          <LogoFull className="h-6 w-auto opacity-50" />
           <p className="text-xs text-[var(--mid-gray)]">
             © 2026 Groundwork. All rights reserved.
           </p>

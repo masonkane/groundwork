@@ -12,15 +12,24 @@
   --dot-size: 1px;
 }
 
-* {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+*, *::before, *::after {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
   background-color: var(--white);
   color: var(--black);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+input, textarea, button, select {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Cal.com style dot grid background */

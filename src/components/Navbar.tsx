@@ -23,7 +23,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/">
-          <LogoFull />
+          <LogoFull className="h-7 w-auto" />
         </Link>
         <div className="flex items-center gap-6">
           <Link

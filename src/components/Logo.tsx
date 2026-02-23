@@ -1,23 +1,20 @@
 export function LogoIcon({ className = "", color = "#080808" }: { className?: string; color?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" className={className}>
-      <rect x="187" y="20" width="138" height="108" rx="39" fill={color} />
-      <rect x="118" y="162" width="276" height="118" rx="39" fill={color} />
-      <rect x="39" y="314" width="434" height="138" rx="44" fill={color} />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86 86" fill="none" className={className}>
+      <rect x="29" y="0" width="27" height="22" rx="8" fill={color} />
+      <rect x="16" y="26" width="54" height="24" rx="8" fill={color} />
+      <rect x="0" y="54" width="86" height="28" rx="9" fill={color} />
     </svg>
   );
 }
 
 export function LogoFull({ className = "", color = "#080808" }: { className?: string; color?: string }) {
   return (
-    <div className={`flex items-center gap-2.5 ${className}`}>
-      <LogoIcon className="h-7 w-7" color={color} />
-      <span
-        className="text-xl font-bold tracking-tight"
-        style={{ color, letterSpacing: "-0.5px" }}
-      >
-        Groundwork
-      </span>
-    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 104" fill="none" className={className}>
+      <rect x="37" y="4" width="27" height="22" rx="8" fill={color} />
+      <rect x="24" y="30" width="54" height="24" rx="8" fill={color} />
+      <rect x="8" y="58" width="86" height="28" rx="9" fill={color} />
+      <text x="120" y="70" fontFamily="'Plus Jakarta Sans', Helvetica, Arial, sans-serif" fontWeight="700" fontSize="50" letterSpacing="-1" fill={color}>Groundwork</text>
+    </svg>
   );
 }
