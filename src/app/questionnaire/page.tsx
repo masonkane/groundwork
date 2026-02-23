@@ -551,11 +551,24 @@ export default function QuestionnairePage() {
 
   if (completing) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[var(--black)] text-white">
-        <div className="text-center">
-          <div className="w-16 h-16 border-[3px] border-white/10 border-t-white rounded-full animate-spin mx-auto mb-8" />
-          <h2 className="text-2xl font-bold mb-2">Analyzing your business...</h2>
-          <p className="text-white/40 text-sm">Our AI is building your personalized report</p>
+      <div className="min-h-screen flex items-center justify-center bg-white px-4">
+        <div className="text-center max-w-sm">
+          <div className="w-14 h-14 border-[3px] border-black/10 border-t-[var(--black)] rounded-full animate-spin mx-auto mb-8" />
+          <h2 className="text-xl sm:text-2xl font-extrabold mb-2 tracking-tight">Building your report...</h2>
+          <p className="text-[var(--mid-gray)] text-sm mb-8">This takes a few seconds.</p>
+          <div className="space-y-3 text-left">
+            {[
+              { label: "Analyzing questionnaire responses", delay: "0s" },
+              { label: "Cross-referencing industry benchmarks", delay: "0.6s" },
+              { label: "Calculating projected savings", delay: "1.2s" },
+              { label: "Generating implementation playbooks", delay: "1.8s" },
+            ].map((step) => (
+              <div key={step.label} className="flex items-center gap-3 opacity-0" style={{ animation: `fadeInUp 0.4s ease-out ${step.delay} forwards` }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" className="shrink-0"><polyline points="20,6 9,17 4,12"/></svg>
+                <span className="text-xs text-[var(--mid-gray)]">{step.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
