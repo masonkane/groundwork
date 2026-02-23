@@ -213,6 +213,28 @@ export default function ROIPage() {
           <span className="text-sm font-extrabold text-green-700">{roi}% ROI</span>
         </div>
       </div>
+
+      {/* Next Steps */}
+      <div className="grid sm:grid-cols-2 gap-3">
+        <a href="/dashboard/playbooks" className="bg-white border border-black/5 rounded-2xl p-5 hover:border-black/10 hover:shadow-sm transition-all duration-300 flex items-center gap-4">
+          <div className="w-10 h-10 bg-[var(--light-surface)] rounded-xl flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <div>
+            <div className="text-xs font-bold">Ready to start saving?</div>
+            <div className="text-[10px] text-[var(--mid-gray)]">View implementation playbooks with step-by-step instructions</div>
+          </div>
+        </a>
+        <a href="/dashboard/tracking" className="bg-white border border-black/5 rounded-2xl p-5 hover:border-black/10 hover:shadow-sm transition-all duration-300 flex items-center gap-4">
+          <div className="w-10 h-10 bg-[var(--light-surface)] rounded-xl flex items-center justify-center shrink-0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/><polyline points="17,6 23,6 23,12"/></svg>
+          </div>
+          <div>
+            <div className="text-xs font-bold">Already implementing?</div>
+            <div className="text-[10px] text-[var(--mid-gray)]">Track actual savings vs projections in real-time</div>
+          </div>
+        </a>
+      </div>
     </div>
   );
 }
