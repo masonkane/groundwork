@@ -208,6 +208,33 @@ export default function Home() {
 
       <div className="h-px w-full animate-gradient-line" />
 
+      {/* ═══════════════ WHO THIS IS FOR ═══════════════ */}
+      <section aria-label="Who this is for" className="py-16 sm:py-24 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto">
+          <RevealSection className="text-center mb-10 sm:mb-14">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-4">Who This Is For</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">You know AI matters. You just need someone to show you where.</h2>
+          </RevealSection>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            {[
+              { text: "Business owners with 5-200 employees who are too busy running operations to research AI", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
+              { text: "Contractors, trades, and service businesses losing hours every week to manual processes", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> },
+              { text: "Companies spending $5K+/month on tasks that AI handles in seconds", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> },
+              { text: "Founders who have tried ChatGPT but have not figured out how to make it save real money", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> },
+            ].map((item, i) => (
+              <ScaleReveal key={i} delay={i * 80}>
+                <div className="flex items-start gap-4 bg-white border border-black/5 rounded-xl p-5 hover:border-black/10 hover:shadow-md transition-all duration-300">
+                  <div className="w-9 h-9 bg-[var(--light-surface)] rounded-lg flex items-center justify-center shrink-0 text-[var(--mid-gray)]">{item.icon}</div>
+                  <p className="text-sm leading-relaxed">{item.text}</p>
+                </div>
+              </ScaleReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="h-px w-full animate-gradient-line" />
+
       {/* ═══════════════ HOW IT WORKS ═══════════════ */}
       <section id="how-it-works" className="py-16 sm:py-28 px-4 sm:px-6 bg-[var(--light-surface)]">
         <div className="max-w-5xl mx-auto">
