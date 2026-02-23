@@ -163,6 +163,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══════════════ TRUST BAR ═══════════════ */}
+      <section aria-label="Key stats" className="border-t border-black/5 bg-[var(--light-surface)]">
+        <div className="max-w-4xl mx-auto py-4 sm:py-5 px-4 sm:px-6 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+          {[
+            { value: "18+", label: "AI opportunities per business" },
+            { value: "15 min", label: "to complete" },
+            { value: "$0", label: "to get your report" },
+            { value: "100%", label: "personalized to you" },
+          ].map((s) => (
+            <div key={s.label} className="flex items-center gap-2">
+              <span className="text-sm sm:text-base font-extrabold">{s.value}</span>
+              <span className="text-[10px] sm:text-[11px] text-[var(--mid-gray)]">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ═══════════════ INDUSTRY TICKER ═══════════════ */}
       <section aria-label="Industries served" className="border-y border-black/5 overflow-hidden">
         <div className="py-4 px-6">
