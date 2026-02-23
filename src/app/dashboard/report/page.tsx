@@ -81,6 +81,26 @@ export default function ReportPage() {
         ))}
       </div>
 
+      {/* Executive Summary */}
+      <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6">
+        <h2 className="text-sm font-bold uppercase tracking-wider text-[var(--mid-gray)]/50 mb-3">Executive Summary</h2>
+        <p className="text-sm leading-relaxed text-[var(--mid-gray)] mb-4">After analyzing your business operations, technology stack, team structure, and industry benchmarks, we identified <span className="font-bold text-[var(--black)]">18 AI implementation opportunities</span> across four key areas of your business. These range from quick automations you can deploy this week to strategic plays that create lasting competitive advantages over 3-6 months.</p>
+        <div className="grid sm:grid-cols-3 gap-3">
+          <div className="p-3 bg-green-50 rounded-xl border border-green-100">
+            <div className="text-xs font-bold text-green-800 mb-1">Immediate Action (Week 1-2)</div>
+            <p className="text-[10px] text-green-700/70 leading-relaxed">5 quick wins you can implement with minimal effort. Combined savings: $8,700/month from day one.</p>
+          </div>
+          <div className="p-3 bg-blue-50 rounded-xl border border-blue-100">
+            <div className="text-xs font-bold text-blue-800 mb-1">Short-Term Gains (Month 1-3)</div>
+            <p className="text-[10px] text-blue-700/70 leading-relaxed">8 core automations that require moderate setup but deliver significant recurring savings and time recovery.</p>
+          </div>
+          <div className="p-3 bg-purple-50 rounded-xl border border-purple-100">
+            <div className="text-xs font-bold text-purple-800 mb-1">Strategic Plays (Month 3-6)</div>
+            <p className="text-[10px] text-purple-700/70 leading-relaxed">5 advanced implementations that create compounding advantages your competitors cannot easily replicate.</p>
+          </div>
+        </div>
+      </div>
+
       {/* Summary bar */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
