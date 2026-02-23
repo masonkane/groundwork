@@ -157,63 +157,60 @@ export default function DashboardOverview() {
       </div>
 
       {/* ═══ PROJECTED SAVINGS HERO ═══ */}
-      <div className="bg-white border border-black/5 rounded-2xl p-4 sm:p-6 md:p-8">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 md:gap-8 items-start">
-          <div>
-            <p className="text-[var(--mid-gray)] text-[10px] font-semibold uppercase tracking-widest mb-2">Projected Annual Savings</p>
-            <div className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-3">${totalSavings.toLocaleString()}</div>
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-5">
-              <span className="bg-green-50 text-green-700 text-[10px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-green-100">580% ROI</span>
-              <span className="bg-[var(--light-surface)] text-[var(--mid-gray)] text-[10px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-black/5">18 opportunities found</span>
-              <span className="bg-[var(--light-surface)] text-[var(--mid-gray)] text-[10px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-black/5">4 business areas</span>
-            </div>
-            <p className="text-[var(--mid-gray)] text-xs sm:text-sm leading-relaxed max-w-lg">Based on your questionnaire responses, industry benchmarks, and current operational costs. These savings are achievable within 12 months of full implementation.</p>
-          </div>
-          <div className="grid grid-cols-2 gap-3 sm:min-w-[280px]">
-            {[
-              { label: "Monthly Savings", value: `$${monthlySavings.toLocaleString()}`, sub: "per month" },
-              { label: "Quick Wins Ready", value: "5", sub: "implement this week" },
-              { label: "AI Readiness", value: "67/100", sub: "room to grow" },
-              { label: "Competitive Gap", value: "31%", sub: "behind industry avg" },
-            ].map((stat) => (
-              <div key={stat.label} className="bg-[var(--light-surface)] rounded-xl p-4 border border-black/5">
-                <div className="text-[var(--mid-gray)] text-[10px] font-semibold uppercase tracking-wider mb-1">{stat.label}</div>
-                <div className="text-xl font-extrabold">{stat.value}</div>
-                <div className="text-[var(--mid-gray)] text-[10px] mt-0.5">{stat.sub}</div>
-              </div>
-            ))}
-          </div>
+      <div className="bg-white border-2 border-black/[0.06] rounded-2xl p-5 sm:p-7 md:p-10 shadow-[0_1px_40px_rgba(0,0,0,0.04)]">
+        <p className="text-[var(--mid-gray)] text-[10px] font-semibold uppercase tracking-widest mb-3">Projected Annual Savings</p>
+        <div className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-4">${totalSavings.toLocaleString()}</div>
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6">
+          <span className="bg-green-50 text-green-700 text-[10px] sm:text-xs font-semibold px-3 py-1.5 rounded-full border border-green-100">580% ROI</span>
+          <span className="bg-[var(--light-surface)] text-[var(--mid-gray)] text-[10px] sm:text-xs font-semibold px-3 py-1.5 rounded-full border border-black/5">18 opportunities found</span>
+          <span className="bg-[var(--light-surface)] text-[var(--mid-gray)] text-[10px] sm:text-xs font-semibold px-3 py-1.5 rounded-full border border-black/5">4 business areas</span>
         </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+          {[
+            { label: "Monthly Savings", value: `$${monthlySavings.toLocaleString()}`, sub: "per month", accent: "text-green-600" },
+            { label: "Quick Wins Ready", value: "5", sub: "implement this week", accent: "" },
+            { label: "AI Readiness", value: "67/100", sub: "room to grow", accent: "" },
+            { label: "Competitive Gap", value: "31%", sub: "behind industry avg", accent: "text-amber-600" },
+          ].map((stat) => (
+            <div key={stat.label} className="bg-[var(--light-surface)] rounded-xl p-3 sm:p-4 border border-black/5">
+              <div className="text-[var(--mid-gray)] text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider mb-1">{stat.label}</div>
+              <div className={`text-lg sm:text-xl font-extrabold ${stat.accent}`}>{stat.value}</div>
+              <div className="text-[var(--mid-gray)] text-[9px] sm:text-[10px] mt-0.5">{stat.sub}</div>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-[var(--mid-gray)] text-xs sm:text-sm leading-relaxed max-w-2xl">Based on your questionnaire responses, industry benchmarks, and current operational costs. These savings are achievable within 12 months of full implementation.</p>
       </div>
 
       {/* ═══ COST OF INACTION ═══ */}
-      <div className="bg-white border border-red-100 rounded-2xl p-4 sm:p-6 relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-red-500 to-red-400" />
-        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 mb-4 sm:mb-5">
+      <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-5">
           <div>
-            <h2 className="text-lg font-bold flex items-center gap-2">
-              Cost of Inaction
-              <span className="w-2 h-2 bg-red-500 rounded-full" />
-            </h2>
+            <h2 className="text-base sm:text-lg font-bold">Cost of Inaction</h2>
             <p className="text-[var(--mid-gray)] text-xs mt-0.5">What your business loses by waiting to implement AI.</p>
           </div>
           <Link href="/dashboard/roi" className="text-xs font-medium text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors print:hidden">Full ROI breakdown →</Link>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
           {[
-            { period: "Per Day", amount: `$${Math.round(totalSavings/365).toLocaleString()}` },
-            { period: "Per Week", amount: `$${Math.round(totalSavings/52).toLocaleString()}` },
-            { period: "Per Month", amount: `$${monthlySavings.toLocaleString()}` },
-            { period: "Per Year", amount: `$${totalSavings.toLocaleString()}` },
+            { period: "Per Day", amount: Math.round(totalSavings/365), highlight: false },
+            { period: "Per Week", amount: Math.round(totalSavings/52), highlight: false },
+            { period: "Per Month", amount: monthlySavings, highlight: true },
+            { period: "Per Year", amount: totalSavings, highlight: true },
           ].map((t) => (
-            <div key={t.period} className="text-center p-4 bg-red-50/60 rounded-xl border border-red-100/50">
-              <div className="text-xl font-extrabold text-red-600">{t.amount}</div>
-              <div className="text-[10px] text-red-400 font-medium mt-1">{t.period}</div>
+            <div key={t.period} className={`text-center p-4 rounded-xl border ${t.highlight ? "bg-red-50 border-red-100" : "bg-[var(--light-surface)] border-black/5"}`}>
+              <div className={`text-lg sm:text-xl font-extrabold ${t.highlight ? "text-red-600" : ""}`}>${t.amount.toLocaleString()}</div>
+              <div className={`text-[10px] font-medium mt-1 ${t.highlight ? "text-red-400" : "text-[var(--mid-gray)]"}`}>{t.period}</div>
             </div>
           ))}
         </div>
-        <div className="mt-4 p-3 bg-red-50/40 rounded-xl border border-red-100/30">
-          <p className="text-xs text-red-700/70 leading-relaxed">Every day without AI costs your business <span className="font-bold text-red-700">${Math.round(totalSavings/365)}</span> in lost efficiency. Over 90 days of inaction, that compounds to <span className="font-bold text-red-700">${(Math.round(totalSavings/365) * 90).toLocaleString()}</span> in unrealized savings.</p>
+
+        <div className="flex items-center gap-3 p-3 bg-[var(--light-surface)] rounded-xl border border-black/5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" className="shrink-0"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <p className="text-xs text-[var(--mid-gray)] leading-relaxed">Every 90 days of delay costs your business <span className="font-bold text-[var(--black)]">${(Math.round(totalSavings/365) * 90).toLocaleString()}</span> in unrealized savings. The gap between you and AI-enabled competitors widens every month.</p>
         </div>
       </div>
 
