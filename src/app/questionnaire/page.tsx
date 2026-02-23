@@ -382,9 +382,9 @@ function WelcomeModal({ onStart }: { onStart: () => void }) {
   return (
     <div className="fixed inset-0 z-[100] bg-white flex items-center justify-center px-6">
       <div className="max-w-lg w-full text-center">
-        {/* Groundwork logo */}
-        <div className="mb-8">
-          <LogoFull className="h-7 w-auto mx-auto" />
+        {/* Groundwork logo - centered */}
+        <div className="flex justify-center mb-8">
+          <LogoFull className="h-7 w-auto" />
         </div>
         <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4">
           Before You Start
