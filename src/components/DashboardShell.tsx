@@ -125,8 +125,11 @@ export default function DashboardShell({ children }: { children: React.ReactNode
           <button className="lg:hidden text-[var(--mid-gray)]" onClick={() => setMobileOpen(true)}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
           </button>
-          <div className="flex items-center gap-3 ml-auto">
-            <div className="flex items-center gap-2 bg-[var(--light-surface)] rounded-full px-4 py-2">
+          <div className="flex items-center gap-2 sm:gap-3 ml-auto">
+            <button className="w-8 h-8 rounded-full bg-[var(--light-surface)] flex items-center justify-center text-[var(--mid-gray)] hover:text-[var(--black)] hover:bg-black/[0.04] transition-colors" title="Help & Support">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </button>
+            <div className="hidden sm:flex items-center gap-2 bg-[var(--light-surface)] rounded-full px-4 py-2">
               <span className="w-2 h-2 bg-green-500 rounded-full" />
               <span className="text-xs font-medium text-[var(--mid-gray)]">Hands-Off Plan</span>
             </div>
