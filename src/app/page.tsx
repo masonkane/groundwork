@@ -348,6 +348,55 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══════════════ COMPARISON ═══════════════ */}
+      <section aria-label="Comparison" className="py-16 sm:py-24 px-4 sm:px-6 bg-[var(--light-surface)]">
+        <div className="max-w-4xl mx-auto">
+          <RevealSection className="text-center mb-10 sm:mb-14">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">The Alternative</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-3">Why not just hire a consultant?</h2>
+            <p className="text-[var(--mid-gray)] text-sm sm:text-base max-w-xl mx-auto">61% of businesses that hired AI consultants saw no measurable ROI. We built Groundwork so you do not become a statistic.</p>
+          </RevealSection>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="bg-white border border-black/5 rounded-2xl p-6 sm:p-7">
+              <div className="text-xs font-bold uppercase tracking-wider text-red-500/70 mb-4">Traditional AI Consulting</div>
+              <div className="space-y-3">
+                {[
+                  "$5,000 to $25,000+ per engagement",
+                  "Weeks of meetings before anything happens",
+                  "Deliverable is a PDF you never open again",
+                  "Generic recommendations across industries",
+                  "Implementation is extra (and expensive)",
+                  "No tracking. No accountability. No updates.",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-2.5">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" className="shrink-0 mt-0.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    <span className="text-sm text-[var(--mid-gray)]">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-[var(--black)] text-white rounded-2xl p-6 sm:p-7">
+              <div className="text-xs font-bold uppercase tracking-wider text-green-400/70 mb-4">Groundwork</div>
+              <div className="space-y-3">
+                {[
+                  "Free AI opportunity report with your exact numbers",
+                  "Results in 15 minutes, not 15 meetings",
+                  "Interactive dashboard you actually use",
+                  "Customized to your business, industry, and team",
+                  "Implementation playbooks included at no extra cost",
+                  "Quarterly reassessments. ROI tracking. Always current.",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-2.5">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" className="shrink-0 mt-0.5"><polyline points="20,6 9,17 4,12"/></svg>
+                    <span className="text-sm text-white/80">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════════ REALITY CHECK (upgraded) ═══════════════ */}
       <RevealSection>
         <section className="relative overflow-hidden">
