@@ -142,7 +142,7 @@ export default function DashboardOverview() {
   return (
     <div className="max-w-7xl mx-auto space-y-6 print:space-y-4">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 animate-fade-in">
         <div>
           <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">Dashboard</h1>
           <p className="text-[var(--mid-gray)] text-sm mt-1">Your personalized AI opportunity analysis.</p>
@@ -173,7 +173,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* ═══ PROJECTED SAVINGS HERO ═══ */}
-      <div className="bg-white border-2 border-black/[0.06] rounded-2xl p-5 sm:p-7 md:p-10 shadow-[0_1px_40px_rgba(0,0,0,0.04)]">
+      <div className="bg-white border-2 border-black/[0.06] rounded-2xl p-5 sm:p-7 md:p-10 shadow-[0_1px_40px_rgba(0,0,0,0.04)] animate-fade-in-delay-1">
         <p className="text-[var(--mid-gray)] text-[10px] font-semibold uppercase tracking-widest mb-3">Projected Annual Savings</p>
         <div className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-4">${totalSavings.toLocaleString()}</div>
         <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6">
@@ -201,7 +201,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* ═══ COST OF INACTION ═══ */}
-      <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6">
+      <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6 animate-fade-in-delay-2">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-5">
           <div>
             <h2 className="text-base sm:text-lg font-bold">Cost of Inaction</h2>
@@ -231,7 +231,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* ═══ QUICK WINS ═══ */}
-      <div className="bg-white border border-black/5 rounded-2xl p-4 sm:p-6">
+      <div className="bg-white border border-black/5 rounded-2xl p-4 sm:p-6 animate-fade-in-delay-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4 sm:mb-5">
           <div>
             <h2 className="text-base sm:text-lg font-bold">Quick Wins</h2>
@@ -306,7 +306,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* ═══ OPPORTUNITIES BY AREA ═══ */}
-      <div className="bg-white border border-black/5 rounded-2xl p-4 sm:p-6">
+      <div className="bg-white border border-black/5 rounded-2xl p-4 sm:p-6 animate-fade-in-delay-4">
         <div className="flex items-center justify-between mb-5">
           <div>
             <h2 className="text-lg font-bold">Opportunities by Business Area</h2>
