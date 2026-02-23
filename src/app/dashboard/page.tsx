@@ -274,6 +274,37 @@ export default function DashboardOverview() {
         </div>
       </div>
 
+      {/* ═══ YOUR NEXT 3 ACTIONS ═══ */}
+      <div className="bg-gradient-to-r from-[var(--light-surface)] to-white border border-black/5 rounded-2xl p-4 sm:p-5">
+        <div className="flex items-center gap-2 mb-3">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#080808" strokeWidth="2" strokeLinecap="round"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>
+          <h2 className="text-sm font-bold">Your Next 3 Actions</h2>
+        </div>
+        <div className="grid sm:grid-cols-3 gap-3">
+          <Link href="/dashboard/playbooks" className="flex items-start gap-3 p-3 bg-white rounded-xl border border-black/5 hover:border-black/10 hover:shadow-sm transition-all group">
+            <div className="w-7 h-7 bg-green-50 rounded-lg flex items-center justify-center text-[10px] font-bold text-green-600 shrink-0">1</div>
+            <div>
+              <div className="text-xs font-bold group-hover:text-green-700 transition-colors">Start Invoice Automation</div>
+              <div className="text-[10px] text-[var(--mid-gray)] mt-0.5">Follow the playbook. 2 weeks to $2,400/mo savings.</div>
+            </div>
+          </Link>
+          <Link href="/dashboard/quick-wins" className="flex items-start gap-3 p-3 bg-white rounded-xl border border-black/5 hover:border-black/10 hover:shadow-sm transition-all group">
+            <div className="w-7 h-7 bg-blue-50 rounded-lg flex items-center justify-center text-[10px] font-bold text-blue-600 shrink-0">2</div>
+            <div>
+              <div className="text-xs font-bold group-hover:text-blue-700 transition-colors">Set Up Lead Follow-Up AI</div>
+              <div className="text-[10px] text-[var(--mid-gray)] mt-0.5">Your leads wait 4+ hours for a reply. Fix that today.</div>
+            </div>
+          </Link>
+          <Link href="/dashboard/training" className="flex items-start gap-3 p-3 bg-white rounded-xl border border-black/5 hover:border-black/10 hover:shadow-sm transition-all group">
+            <div className="w-7 h-7 bg-purple-50 rounded-lg flex items-center justify-center text-[10px] font-bold text-purple-600 shrink-0">3</div>
+            <div>
+              <div className="text-xs font-bold group-hover:text-purple-700 transition-colors">Train Your Team on AI Basics</div>
+              <div className="text-[10px] text-[var(--mid-gray)] mt-0.5">30-minute module. Prevents the #1 reason AI fails.</div>
+            </div>
+          </Link>
+        </div>
+      </div>
+
       {/* ═══ OPPORTUNITIES BY AREA ═══ */}
       <div className="bg-white border border-black/5 rounded-2xl p-4 sm:p-6">
         <div className="flex items-center justify-between mb-5">
