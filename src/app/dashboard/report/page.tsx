@@ -143,6 +143,25 @@ export default function ReportPage() {
         </div>
       </div>
 
+      {/* Methodology */}
+      <div className="bg-[var(--light-surface)] border border-black/5 rounded-2xl p-5 sm:p-6">
+        <h2 className="text-sm font-bold uppercase tracking-wider text-[var(--mid-gray)]/50 mb-3">How We Built This Report</h2>
+        <div className="grid sm:grid-cols-4 gap-3">
+          {[
+            { step: "1", title: "Business Analysis", desc: "Your 37 questionnaire responses were cross-referenced against operational benchmarks for your industry and company size." },
+            { step: "2", title: "Cost Modeling", desc: "Each opportunity was modeled using real tool pricing, implementation timelines, and conservative savings estimates from comparable businesses." },
+            { step: "3", title: "Competitive Scan", desc: "We analyzed AI adoption rates in your industry to identify where competitors have already moved and where gaps create the most risk." },
+            { step: "4", title: "Priority Ranking", desc: "Opportunities were ranked by ROI, effort required, and dependencies to create an implementation sequence that maximizes early wins." },
+          ].map((m) => (
+            <div key={m.step} className="flex flex-col gap-2">
+              <div className="w-7 h-7 bg-white border border-black/5 rounded-lg flex items-center justify-center text-xs font-bold">{m.step}</div>
+              <div className="text-xs font-bold">{m.title}</div>
+              <p className="text-[10px] text-[var(--mid-gray)] leading-relaxed">{m.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Recommendations by category */}
       {filtered.map((cat) => (
         <div key={cat.category}>
