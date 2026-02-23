@@ -312,8 +312,7 @@ export default function Home() {
       {/* ═══════════════ REALITY CHECK (upgraded) ═══════════════ */}
       <RevealSection>
         <section className="relative overflow-hidden">
-          {/* Top gradient fade */}
-          <div className="h-24 bg-gradient-to-b from-white to-[var(--black)]" />
+          {/* Top edge */}
 
           <div className="bg-[var(--black)] text-white relative px-6 py-24">
             {/* Dot grid */}
@@ -355,8 +354,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Bottom gradient fade */}
-          <div className="h-24 bg-gradient-to-t from-white to-[var(--black)]" />
+          {/* Bottom edge */}
         </section>
       </RevealSection>
 
