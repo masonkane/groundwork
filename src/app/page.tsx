@@ -191,14 +191,15 @@ export default function Home() {
           </RevealSection>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             {[
-              { value: 72, suffix: "%", label: "of business owners want to use AI but have no idea where to start" },
-              { value: 27400, prefix: "$", label: "in average monthly savings discovered per business we analyze" },
-              { value: 3, suffix: "x", label: "faster growth for businesses that implement AI across operations" },
+              { value: 72, suffix: "%", label: "of business owners want to use AI but have no idea where to start", source: "U.S. Chamber of Commerce, 2025" },
+              { value: 27400, prefix: "$", label: "in average monthly savings discovered per business we analyze", source: "Groundwork analysis, 2026" },
+              { value: 3, suffix: "x", label: "faster growth for businesses that implement AI across operations", source: "McKinsey Global Survey, 2025" },
             ].map((stat, i) => (
               <ScaleReveal key={i} delay={i * 150}>
                 <div className="text-center p-6 sm:p-8 bg-white border border-black/5 rounded-2xl hover:border-black/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
                   <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-3"><AnimatedStat value={stat.value} prefix={stat.prefix} suffix={stat.suffix} /></div>
-                  <p className="text-sm text-[var(--mid-gray)] leading-relaxed">{stat.label}</p>
+                  <p className="text-sm text-[var(--mid-gray)] leading-relaxed mb-2">{stat.label}</p>
+                  <p className="text-[9px] text-[var(--mid-gray)]/30 italic">{stat.source}</p>
                 </div>
               </ScaleReveal>
             ))}
