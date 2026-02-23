@@ -96,6 +96,20 @@ input, textarea, button, select {
   background: rgba(8, 8, 8, 0.4);
 }
 
+/* Industry ticker */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker 30s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
 /* Selection */
 ::selection {
   background: var(--black);

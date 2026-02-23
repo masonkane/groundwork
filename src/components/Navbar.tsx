@@ -39,12 +39,6 @@ export default function Navbar() {
             Features
           </Link>
           <Link
-            href="#pricing"
-            className="text-sm text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors hidden sm:block"
-          >
-            Pricing
-          </Link>
-          <Link
             href="/questionnaire"
             className="bg-[var(--black)] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[var(--dark-surface)] transition-colors"
           >
