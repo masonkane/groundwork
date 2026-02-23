@@ -532,6 +532,26 @@ export default function DashboardOverview() {
         </div>
       </div>
 
+      {/* ═══ GETTING STARTED ═══ */}
+      <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6 print:hidden">
+        <h2 className="text-base sm:text-lg font-bold mb-1">Your Next 3 Steps</h2>
+        <p className="text-xs text-[var(--mid-gray)] mb-4">Not sure where to begin? Follow this path for the fastest results.</p>
+        <div className="grid sm:grid-cols-3 gap-3">
+          {[
+            { step: "1", title: "Review your Quick Wins", desc: "Start with the 5 easiest implementations. Each one takes 1-2 weeks and starts saving money immediately.", href: "/dashboard/quick-wins", label: "View Quick Wins" },
+            { step: "2", title: "Pick your first playbook", desc: "Choose one playbook and follow it step by step. Most businesses start with lead follow-up or invoice automation.", href: "/dashboard/playbooks", label: "Browse Playbooks" },
+            { step: "3", title: "Track your progress", desc: "As you implement, track actual savings vs projections. This data makes your next quarterly audit even more valuable.", href: "/dashboard/tracking", label: "Start Tracking" },
+          ].map((s) => (
+            <Link key={s.step} href={s.href} className="group p-4 bg-[var(--light-surface)] rounded-xl border border-black/5 hover:border-black/10 hover:shadow-sm transition-all">
+              <div className="w-7 h-7 bg-[var(--black)] text-white rounded-lg flex items-center justify-center text-xs font-bold mb-3">{s.step}</div>
+              <div className="text-sm font-bold mb-1">{s.title}</div>
+              <p className="text-[10px] text-[var(--mid-gray)] leading-relaxed mb-3">{s.desc}</p>
+              <span className="text-[10px] font-semibold text-[var(--mid-gray)] group-hover:text-[var(--black)] transition-colors">{s.label} →</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+
       {/* Print styles */}
       <style jsx global>{`
         @media print {
