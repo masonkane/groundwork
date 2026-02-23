@@ -90,9 +90,9 @@ export default function DashboardShell({ children }: { children: React.ReactNode
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all mb-0.5 ${
+                    className={`relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all mb-0.5 ${
                       active
-                        ? "bg-[var(--black)] text-white"
+                        ? "bg-[var(--black)] text-white shadow-sm"
                         : "text-[var(--mid-gray)] hover:bg-black/[0.03] hover:text-[var(--black)]"
                     } ${collapsed ? "justify-center" : ""}`}
                     title={collapsed ? item.name : undefined}
