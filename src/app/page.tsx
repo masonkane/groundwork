@@ -388,9 +388,30 @@ export default function Home() {
 
       {/* ═══════════════ FOOTER ═══════════════ */}
       <footer aria-label="Footer" className="border-t border-black/5 py-8 sm:py-12 px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <LogoFull className="h-5 w-auto opacity-30" />
-          <p className="text-[11px] text-[var(--mid-gray)]/40">© 2026 Groundwork. All rights reserved.</p>
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 sm:gap-4">
+            <div className="flex flex-col items-center sm:items-start gap-2">
+              <LogoFull className="h-5 w-auto opacity-30" />
+              <p className="text-[10px] text-[var(--mid-gray)]/30 max-w-[220px] text-center sm:text-left leading-relaxed">AI implementation intelligence for businesses that want to stop guessing and start saving.</p>
+            </div>
+            <div className="flex gap-8 sm:gap-12">
+              <div className="flex flex-col gap-2">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--mid-gray)]/30">Product</span>
+                <Link href="/questionnaire" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Free Report</Link>
+                <Link href="#how-it-works" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">How It Works</Link>
+                <Link href="#features" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Features</Link>
+              </div>
+              <div className="flex flex-col gap-2">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--mid-gray)]/30">Company</span>
+                <Link href="/privacy" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Privacy</Link>
+                <Link href="/terms" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Terms</Link>
+                <a href="mailto:hello@groundwork.ai" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Contact</a>
+              </div>
+            </div>
+          </div>
+          <div className="mt-8 pt-4 border-t border-black/5 text-center">
+            <p className="text-[10px] text-[var(--mid-gray)]/30">© 2026 Groundwork. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </main>
