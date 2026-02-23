@@ -48,40 +48,58 @@ function HeroCTA({ label = "Get Your Free Report", dark = false }: { label?: str
       <span className={`absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[800ms] ease-out ${
         dark ? "bg-gradient-to-r from-transparent via-black/5 to-transparent" : "bg-gradient-to-r from-transparent via-white/15 to-transparent"
       }`} />
-      <span className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-        dark ? "" : "shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]"
-      }`} />
       <span className="relative z-10">{label}</span>
       <span className="relative z-10 group-hover:translate-x-1.5 transition-transform duration-300">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
           <path d="M4 9H14M10 4.5L14.5 9L10 13.5" />
         </svg>
       </span>
-      <span className={`absolute -inset-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 ${
-        dark ? "" : "shadow-[0_0_0_2px_rgba(0,0,0,0.05)]"
-      }`} />
     </Link>
   );
 }
 
-const industryItems = [
-  { name: "Construction", icon: "🏗️" },
-  { name: "Healthcare", icon: "🏥" },
-  { name: "E-Commerce", icon: "🛒" },
-  { name: "Real Estate", icon: "🏠" },
-  { name: "SaaS & Tech", icon: "💻" },
-  { name: "Manufacturing", icon: "🏭" },
-  { name: "Professional Services", icon: "💼" },
-  { name: "Trades & Home Services", icon: "🔧" },
-  { name: "Finance & Insurance", icon: "📊" },
-  { name: "Hospitality", icon: "🍽️" },
-  { name: "Transportation", icon: "🚛" },
-  { name: "Education", icon: "📚" },
-  { name: "Marketing Agencies", icon: "📣" },
-  { name: "Fitness & Wellness", icon: "💪" },
-  { name: "Automotive", icon: "🚗" },
-  { name: "Nonprofits", icon: "❤️" },
+/* ── Scrolling industry ticker (no emojis) ────────── */
+const industries = [
+  "Construction", "Healthcare", "E-Commerce", "Real Estate", "SaaS & Technology",
+  "Manufacturing", "Professional Services", "Trades & Home Services", "Finance & Insurance",
+  "Hospitality", "Transportation & Logistics", "Education", "Marketing Agencies",
+  "Fitness & Wellness", "Automotive", "Nonprofits", "Agriculture", "Legal Services",
 ];
+
+/* ── Animated counter ─────────────────────────────── */
+function AnimatedStat({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          let start = 0;
+          const duration = 1500;
+          const startTime = performance.now();
+          const animate = (now: number) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            start = Math.round(eased * value);
+            el.textContent = `${prefix}${start.toLocaleString()}${suffix}`;
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [value, prefix, suffix]);
+
+  return <span ref={ref}>{prefix}0{suffix}</span>;
+}
 
 const valueStack = [
   {
@@ -172,9 +190,7 @@ const steps = [
     desc: "You receive a detailed report with dollar-amount projections and quick wins. Then Groundwork helps you implement every recommendation: tools, training, vendor selection, full rollout.",
     visual: (
       <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <span className="text-xs font-bold text-[var(--mid-gray)]">Projected Annual Savings</span>
-        </div>
+        <div className="text-xs font-bold text-[var(--mid-gray)]">Projected Annual Savings</div>
         <div className="text-3xl font-extrabold tracking-tight">$142,800</div>
         <div className="flex gap-2">
           <span className="bg-green-50 text-green-700 text-[11px] font-semibold px-2.5 py-1 rounded-full">↑ 580% ROI</span>
@@ -199,20 +215,20 @@ export default function Home() {
       <Navbar />
 
       {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative pt-36 sm:pt-44 pb-24 px-6">
+      <section className="relative min-h-screen flex items-center justify-center px-6">
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(0,0,0,0.015), transparent)" }} />
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <RevealSection>
             <div className="inline-flex items-center gap-2 bg-[var(--light-surface)] border border-black/5 rounded-full px-4 py-1.5 mb-8">
               <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
               <span className="text-xs font-medium text-[var(--mid-gray)]">
-                Now accepting new businesses
+                Free AI opportunity report for your business
               </span>
             </div>
           </RevealSection>
 
           <RevealSection delay={100}>
-            <h1 className="text-[44px] sm:text-[56px] md:text-[68px] font-extrabold tracking-[-0.035em] leading-[1.08] mb-6">
+            <h1 className="text-[40px] sm:text-[52px] md:text-[62px] font-extrabold tracking-[-0.035em] leading-[1.08] mb-6">
               We implement AI
               <br />
               into your business.
@@ -222,13 +238,13 @@ export default function Home() {
           </RevealSection>
 
           <RevealSection delay={200}>
-            <p className="text-lg sm:text-xl text-[var(--mid-gray)] max-w-xl mx-auto mb-12 leading-relaxed">
+            <p className="text-lg text-[var(--mid-gray)] max-w-xl mx-auto mb-10 leading-relaxed">
               Most businesses lose thousands every month on problems AI already solves. We find exactly where, show you the dollar amount, and then implement every solution for you.
             </p>
           </RevealSection>
 
           <RevealSection delay={300}>
-            <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-3">
               <HeroCTA />
               <p className="text-[11px] text-[var(--mid-gray)]/40">
                 Free · No credit card · Takes about 15 minutes
@@ -238,47 +254,48 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════ INDUSTRY GRID ═══════════════ */}
-      <RevealSection>
-        <section className="py-16 border-y border-black/5">
-          <div className="max-w-5xl mx-auto px-6">
-            <p className="text-center text-sm font-medium text-[var(--mid-gray)] mb-8">
-              We have analyzed businesses across every one of these industries and found untapped AI opportunities in all of them.
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
-              {industryItems.map((ind) => (
-                <div key={ind.name} className="flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl hover:bg-black/[0.02] transition-colors">
-                  <span className="text-xl">{ind.icon}</span>
-                  <span className="text-[10px] font-medium text-[var(--mid-gray)] text-center leading-tight">{ind.name}</span>
-                </div>
-              ))}
-            </div>
+      {/* ═══════════════ SCROLLING INDUSTRY TICKER ═══════════════ */}
+      <section className="py-8 border-y border-black/5 overflow-hidden">
+        <div className="relative">
+          <div className="flex gap-8 animate-ticker whitespace-nowrap">
+            {[...industries, ...industries].map((ind, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-2 text-sm font-medium text-[var(--mid-gray)]/50 whitespace-nowrap"
+              >
+                <span className="w-1 h-1 bg-black/15 rounded-full" />
+                {ind}
+              </span>
+            ))}
           </div>
-        </section>
-      </RevealSection>
+        </div>
+      </section>
 
       {/* ═══════════════ THE PROBLEM ═══════════════ */}
       <section className="py-28 px-6">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <RevealSection className="text-center mb-16">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">The Problem</p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-              You know AI can transform your business.
-              <br />
-              <span className="text-[var(--mid-gray)]">You just need someone to show you how.</span>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-4">The Problem</p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-6">
+              AI is not optional anymore. It is the new standard.
             </h2>
+            <p className="text-[var(--mid-gray)] text-lg max-w-2xl mx-auto leading-relaxed">
+              The businesses that figure out AI first will dominate their market. The ones that wait will spend the next five years wondering what happened. Here is what the data says:
+            </p>
           </RevealSection>
 
-          <div className="grid sm:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-3 gap-6">
             {[
-              { num: "72%", label: "of business owners want to use AI but do not know where to start" },
-              { num: "$11,900", label: "average monthly savings discovered per business we analyze" },
-              { num: "3x", label: "faster growth for businesses that implement AI across operations" },
+              { value: 72, suffix: "%", label: "of business owners want to use AI but have no idea where to start" },
+              { value: 11900, prefix: "$", label: "in monthly savings discovered per business we analyze" },
+              { value: 3, suffix: "x", label: "faster growth for businesses that implement AI across operations" },
             ].map((stat, i) => (
-              <RevealSection key={i} delay={i * 100}>
-                <div className="text-center p-6 bg-white border border-black/5 rounded-2xl">
-                  <div className="text-3xl font-extrabold mb-2">{stat.num}</div>
-                  <p className="text-xs text-[var(--mid-gray)] leading-relaxed">{stat.label}</p>
+              <RevealSection key={i} delay={i * 150}>
+                <div className="text-center p-8 bg-white border border-black/5 rounded-2xl hover:border-black/10 hover:shadow-lg transition-all duration-500">
+                  <div className="text-4xl font-extrabold mb-3">
+                    <AnimatedStat value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
+                  </div>
+                  <p className="text-sm text-[var(--mid-gray)] leading-relaxed">{stat.label}</p>
                 </div>
               </RevealSection>
             ))}
@@ -350,21 +367,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════ WAKE-UP CALL ═══════════════ */}
+      {/* ═══════════════ REALITY CHECK ═══════════════ */}
       <RevealSection>
         <section className="py-28 px-6 bg-[var(--black)] text-white relative overflow-hidden">
           <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
           <div className="max-w-3xl mx-auto text-center relative z-10">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/20 mb-6">The Reality Check</p>
-            <h2 className="text-3xl sm:text-5xl md:text-[56px] font-extrabold tracking-tight mb-6 leading-tight">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30 mb-6">The Reality Check</p>
+            <h2 className="text-3xl sm:text-5xl md:text-[56px] font-extrabold tracking-tight mb-8 leading-tight">
               While you are figuring out AI,
               <br />
               <span className="text-red-400">your competitors already did.</span>
             </h2>
-            <p className="text-white/50 text-lg max-w-xl mx-auto mb-4 leading-relaxed">
-              They are closing deals faster, spending less on operations, and scaling without adding headcount. Every week you wait, the gap between you and them gets wider.
+            <p className="text-white text-lg max-w-xl mx-auto mb-4 leading-relaxed">
+              They are closing deals faster. Spending less on operations. Scaling without adding headcount. Every week you wait, the gap between you and them gets wider.
             </p>
-            <p className="text-white/30 text-base max-w-lg mx-auto mb-12 leading-relaxed">
+            <p className="text-white/70 text-base max-w-lg mx-auto mb-12 leading-relaxed">
               The free report takes 15 minutes. It will show you exactly what they are doing that you are not. The only risk is not looking.
             </p>
             <HeroCTA label="See What You're Missing" dark />
