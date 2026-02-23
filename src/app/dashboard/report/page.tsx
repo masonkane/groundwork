@@ -43,14 +43,14 @@ const recommendations = [
 
 export default function ReportPage() {
   return (
-    <div className="max-w-5xl mx-auto space-y-8">
+    <div className="max-w-5xl mx-auto space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold tracking-tight">AI Opportunity Report</h1>
-        <p className="text-[var(--mid-gray)] text-sm mt-1">18 AI opportunities identified across 4 business areas.</p>
+        <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">AI Opportunity Report</h1>
+        <p className="text-[var(--mid-gray)] text-xs sm:text-sm mt-1">18 AI opportunities identified across 4 business areas. Click any to see details.</p>
       </div>
 
       {/* Summary bar */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Total Opportunities", value: "18" },
           { label: "Projected Savings", value: "$142,800/yr" },
@@ -88,19 +88,26 @@ export default function ReportPage() {
                 </summary>
                 <div className="px-5 pb-5 border-t border-black/5 pt-4">
                   <p className="text-sm text-[var(--mid-gray)] leading-relaxed mb-4">{item.description}</p>
-                  <div className="grid grid-cols-3 gap-4">
-                    <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--mid-gray)]/50 mb-1">Recommended Tools</div>
-                      <div className="flex flex-wrap gap-1.5">{item.tools.map((t) => (<span key={t} className="text-[11px] bg-[var(--light-surface)] px-2 py-0.5 rounded">{t}</span>))}</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4">
+                    <div className="p-3 bg-[var(--light-surface)] rounded-lg">
+                      <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--mid-gray)]/50 mb-1.5">Recommended Tools</div>
+                      <div className="flex flex-wrap gap-1.5">{item.tools.map((t) => (<span key={t} className="text-[11px] bg-white border border-black/5 px-2 py-0.5 rounded font-medium">{t}</span>))}</div>
                     </div>
-                    <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--mid-gray)]/50 mb-1">Timeline</div>
-                      <div className="text-sm font-medium">{item.timeline}</div>
+                    <div className="p-3 bg-[var(--light-surface)] rounded-lg">
+                      <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--mid-gray)]/50 mb-1.5">Timeline</div>
+                      <div className="text-sm font-semibold">{item.timeline}</div>
                     </div>
-                    <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--mid-gray)]/50 mb-1">Effort Level</div>
-                      <div className="text-sm font-medium">{item.effort}</div>
+                    <div className="p-3 bg-[var(--light-surface)] rounded-lg">
+                      <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--mid-gray)]/50 mb-1.5">Effort Level</div>
+                      <div className={`text-sm font-semibold ${item.effort === "Low" ? "text-green-600" : item.effort === "Medium" ? "text-amber-600" : "text-red-600"}`}>{item.effort}</div>
                     </div>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg border border-green-100">
+                    <div className="flex items-center gap-2">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2" strokeLinecap="round"><polyline points="20,6 9,17 4,12"/></svg>
+                      <span className="text-xs font-semibold text-green-800">Projected savings: {item.savings}</span>
+                    </div>
+                    <a href="/dashboard/playbooks" className="text-[10px] font-semibold text-green-700 hover:text-green-900 transition-colors">View playbook →</a>
                   </div>
                 </div>
               </details>
