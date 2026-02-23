@@ -377,8 +377,62 @@ function RankInput({ q, value, onChange }: { q: Question; value: string[]; onCha
   );
 }
 
+/* ── Welcome Modal ────────────────────────────────── */
+function WelcomeModal({ onStart }: { onStart: () => void }) {
+  return (
+    <div className="fixed inset-0 z-[100] bg-white flex items-center justify-center px-6">
+      <div className="max-w-lg w-full text-center">
+        <div className="w-14 h-14 bg-[var(--light-surface)] rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#080808" strokeWidth="1.5" strokeLinecap="round">
+            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10" />
+          </svg>
+        </div>
+        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4">
+          Before you start
+        </h2>
+        <p className="text-[var(--mid-gray)] leading-relaxed mb-3">
+          The more detailed your answers, the better your report.
+        </p>
+        <p className="text-[var(--mid-gray)] leading-relaxed mb-8 text-sm">
+          This isn&apos;t a generic survey — our engine uses every word you write to build a
+          personalized analysis of your specific business. Vague answers get vague results.
+          <span className="font-semibold text-[var(--black)]"> Be specific, be honest, and you&apos;ll get a report worth thousands.</span>
+        </p>
+        <div className="flex flex-col items-center gap-3">
+          <div className="grid grid-cols-3 gap-3 w-full mb-6">
+            {[
+              { icon: "🎯", label: "Be specific about your daily operations" },
+              { icon: "💰", label: "Include real numbers when you can" },
+              { icon: "🗣️", label: "Write in your own words — don't overthink it" },
+            ].map((tip) => (
+              <div key={tip.label} className="bg-[var(--light-surface)] rounded-xl p-3 text-center">
+                <span className="text-lg block mb-1">{tip.icon}</span>
+                <span className="text-[10px] text-[var(--mid-gray)] leading-tight block">{tip.label}</span>
+              </div>
+            ))}
+          </div>
+          <button
+            onClick={onStart}
+            className="group relative inline-flex items-center gap-3 bg-[var(--black)] text-white font-semibold px-8 py-4 rounded-full text-base overflow-hidden transition-all duration-300 hover:shadow-[0_4px_40px_rgba(0,0,0,0.25)] active:scale-[0.97]"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[800ms] ease-out" />
+            <span className="relative z-10">Let&apos;s Go</span>
+            <span className="relative z-10 group-hover:translate-x-1.5 transition-transform duration-300">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M4 9H14M10 4.5L14.5 9L10 13.5" />
+              </svg>
+            </span>
+          </button>
+          <p className="text-[10px] text-[var(--mid-gray)]/30 mt-2">Takes about 15 minutes</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ── Main Questionnaire ───────────────────────────── */
 export default function QuestionnairePage() {
+  const [showWelcome, setShowWelcome] = useState(true);
   const [sectionIndex, setSectionIndex] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
@@ -470,6 +524,10 @@ export default function QuestionnairePage() {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   });
+
+  if (showWelcome) {
+    return <WelcomeModal onStart={() => setShowWelcome(false)} />;
+  }
 
   if (completing) {
     return (
