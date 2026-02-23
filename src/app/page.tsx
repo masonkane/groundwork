@@ -446,6 +446,39 @@ export default function Home() {
         </section>
       </RevealSection>
 
+      {/* ═══════════════ FAQ ═══════════════ */}
+      <RevealSection>
+        <section className="py-16 sm:py-24 px-4 sm:px-6">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-10 sm:mb-14">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">Questions</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">Before you ask.</h2>
+            </div>
+            <div className="space-y-3">
+              {[
+                { q: "Is the report actually free?", a: "Yes. The AI opportunity report, readiness score, and competitive analysis are 100% free. No credit card. No sales call. No catch. We make money when you decide you want help implementing the recommendations." },
+                { q: "How long does the questionnaire take?", a: "About 15 minutes. There are 37 questions across 7 sections. The more specific you are, the more accurate your savings projections will be." },
+                { q: "How accurate are the savings projections?", a: "We use conservative estimates (70% of maximum reported savings) based on your responses, industry benchmarks, and current tool pricing. Most businesses that follow our playbooks hit 80-120% of projected savings within 90 days." },
+                { q: "What if I already use some AI tools?", a: "Great. The assessment accounts for your current tech stack and identifies gaps and upgrades. Even businesses with existing AI typically find 5-10 additional opportunities they had not considered." },
+                { q: "Do I need technical skills to implement the recommendations?", a: "No. Our Quick Wins are specifically designed for non-technical business owners. Each playbook includes step-by-step instructions, recommended tools with pricing, and expected timelines. If you can set up a social media account, you can implement these." },
+                { q: "What industries do you cover?", a: "All of them. We have analyzed businesses in construction, healthcare, real estate, e-commerce, professional services, trades, SaaS, and more. The questionnaire adapts to your specific industry and business model." },
+                { q: "What happens after I get the report?", a: "You get full access to your interactive dashboard with implementation playbooks, ROI tracking, competitive intelligence, and quarterly reassessments. Start implementing at your own pace, or upgrade to our Hands-Off ($297/mo) or Hands-On ($997/mo) plans for guided implementation." },
+              ].map((item) => (
+                <details key={item.q} className="group bg-white border border-black/5 rounded-xl overflow-hidden hover:border-black/10 transition-colors">
+                  <summary className="flex items-center justify-between p-4 sm:p-5 cursor-pointer list-none">
+                    <span className="text-sm font-semibold pr-4">{item.q}</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-[var(--mid-gray)] shrink-0 group-open:rotate-180 transition-transform"><polyline points="6,9 12,15 18,9"/></svg>
+                  </summary>
+                  <div className="px-4 sm:px-5 pb-4 sm:pb-5 border-t border-black/5 pt-3">
+                    <p className="text-sm text-[var(--mid-gray)] leading-relaxed">{item.a}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      </RevealSection>
+
       {/* ═══════════════ FINAL CTA ═══════════════ */}
       <RevealSection>
         <section className="py-16 sm:py-28 px-4 sm:px-6">
