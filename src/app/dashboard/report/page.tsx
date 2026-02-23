@@ -162,6 +162,25 @@ export default function ReportPage() {
         </div>
       </div>
 
+      {/* Risk Assessment */}
+      <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6">
+        <h2 className="text-sm font-bold uppercase tracking-wider text-[var(--mid-gray)]/50 mb-3">Risk Assessment</h2>
+        <div className="grid sm:grid-cols-3 gap-3">
+          <div className="p-3 bg-red-50 rounded-xl border border-red-100">
+            <div className="text-xs font-bold text-red-800 mb-1">High Risk if Delayed</div>
+            <p className="text-[10px] text-red-700/70 leading-relaxed">Customer service AI and lead follow-up. 64% of competitors already have these. Every month of delay widens the gap.</p>
+          </div>
+          <div className="p-3 bg-amber-50 rounded-xl border border-amber-100">
+            <div className="text-xs font-bold text-amber-800 mb-1">Moderate Risk</div>
+            <p className="text-[10px] text-amber-700/70 leading-relaxed">Invoice automation and scheduling. Not yet industry standard but adoption is accelerating. 6-12 month window to implement before it becomes table stakes.</p>
+          </div>
+          <div className="p-3 bg-green-50 rounded-xl border border-green-100">
+            <div className="text-xs font-bold text-green-800 mb-1">Early Mover Advantage</div>
+            <p className="text-[10px] text-green-700/70 leading-relaxed">AI quality control and predictive inventory. Under 20% adoption. Implementing now creates a competitive moat that compounds over time.</p>
+          </div>
+        </div>
+      </div>
+
       {/* Recommendations by category */}
       {filtered.map((cat) => (
         <div key={cat.category}>
@@ -213,6 +232,11 @@ export default function ReportPage() {
           </div>
         </div>
       ))}
+
+      {/* Disclaimer */}
+      <div className="bg-[var(--light-surface)] border border-black/5 rounded-xl p-4 sm:p-5">
+        <p className="text-[10px] text-[var(--mid-gray)]/50 leading-relaxed"><span className="font-semibold text-[var(--mid-gray)]">About this report:</span> Savings projections are based on your questionnaire responses, publicly available industry benchmarks, and tool pricing as of February 2026. Actual results vary based on implementation quality, team adoption, and business-specific factors. Conservative estimates were used throughout. Tool recommendations are independent and not sponsored.</p>
+      </div>
     </div>
   );
 }
