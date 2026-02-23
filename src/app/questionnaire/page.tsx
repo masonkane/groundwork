@@ -587,15 +587,16 @@ export default function QuestionnairePage() {
           <Link href="/">
             <LogoFull className="h-6 w-auto" />
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <span className="text-[10px] font-semibold text-[var(--mid-gray)]/40">{Math.round(progress)}%</span>
             <span className="text-xs font-medium text-[var(--mid-gray)]">
               {answeredCount}/{totalQuestions}
             </span>
           </div>
         </div>
         {/* Progress */}
-        <div className="h-[3px] bg-black/5">
-          <div className="h-full bg-[var(--black)] progress-bar rounded-r-full" style={{ width: `${progress}%` }} />
+        <div className="h-1 bg-black/5">
+          <div className="h-full bg-[var(--black)] progress-bar rounded-r-full transition-all duration-500 ease-out" style={{ width: `${progress}%` }} />
         </div>
       </div>
 
