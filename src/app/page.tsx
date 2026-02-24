@@ -235,17 +235,17 @@ export default function Home() {
           </RevealSection>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {[
-              { text: "Business owners with 5-200 employees who are too busy running operations to research AI", sub: "You know it matters. You just need someone to show you where.", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
-              { text: "Contractors, trades, and service businesses losing hours every week to manual processes", sub: "Scheduling, invoicing, follow-ups. AI handles all of it.", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> },
-              { text: "Companies spending $5K+/month on tasks that AI handles in seconds", sub: "We show you the exact dollar amount. Most owners do not sleep well after.", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> },
-              { text: "Founders who tried ChatGPT but cannot figure out how to make it save real money", sub: "ChatGPT is a tool. We build the system around it.", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> },
+              { text: "You know AI matters. You do not know where to start.", sub: "You have 5-200 employees and zero time to research which AI tools actually move the needle. We do the research, show you the money, and build it for you.", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
+              { text: "Manual processes are bleeding your hours dry.", sub: "Scheduling, invoicing, follow-ups, data entry. Your team spends half their week on tasks AI handles in seconds. We find every one of them and automate it.", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg> },
+              { text: "You are spending $5K+/month on problems AI already solves.", sub: "We show you the exact dollar amount you are losing every month, broken down by department. Most business owners cannot believe the number when they see it.", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> },
+              { text: "You tried ChatGPT. It did not move the needle.", sub: "ChatGPT is a general-purpose tool. Without a system around it, it is just a chatbot. We build the strategy, the workflows, and the integrations that turn AI into actual revenue.", icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> },
             ].map((item, i) => (
               <ScaleReveal key={i} delay={i * 80}>
-                <div className="flex items-start gap-4 bg-white border border-black/5 rounded-xl p-4 sm:p-5 hover:border-black/10 hover:shadow-md transition-all duration-300 group">
+                <div className="h-full flex items-start gap-4 bg-white border border-black/5 rounded-xl p-4 sm:p-5 hover:border-black/10 hover:shadow-md transition-all duration-300 group">
                   <div className="w-9 h-9 bg-[var(--light-surface)] rounded-lg flex items-center justify-center shrink-0 text-[var(--mid-gray)] group-hover:bg-[var(--black)] group-hover:text-white transition-colors duration-300">{item.icon}</div>
                   <div>
-                    <p className="text-sm leading-relaxed font-medium">{item.text}</p>
-                    {(item as any).sub && <p className="text-[11px] text-[var(--mid-gray)] mt-1 leading-relaxed">{(item as any).sub}</p>}
+                    <p className="text-sm leading-relaxed font-semibold">{item.text}</p>
+                    <p className="text-xs text-[var(--mid-gray)] mt-1.5 leading-relaxed">{item.sub}</p>
                   </div>
                 </div>
               </ScaleReveal>
@@ -262,7 +262,7 @@ export default function Home() {
           <RevealSection className="text-center mb-12 sm:mb-20">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">How It Works</p>
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight">From blind spots to bottom line</h2>
-            <p className="text-[var(--mid-gray)] mt-3 sm:mt-4 max-w-lg mx-auto text-sm sm:text-base">Three steps. No jargon. No mystery.</p>
+            <p className="text-[var(--mid-gray)] mt-3 sm:mt-4 max-w-lg mx-auto text-sm sm:text-base">From analysis to action in three steps.</p>
           </RevealSection>
 
           <div className="space-y-8">
@@ -359,8 +359,8 @@ export default function Home() {
               <ScaleReveal key={i} delay={i * 80}>
                 <div className="group h-full bg-white border border-black/5 rounded-2xl p-7 hover:border-black/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
                   <div className="w-10 h-10 bg-[var(--light-surface)] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[var(--black)] group-hover:text-white group-hover:scale-110 transition-all duration-300">{item.icon}</div>
-                  <h3 className="text-sm font-bold mb-2">{item.title}</h3>
-                  <p className="text-[var(--mid-gray)] text-xs leading-relaxed">{item.desc}</p>
+                  <h3 className="text-base font-bold mb-2">{item.title}</h3>
+                  <p className="text-[var(--mid-gray)] text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </ScaleReveal>
             ))}
@@ -399,12 +399,12 @@ export default function Home() {
               <div className="text-xs font-bold uppercase tracking-wider text-green-400/70 mb-4">Groundwork</div>
               <div className="space-y-3">
                 {[
-                  "Free AI opportunity report with your exact numbers",
-                  "Results in 15 minutes, not 15 meetings",
-                  "Interactive dashboard you actually use",
-                  "Customized to your business, industry, and team",
-                  "Implementation playbooks included at no extra cost",
-                  "Quarterly reassessments. ROI tracking. Always current.",
+                  "Your full AI opportunity map in days, not quarters",
+                  "See projected ROI before you spend a single dollar",
+                  "Recommendations built on your actual data, not recycled templates",
+                  "Implementation included — same team, no handoff, no surprise invoices",
+                  "A living dashboard you log into, not a PDF you forget about",
+                  "Quarterly reassessments that find new savings as AI evolves",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-2.5">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" className="shrink-0 mt-0.5"><polyline points="20,6 9,17 4,12"/></svg>

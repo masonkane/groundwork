@@ -15,7 +15,7 @@ function TextInput({ q, value, onChange }: { q: Question; value: string; onChang
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={q.placeholder}
-      className="w-full bg-transparent border-b-2 border-black/10 focus:border-black py-3 text-lg outline-none transition-colors placeholder:text-black/20"
+      className="w-full bg-transparent border-b border-black/15 focus:border-black py-3 text-lg outline-none transition-colors placeholder:text-black/20"
       autoFocus
     />
   );
@@ -152,7 +152,7 @@ function SelectOtherInput({ q, value, onChange }: { q: Question; value: string; 
               onChange(e.target.value ? `Other: ${e.target.value}` : "Other");
             }}
             placeholder="Type your industry..."
-            className="mt-2 ml-8 w-[calc(100%-2rem)] bg-transparent border-b-2 border-black/10 focus:border-black py-2 text-sm outline-none transition-colors placeholder:text-black/20"
+            className="mt-2 ml-8 w-[calc(100%-2rem)] bg-transparent border-b border-black/15 focus:border-black py-2 text-sm outline-none transition-colors placeholder:text-black/20"
             autoFocus
           />
         )}
