@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { showToast } from "@/components/Toast";
 
@@ -151,10 +151,60 @@ export default function DashboardOverview() {
   const monthlySavings = 11900;
   const [hoveredBar, setHoveredBar] = useState<number | null>(null);
   const [expandedOpp, setExpandedOpp] = useState<string | null>(null);
+  const [showOnboarding, setShowOnboarding] = useState(false);
   const maxSavings = Math.max(...savingsData.map(d => d.cumulative));
+
+  useEffect(() => {
+    try {
+      if (!localStorage.getItem("gw_onboarding_seen")) {
+        setShowOnboarding(true);
+      }
+    } catch {}
+  }, []);
 
   return (
     <div className="max-w-7xl mx-auto space-y-6 print:space-y-4">
+      {/* Onboarding Overlay */}
+      {showOnboarding && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-white rounded-2xl max-w-md w-full mx-4 p-8 shadow-xl">
+            <h2 className="text-xl font-extrabold tracking-tight mb-2">Welcome to your AI Dashboard</h2>
+            <p className="text-sm text-[var(--mid-gray)] mb-6">Here are three things to get you started:</p>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <div className="w-7 h-7 bg-[var(--black)] text-white rounded-lg flex items-center justify-center text-xs font-bold shrink-0">1</div>
+                <div>
+                  <div className="text-sm font-semibold">Start with Quick Wins</div>
+                  <p className="text-xs text-[var(--mid-gray)] mt-0.5">High-impact changes you can implement this week</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-7 h-7 bg-[var(--black)] text-white rounded-lg flex items-center justify-center text-xs font-bold shrink-0">2</div>
+                <div>
+                  <div className="text-sm font-semibold">Review your full AI Opportunity Report</div>
+                  <p className="text-xs text-[var(--mid-gray)] mt-0.5">For the complete picture of where AI can help</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-7 h-7 bg-[var(--black)] text-white rounded-lg flex items-center justify-center text-xs font-bold shrink-0">3</div>
+                <div>
+                  <div className="text-sm font-semibold">Use Implementation Playbooks</div>
+                  <p className="text-xs text-[var(--mid-gray)] mt-0.5">For step-by-step guides on every recommendation</p>
+                </div>
+              </div>
+            </div>
+            <button
+              onClick={() => {
+                localStorage.setItem("gw_onboarding_seen", "true");
+                setShowOnboarding(false);
+              }}
+              className="w-full text-sm font-semibold bg-[var(--black)] text-white py-3 rounded-xl hover:bg-[var(--dark-surface)] transition-colors"
+            >
+              Got it, let&apos;s go
+            </button>
+          </div>
+        </div>
+      )}
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 animate-fade-in">
         <div>
@@ -581,26 +631,6 @@ export default function DashboardOverview() {
             </div>
           </div>
           <Link href="/dashboard/audits" className="text-xs font-medium text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors whitespace-nowrap ml-4 print:hidden">Schedule →</Link>
-        </div>
-      </div>
-
-      {/* ═══ GETTING STARTED ═══ */}
-      <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6 print:hidden">
-        <h2 className="text-base sm:text-lg font-bold mb-1">Your Next 3 Steps</h2>
-        <p className="text-xs text-[var(--mid-gray)] mb-4">Not sure where to begin? Follow this path for the fastest results.</p>
-        <div className="grid sm:grid-cols-3 gap-3">
-          {[
-            { step: "1", title: "Review your Quick Wins", desc: "Start with the 5 easiest implementations. Each one takes 1-2 weeks and starts saving money immediately.", href: "/dashboard/quick-wins", label: "View Quick Wins" },
-            { step: "2", title: "Pick your first playbook", desc: "Choose one playbook and follow it step by step. Most businesses start with lead follow-up or invoice automation.", href: "/dashboard/playbooks", label: "Browse Playbooks" },
-            { step: "3", title: "Track your progress", desc: "As you implement, track actual savings vs projections. This data makes your next quarterly audit even more valuable.", href: "/dashboard/tracking", label: "Start Tracking" },
-          ].map((s) => (
-            <Link key={s.step} href={s.href} className="group p-4 bg-[var(--light-surface)] rounded-xl border border-black/5 hover:border-black/10 hover:shadow-sm transition-all">
-              <div className="w-7 h-7 bg-[var(--black)] text-white rounded-lg flex items-center justify-center text-xs font-bold mb-3">{s.step}</div>
-              <div className="text-sm font-bold mb-1">{s.title}</div>
-              <p className="text-[10px] text-[var(--mid-gray)] leading-relaxed mb-3">{s.desc}</p>
-              <span className="text-[10px] font-semibold text-[var(--mid-gray)] group-hover:text-[var(--black)] transition-colors">{s.label} →</span>
-            </Link>
-          ))}
         </div>
       </div>
 

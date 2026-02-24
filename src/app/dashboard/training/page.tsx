@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Module = {
   title: string;
@@ -139,7 +139,17 @@ const modules: Module[] = [
 export default function TrainingPage() {
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
   const [filter, setFilter] = useState<string>("All");
-  const [completedModules, setCompletedModules] = useState<Set<number>>(new Set());
+  const [completedModules, setCompletedModules] = useState<Set<number>>(() => {
+    if (typeof window === 'undefined') return new Set();
+    try {
+      const saved = localStorage.getItem('gw_training_completed');
+      return saved ? new Set(JSON.parse(saved)) : new Set();
+    } catch { return new Set(); }
+  });
+
+  useEffect(() => {
+    localStorage.setItem('gw_training_completed', JSON.stringify([...completedModules]));
+  }, [completedModules]);
 
   const filtered = filter === "All" ? modules : modules.filter(m => m.difficulty === filter);
   const filters = ["All", "Beginner", "Intermediate", "Advanced"];

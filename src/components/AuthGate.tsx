@@ -6,8 +6,15 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    const hasCookie = document.cookie.split(";").some((c) => c.trim().startsWith("gw_auth="));
-    if (!hasCookie) {
+    const match = document.cookie.split(";").map((c) => c.trim()).find((c) => c.startsWith("gw_auth="));
+    if (!match) {
+      window.location.href = "/login";
+      return;
+    }
+    const value = decodeURIComponent(match.split("=")[1]);
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    if (!isValidEmail && value !== "demo@summitelectrical.com") {
+      document.cookie = "gw_auth=; path=/; max-age=0";
       window.location.href = "/login";
       return;
     }

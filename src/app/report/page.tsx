@@ -90,7 +90,7 @@ export default function ReportPage() {
         <button
           onClick={() => {
             // Set demo cookie so they can access dashboard immediately
-            document.cookie = `gw_auth=${email || "demo@summitelectrical.com"}; path=/; max-age=86400`;
+            document.cookie = `gw_auth=${email || "demo@summitelectrical.com"}; path=/; max-age=86400; SameSite=Strict; Secure`;
             window.location.href = "/dashboard";
           }}
           className="inline-flex items-center gap-2 bg-[var(--black)] text-white font-semibold px-8 py-4 rounded-full text-sm sm:text-base hover:shadow-[0_4px_30px_rgba(0,0,0,0.2)] transition-all active:scale-[0.97]"

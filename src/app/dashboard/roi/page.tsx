@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const breakdowns = [
   { 
-    area: "Operations Automation", monthly: 4017, annual: 48200, color: "#080808",
+    area: "Operations Automation", monthly: 5017, annual: 48200, color: "#080808",
     items: [
       { name: "Invoice processing", monthly: 2400, hours: 20 },
       { name: "Scheduling optimization", monthly: 1500, hours: 12 },
@@ -13,7 +13,7 @@ const breakdowns = [
     ]
   },
   { 
-    area: "Sales & Marketing AI", monthly: 3300, annual: 39600, color: "#2563eb",
+    area: "Sales & Marketing AI", monthly: 6000, annual: 39600, color: "#2563eb",
     items: [
       { name: "Lead follow-up automation", monthly: 3100, hours: 15 },
       { name: "Content generation", monthly: 800, hours: 6 },
@@ -22,7 +22,7 @@ const breakdowns = [
     ]
   },
   { 
-    area: "Customer Experience", monthly: 2617, annual: 31400, color: "#7c3aed",
+    area: "Customer Experience", monthly: 5000, annual: 31400, color: "#7c3aed",
     items: [
       { name: "AI chatbot support", monthly: 2800, hours: 25 },
       { name: "Automated project updates", monthly: 700, hours: 5 },
@@ -31,7 +31,7 @@ const breakdowns = [
     ]
   },
   { 
-    area: "Back Office Automation", monthly: 1967, annual: 23600, color: "#059669",
+    area: "Back Office Automation", monthly: 2600, annual: 23600, color: "#059669",
     items: [
       { name: "AI bookkeeping", monthly: 1200, hours: 10 },
       { name: "Document processing", monthly: 600, hours: 5 },

@@ -26,7 +26,7 @@ function LoginForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.includes("@")) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError("Enter a valid email address.");
       return;
     }
@@ -52,7 +52,7 @@ function LoginForm() {
   };
 
   const handleDemoMode = () => {
-    document.cookie = "gw_auth=demo@summitelectrical.com; path=/; max-age=86400";
+    document.cookie = "gw_auth=demo@summitelectrical.com; path=/; max-age=86400; SameSite=Strict; Secure";
     window.location.href = "/dashboard";
   };
 
@@ -102,7 +102,7 @@ function LoginForm() {
               />
               <button
                 type="submit"
-                disabled={loading || !email.includes("@")}
+                disabled={loading || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)}
                 className="w-full bg-[var(--black)] text-white font-semibold py-3 rounded-xl text-sm hover:bg-[var(--dark-surface)] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 {loading ? "Sending..." : "Send Login Link"}

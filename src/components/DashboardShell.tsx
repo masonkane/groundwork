@@ -54,9 +54,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
   return (
     <div className="min-h-screen bg-[var(--light-surface)] flex">
       {/* Mobile overlay */}
-      {mobileOpen && (
-        <div className="fixed inset-0 bg-black/20 z-40 lg:hidden" onClick={() => setMobileOpen(false)} />
-      )}
+      <div className={`fixed inset-0 bg-black/20 z-40 lg:hidden ${mobileOpen ? "" : "hidden"}`} aria-hidden={!mobileOpen} onClick={() => setMobileOpen(false)} />
 
       {/* Sidebar */}
       <aside className={`fixed top-0 left-0 h-full bg-white border-r border-black/5 z-50 flex flex-col transition-all duration-300 ${
@@ -75,7 +73,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 overflow-y-auto py-4 px-3">
+        <nav aria-label="Main navigation" className="flex-1 overflow-y-auto py-4 px-3">
           {navSections.map((section) => (
             <div key={section.label} className="mb-4">
               {!collapsed && (
@@ -122,7 +120,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
       <div className={`flex-1 transition-all duration-300 ${collapsed ? "lg:ml-[68px]" : "lg:ml-[240px]"}`}>
         {/* Top bar */}
         <header className="h-16 bg-white border-b border-black/5 flex items-center justify-between px-6 sticky top-0 z-30">
-          <button className="lg:hidden text-[var(--mid-gray)]" onClick={() => setMobileOpen(true)}>
+          <button className="lg:hidden text-[var(--mid-gray)]" aria-label="Toggle menu" aria-expanded={mobileOpen} onClick={() => setMobileOpen(true)}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
           </button>
           <div className="flex items-center gap-2 sm:gap-3 ml-auto">
