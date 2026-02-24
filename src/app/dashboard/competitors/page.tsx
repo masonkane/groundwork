@@ -108,6 +108,40 @@ export default function CompetitorsPage() {
         ))}
       </div>
 
+      {/* Competitor Profiles */}
+      <div className="bg-white border border-black/5 rounded-2xl p-6">
+        <h2 className="text-lg font-bold mb-4">Competitor Profiles</h2>
+        <p className="text-xs text-[var(--mid-gray)] mb-5">Mid-size electrical contractors in your region and their known AI adoption.</p>
+        <div className="space-y-3">
+          {[
+            { name: "Apex Electrical Solutions", size: "$12M revenue, 60 employees", aiTools: ["AI scheduling (ServiceTitan)", "Automated invoicing", "AI chatbot"], status: "Ahead", color: "text-red-600 bg-red-50 border-red-100" },
+            { name: "Brightline Electric", size: "$9M revenue, 50 employees", aiTools: ["AI lead follow-up (HubSpot)", "Smart scheduling"], status: "Ahead", color: "text-red-600 bg-red-50 border-red-100" },
+            { name: "CityWire Contractors", size: "$7M revenue, 38 employees", aiTools: ["AI invoicing (Docsumo)"], status: "Similar", color: "text-amber-600 bg-amber-50 border-amber-100" },
+            { name: "Delta Power Services", size: "$6M revenue, 35 employees", aiTools: ["AI proposals (PandaDoc)", "Review management"], status: "Similar", color: "text-amber-600 bg-amber-50 border-amber-100" },
+            { name: "ElectraPro Inc.", size: "$5M revenue, 28 employees", aiTools: [], status: "Behind", color: "text-green-600 bg-green-50 border-green-100" },
+          ].map((comp) => (
+            <div key={comp.name} className="p-4 bg-[var(--light-surface)] rounded-xl border border-black/5">
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <div className="text-sm font-bold">{comp.name}</div>
+                  <div className="text-[10px] text-[var(--mid-gray)]">{comp.size}</div>
+                </div>
+                <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${comp.color}`}>{comp.status}</span>
+              </div>
+              {comp.aiTools.length > 0 ? (
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {comp.aiTools.map((t) => (
+                    <span key={t} className="text-[10px] bg-white border border-black/5 px-2.5 py-1 rounded-lg font-medium">{t}</span>
+                  ))}
+                </div>
+              ) : (
+                <span className="text-[10px] text-[var(--mid-gray)]">No known AI adoption</span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Industry Trends */}
       <div className="bg-white border border-black/5 rounded-2xl p-6">
         <h2 className="text-lg font-bold mb-4">Industry AI Trends</h2>

@@ -24,7 +24,7 @@ export const sections: Section[] = [
     title: "Company Fundamentals",
     subtitle: "Tell us about your business so we can tailor everything to your industry and size.",
     questions: [
-      { id: 1, question: "What is your company name?", type: "text", placeholder: "Acme Construction LLC" },
+      { id: 1, question: "What is your company name?", type: "text", placeholder: "Summit Electrical Contractors" },
       {
         id: 2,
         question: "What industry or trade is your business in?",

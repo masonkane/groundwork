@@ -160,6 +160,11 @@ export default function Home() {
               </div>
             </div>
           </RevealSection>
+          {/* Scroll indicator */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40 animate-bounce pointer-events-none">
+            <span className="text-[9px] font-medium text-[var(--mid-gray)] tracking-wider uppercase">Scroll</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="6,9 12,15 18,9"/></svg>
+          </div>
         </div>
       </section>
 

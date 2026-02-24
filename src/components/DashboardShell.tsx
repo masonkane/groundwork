@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LogoFull } from "./Logo";
+import ToastProvider from "./Toast";
 
 const navSections = [
   {
@@ -134,7 +135,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
               <span className="text-xs font-medium text-[var(--mid-gray)]">Hands-Off Plan</span>
             </div>
             <div className="w-8 h-8 bg-[var(--black)] text-white rounded-full flex items-center justify-center text-xs font-bold">
-              J
+              M
             </div>
           </div>
         </header>
@@ -142,6 +143,7 @@ export default function DashboardShell({ children }: { children: React.ReactNode
         {/* Page content */}
         <main className="p-4 sm:p-6 md:p-8">{children}</main>
       </div>
+      <ToastProvider />
     </div>
   );
 }

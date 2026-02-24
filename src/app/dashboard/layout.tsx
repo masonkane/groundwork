@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import DashboardShell from "@/components/DashboardShell";
+import AuthGate from "@/components/AuthGate";
 
 export const metadata: Metadata = {
   title: "Dashboard — Groundwork",
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  return <DashboardShell>{children}</DashboardShell>;
+  return (
+    <AuthGate>
+      <DashboardShell>{children}</DashboardShell>
+    </AuthGate>
+  );
 }

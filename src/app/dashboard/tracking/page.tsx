@@ -8,6 +8,9 @@ const implementations = [
   { name: "Smart Scheduling", status: "setup", startDate: "Mar 3, 2026", projected: 1800, actual: 0, hoursRecovered: 0, completionPct: 20 },
   { name: "AI Support Chatbot", status: "planned", startDate: "Mar 10, 2026", projected: 2800, actual: 0, hoursRecovered: 0, completionPct: 0 },
   { name: "Bookkeeping AI", status: "planned", startDate: "Mar 17, 2026", projected: 1200, actual: 0, hoursRecovered: 0, completionPct: 0 },
+  { name: "Proposal Generator", status: "planned", startDate: "Mar 24, 2026", projected: 1500, actual: 0, hoursRecovered: 0, completionPct: 0 },
+  { name: "Safety Compliance", status: "planned", startDate: "Apr 1, 2026", projected: 900, actual: 0, hoursRecovered: 0, completionPct: 0 },
+  { name: "Material Ordering AI", status: "planned", startDate: "Apr 7, 2026", projected: 1200, actual: 0, hoursRecovered: 0, completionPct: 0 },
 ];
 
 const monthlyData = [

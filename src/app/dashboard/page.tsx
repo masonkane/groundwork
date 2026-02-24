@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { showToast } from "@/components/Toast";
 
 /* ── Circular Progress ────────────────────────────── */
 function ScoreRing({ score, size = 120, stroke = 8, color = "#080808" }: { score: number; size?: number; stroke?: number; color?: string }) {
@@ -129,6 +130,19 @@ const recommendedTools = [
 
 /* ── PDF Export ───────────────────────────────────── */
 function handleExportPDF() {
+  const link = document.createElement("a");
+  link.href = "/api/report/pdf";
+  link.download = "Summit-Electrical-AI-Report.pdf";
+  link.click();
+}
+
+function handleShare() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    showToast("Link copied to clipboard");
+  });
+}
+
+function handlePrint() {
   window.print();
 }
 
@@ -148,11 +162,18 @@ export default function DashboardOverview() {
           <p className="text-[var(--mid-gray)] text-sm mt-1">Your personalized AI opportunity analysis.</p>
         </div>
         <div className="flex items-center gap-2 print:hidden">
+          <button onClick={handlePrint} className="flex items-center gap-2 text-xs font-medium bg-white border border-black/10 px-4 py-2.5 rounded-xl hover:bg-[var(--light-surface)] transition-colors" title="Print">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="6,9 6,2 18,2 18,9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Print
+          </button>
           <button onClick={handleExportPDF} className="flex items-center gap-2 text-xs font-medium bg-white border border-black/10 px-4 py-2.5 rounded-xl hover:bg-[var(--light-surface)] transition-colors">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download PDF Report
+            Export Report
           </button>
-          <button className="text-xs font-medium bg-[var(--black)] text-white px-4 py-2.5 rounded-xl hover:bg-[var(--dark-surface)] transition-colors">Share Report</button>
+          <button onClick={handleShare} className="text-xs font-medium bg-[var(--black)] text-white px-4 py-2.5 rounded-xl hover:bg-[var(--dark-surface)] transition-colors flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share
+          </button>
         </div>
       </div>
 

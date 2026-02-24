@@ -9,7 +9,7 @@ const audits = [
     status: "complete" as const,
     findings: 18,
     savings: "$142,800/yr",
-    summary: "Comprehensive assessment identified 18 AI opportunities across 4 business areas. Projected annual savings of $142,800 with 580% ROI.",
+    summary: "Comprehensive assessment of Summit Electrical Contractors identified 18 AI opportunities across 4 business areas. Projected annual savings of $142,800 with 580% ROI on a $8M revenue base.",
     highlights: [
       "5 Quick Wins identified for immediate implementation",
       "Critical gap found in customer service AI adoption (64% of competitors ahead)",

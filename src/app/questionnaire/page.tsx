@@ -515,6 +515,7 @@ export default function QuestionnairePage() {
       } else {
         setCompleting(true);
         sessionStorage.setItem("groundwork_answers", JSON.stringify(answers));
+        localStorage.setItem("groundwork_answers", JSON.stringify(answers));
         setTimeout(() => { window.location.href = "/report"; }, 2500);
       }
     } else {

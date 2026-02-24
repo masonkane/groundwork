@@ -1,6 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { showToast } from "@/components/Toast";
+
+function handleExportPDF() {
+  const link = document.createElement("a");
+  link.href = "/api/report/pdf";
+  link.download = "Summit-Electrical-AI-Report.pdf";
+  link.click();
+}
+
+function handleShare() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    showToast("Link copied to clipboard");
+  });
+}
 
 const recommendations = [
   {
@@ -66,10 +80,16 @@ export default function ReportPage() {
           <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">AI Opportunity Report</h1>
           <p className="text-[var(--mid-gray)] text-xs sm:text-sm mt-1">18 AI opportunities identified across 4 business areas. Click any to see details.</p>
         </div>
-        <button onClick={() => window.print()} className="flex items-center gap-2 text-xs font-medium bg-white border border-black/10 px-4 py-2.5 rounded-xl hover:bg-[var(--light-surface)] transition-colors print:hidden shrink-0">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Export Report
-        </button>
+        <div className="flex items-center gap-2 print:hidden shrink-0">
+          <button onClick={handleExportPDF} className="flex items-center gap-2 text-xs font-medium bg-white border border-black/10 px-4 py-2.5 rounded-xl hover:bg-[var(--light-surface)] transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export Report
+          </button>
+          <button onClick={handleShare} className="flex items-center gap-2 text-xs font-medium bg-[var(--black)] text-white px-4 py-2.5 rounded-xl hover:bg-[var(--dark-surface)] transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            Share
+          </button>
+        </div>
       </div>
 
       {/* Filters */}

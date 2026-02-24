@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { showToast } from "@/components/Toast";
 
 export default function SettingsPage() {
   const [notifications, setNotifications] = useState({ email: true, sms: false, weekly: true, quarterly: true });
@@ -18,12 +19,12 @@ export default function SettingsPage() {
           <h2 className="text-sm font-bold mb-4">Account Information</h2>
           <div className="grid gap-4">
             {[
-              { label: "Company Name", value: "Acme Construction LLC" },
-              { label: "Contact Name", value: "Josh Freeland" },
-              { label: "Email", value: "josh@acmeconstruction.com" },
-              { label: "Industry", value: "Construction / Electrical" },
-              { label: "Company Size", value: "11-50 employees" },
-              { label: "Annual Revenue", value: "$1M - $5M" },
+              { label: "Company Name", value: "Summit Electrical Contractors" },
+              { label: "Contact Name", value: "Mike Reeves" },
+              { label: "Email", value: "mike@summitelectrical.com" },
+              { label: "Industry", value: "Electrical Contracting" },
+              { label: "Company Size", value: "45 employees" },
+              { label: "Annual Revenue", value: "$8M" },
             ].map((field) => (
               <div key={field.label}>
                 <label className="text-xs font-medium text-[var(--mid-gray)] block mb-1">{field.label}</label>
@@ -103,7 +104,16 @@ export default function SettingsPage() {
         <div className="p-6">
           <h2 className="text-sm font-bold mb-4">Data & Privacy</h2>
           <div className="space-y-3">
-            <button className="w-full flex items-center justify-between p-3 bg-[var(--light-surface)] rounded-lg hover:bg-black/[0.03] transition-colors">
+            <button
+              onClick={() => {
+                const link = document.createElement("a");
+                link.href = "/api/report/pdf";
+                link.download = "Summit-Electrical-AI-Report.pdf";
+                link.click();
+                showToast("Downloading report PDF");
+              }}
+              className="w-full flex items-center justify-between p-3 bg-[var(--light-surface)] rounded-lg hover:bg-black/[0.03] transition-colors"
+            >
               <div>
                 <div className="text-xs font-semibold">Export your data</div>
                 <div className="text-[10px] text-[var(--mid-gray)]">Download your full report, questionnaire responses, and tracking data</div>
