@@ -558,48 +558,6 @@ export default function Home() {
         </section>
       </RevealSection>
 
-      {/* ═══════════════ TESTIMONIALS ═══════════════ */}
-      <RevealSection>
-        <section className="py-16 sm:py-24 px-4 sm:px-6 bg-[var(--light-surface)]">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-10 sm:mb-14">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">Results</p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">Real businesses. Real numbers.</h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
-              {[
-                { quote: "We were spending $8K a month on tasks we did not even realize AI could handle. Groundwork showed us every one, and we implemented the first three changes in a week.", name: "Marcus Rivera", role: "Owner, Summit Electrical Contractors", metric: "$96K/yr saved", industry: "Electrical Contracting" },
-                { quote: "The report paid for itself before we even upgraded. The Quick Wins alone saved us 20+ hours a week on scheduling and follow-ups. Our team cannot believe how much time they got back.", name: "Sarah Chen", role: "COO, Meridian Property Group", metric: "20+ hrs/wk saved", industry: "Real Estate" },
-                { quote: "We hired a consultant last year for $15K and got a generic PDF. Groundwork gave us a better, more specific analysis in 15 minutes — for free. Then they helped us actually build it.", name: "David Okonkwo", role: "Founder, Apex Digital Marketing", metric: "$178K/yr identified", industry: "Marketing Agency" },
-              ].map((t, i) => (
-                <ScaleReveal key={i} delay={i * 100}>
-                  <div className="h-full bg-white border border-black/5 rounded-2xl p-5 sm:p-6 flex flex-col hover:border-black/10 hover:shadow-lg transition-all duration-300">
-                    <div className="flex items-center gap-1.5 mb-4">
-                      {[...Array(5)].map((_, j) => (
-                        <svg key={j} width="14" height="14" viewBox="0 0 24 24" fill="#080808" aria-hidden="true"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" /></svg>
-                      ))}
-                    </div>
-                    <p className="text-sm leading-relaxed text-[var(--mid-gray)] flex-1 mb-4">&ldquo;{t.quote}&rdquo;</p>
-                    <div className="border-t border-black/5 pt-4 mt-auto">
-                      <div className="flex items-center justify-between gap-3">
-                        <div>
-                          <p className="text-sm font-semibold">{t.name}</p>
-                          <p className="text-[10px] text-[var(--mid-gray)]">{t.role}</p>
-                        </div>
-                        <div className="text-right shrink-0">
-                          <p className="text-sm font-extrabold text-green-600">{t.metric}</p>
-                          <p className="text-[9px] text-[var(--mid-gray)]/40">{t.industry}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </ScaleReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      </RevealSection>
-
       {/* ═══════════════ TRUST BAR ═══════════════ */}
       <RevealSection>
         <section className="py-10 sm:py-14 px-4 sm:px-6 border-t border-black/5">

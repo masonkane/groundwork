@@ -202,6 +202,17 @@ export default function DashboardOverview() {
             >
               Got it, let&apos;s go
             </button>
+            <button
+              onClick={() => {
+                localStorage.setItem("gw_onboarding_seen", "true");
+                setShowOnboarding(false);
+                handleExportPDF();
+              }}
+              className="w-full text-sm font-medium text-[var(--mid-gray)] py-2.5 rounded-xl hover:text-[var(--black)] transition-colors flex items-center justify-center gap-2 mt-2"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF Report
+            </button>
           </div>
         </div>
       )}
