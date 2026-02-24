@@ -65,10 +65,9 @@ export default function DashboardShell({ children }: { children: React.ReactNode
         {/* Logo */}
         <div className={`h-16 flex items-center border-b border-black/5 ${collapsed ? "px-4 justify-center" : "px-5"}`}>
           {collapsed ? (
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86 86" fill="none" className="w-7 h-7">
-              <rect x="29" y="0" width="27" height="22" rx="8" fill="#080808" />
-              <rect x="16" y="26" width="54" height="24" rx="8" fill="#080808" />
-              <rect x="0" y="54" width="86" height="28" rx="9" fill="#080808" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" className="w-7 h-7">
+              <line x1="6" y1="28" x2="34" y2="28" stroke="#080808" strokeWidth="3.5" strokeLinecap="round" />
+              <path d="M11 12 L20 23 L29 12" stroke="#080808" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
             </svg>
           ) : (
             <LogoFull className="h-6 w-auto" />
