@@ -233,7 +233,7 @@ export default function SettingsPage() {
                   <div className="text-[10px] text-[var(--mid-gray)]">{pref.desc}</div>
                 </div>
                 <button
-                  onClick={() => setNotifications(prev => ({ ...prev, [pref.key]: !prev[pref.key] }))}
+                  onClick={() => setNotifications((prev: Record<string, boolean>) => ({ ...prev, [pref.key]: !prev[pref.key] }))}
                   className={`w-10 h-5 rounded-full transition-colors relative ${notifications[pref.key] ? "bg-green-500" : "bg-gray-300"}`}
                 >
                   <div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform ${notifications[pref.key] ? "left-5" : "left-0.5"}`} />
