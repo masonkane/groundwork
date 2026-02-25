@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { LogoFull } from "@/components/Logo";
 
@@ -137,7 +137,15 @@ function AnimatedStat({
 
 /* ── Email form component ───────────────────────── */
 
-function EmailForm({ id, ctaLabel = "Get the Free Playbook" }: { id: string; ctaLabel?: string }) {
+function EmailForm({
+  id,
+  ctaLabel = "Get the Free Playbook",
+  onSuccess,
+}: {
+  id: string;
+  ctaLabel?: string;
+  onSuccess?: () => void;
+}) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -181,7 +189,11 @@ function EmailForm({ id, ctaLabel = "Get the Free Playbook" }: { id: string; cta
       body: JSON.stringify({ email: trimmed }),
     }).catch(() => {});
 
-    router.push("/ai-playbook");
+    if (onSuccess) {
+      onSuccess();
+    } else {
+      router.push("/ai-playbook");
+    }
   }
 
   return (
@@ -223,6 +235,268 @@ function EmailForm({ id, ctaLabel = "Get the Free Playbook" }: { id: string; cta
         <p className="text-red-500 text-xs mt-2 text-center">{error}</p>
       )}
     </form>
+  );
+}
+
+/* ── Questionnaire data ─────────────────────────── */
+
+interface QuestionSingleSelect {
+  key: string;
+  question: string;
+  type: "single";
+  options: string[];
+}
+
+interface QuestionMultiSelect {
+  key: string;
+  question: string;
+  type: "multi";
+  maxSelect: number;
+  options: string[];
+}
+
+type Question = QuestionSingleSelect | QuestionMultiSelect;
+
+const questions: Question[] = [
+  {
+    key: "industry",
+    question: "What industry is your business in?",
+    type: "single",
+    options: [
+      "Construction & Trades",
+      "Healthcare",
+      "E-Commerce & Retail",
+      "Professional Services",
+      "Real Estate",
+      "Marketing Agency",
+      "Finance & Insurance",
+      "Manufacturing",
+      "Technology & SaaS",
+      "Hospitality",
+      "Other",
+    ],
+  },
+  {
+    key: "teamSize",
+    question: "How many employees?",
+    type: "single",
+    options: ["Just me", "2-5", "6-20", "21-50", "51-100", "100+"],
+  },
+  {
+    key: "painPoints",
+    question: "What are your biggest operational pain points?",
+    type: "multi",
+    maxSelect: 3,
+    options: [
+      "Lead follow-up is slow or inconsistent",
+      "Customer support takes too much time",
+      "Invoicing & documents are manual",
+      "Reporting eats hours every week",
+      "Scheduling is a mess",
+      "Content creation is a bottleneck",
+      "Don't know which leads to prioritize",
+      "Inventory/supply issues",
+      "Hard to track customer sentiment",
+      "Hiring takes forever",
+    ],
+  },
+  {
+    key: "goal",
+    question: "What's your #1 goal with AI?",
+    type: "single",
+    options: [
+      "Cut costs and save money",
+      "Save time on repetitive tasks",
+      "Win more customers",
+      "Scale without hiring",
+      "Get ahead of competitors",
+    ],
+  },
+];
+
+/* ── Questionnaire component ────────────────────── */
+
+function Questionnaire({ onComplete }: { onComplete: () => void }) {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
+  const [fadeState, setFadeState] = useState<"in" | "out">("in");
+  const totalSteps = questions.length;
+  const current = questions[step];
+
+  const transitionTo = useCallback((next: number) => {
+    setFadeState("out");
+    setTimeout(() => {
+      setStep(next);
+      setFadeState("in");
+    }, 200);
+  }, []);
+
+  const handleSingleSelect = useCallback(
+    (option: string) => {
+      setAnswers((prev) => ({ ...prev, [current.key]: option }));
+      if (step < totalSteps - 1) {
+        setTimeout(() => transitionTo(step + 1), 300);
+      } else {
+        // Last question -- save and redirect
+        setTimeout(() => {
+          const finalAnswers = { ...answers, [current.key]: option };
+          try {
+            localStorage.setItem("gw_playbook_answers", JSON.stringify(finalAnswers));
+          } catch {}
+          onComplete();
+        }, 300);
+      }
+    },
+    [answers, current.key, onComplete, step, totalSteps, transitionTo]
+  );
+
+  const handleMultiSelect = useCallback(
+    (option: string) => {
+      setAnswers((prev) => {
+        const currentSelections = (prev[current.key] as string[]) || [];
+        if (currentSelections.includes(option)) {
+          return {
+            ...prev,
+            [current.key]: currentSelections.filter((o) => o !== option),
+          };
+        }
+        const maxSelect = (current as QuestionMultiSelect).maxSelect;
+        if (currentSelections.length >= maxSelect) return prev;
+        return {
+          ...prev,
+          [current.key]: [...currentSelections, option],
+        };
+      });
+    },
+    [current]
+  );
+
+  const handleMultiContinue = useCallback(() => {
+    if (step < totalSteps - 1) {
+      transitionTo(step + 1);
+    } else {
+      try {
+        localStorage.setItem("gw_playbook_answers", JSON.stringify(answers));
+      } catch {}
+      onComplete();
+    }
+  }, [answers, onComplete, step, totalSteps, transitionTo]);
+
+  const handleBack = useCallback(() => {
+    if (step > 0) {
+      transitionTo(step - 1);
+    }
+  }, [step, transitionTo]);
+
+  const progressPercent = ((step + 1) / totalSteps) * 100;
+  const multiSelections = (answers[current.key] as string[]) || [];
+  const singleSelection = (answers[current.key] as string) || "";
+
+  return (
+    <div className="max-w-2xl mx-auto text-center relative z-10">
+      <div className="flex justify-center mb-8 sm:mb-10">
+        <LogoFull className="h-7 sm:h-8" />
+      </div>
+
+      {/* Progress indicator */}
+      <p className="text-xs font-semibold tracking-widest uppercase text-[var(--mid-gray)] mb-3">
+        Step {step + 1} of {totalSteps}
+      </p>
+      <div className="w-full max-w-xs mx-auto h-1.5 bg-[var(--light-surface)] rounded-full mb-10 overflow-hidden">
+        <div
+          className="h-full bg-[var(--black)] rounded-full transition-all duration-500 ease-out"
+          style={{ width: `${progressPercent}%` }}
+        />
+      </div>
+
+      {/* Question content with fade transition */}
+      <div
+        className="transition-opacity duration-200 ease-in-out"
+        style={{ opacity: fadeState === "in" ? 1 : 0 }}
+      >
+        <h2 className="text-[22px] sm:text-[32px] font-extrabold tracking-[-0.03em] leading-tight mb-3">
+          {current.question}
+        </h2>
+
+        {current.type === "multi" && (
+          <p className="text-sm text-[var(--mid-gray)] mb-6">
+            Pick up to {(current as QuestionMultiSelect).maxSelect}
+          </p>
+        )}
+
+        {current.type === "single" && <div className="mb-6" />}
+
+        {/* Option pills */}
+        <div className="flex flex-wrap justify-center gap-3 max-w-xl mx-auto">
+          {current.options.map((option) => {
+            const isSelected =
+              current.type === "single"
+                ? singleSelection === option
+                : multiSelections.includes(option);
+
+            return (
+              <button
+                key={option}
+                type="button"
+                onClick={() =>
+                  current.type === "single"
+                    ? handleSingleSelect(option)
+                    : handleMultiSelect(option)
+                }
+                className={`px-5 py-3 rounded-full text-sm font-semibold transition-all duration-200 min-h-[48px] ${
+                  isSelected
+                    ? "bg-[var(--black)] text-white border border-[var(--black)]"
+                    : "bg-white border border-black/10 hover:border-black/30 text-[var(--black)]"
+                }`}
+              >
+                {option}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Multi-select continue button */}
+        {current.type === "multi" && multiSelections.length > 0 && (
+          <div className="mt-8">
+            <button
+              type="button"
+              onClick={handleMultiContinue}
+              className="group relative inline-flex items-center justify-center gap-2 font-semibold px-8 py-4 rounded-full text-sm overflow-hidden transition-all duration-300 active:scale-[0.97] bg-[var(--black)] text-white hover:shadow-[0_4px_50px_rgba(0,0,0,0.3)] min-h-[48px]"
+            >
+              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[800ms] ease-out bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <span className="relative z-10">Continue</span>
+              <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 9H14M10 4.5L14.5 9L10 13.5" />
+                </svg>
+              </span>
+            </button>
+          </div>
+        )}
+
+        {/* Back link */}
+        {step > 0 && (
+          <div className="mt-6">
+            <button
+              type="button"
+              onClick={handleBack}
+              className="text-sm text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors duration-200 min-h-[48px]"
+            >
+              &larr; Back
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -380,6 +654,47 @@ const faqs = [
 /* ── Main page ──────────────────────────────────── */
 
 export default function FreeReportPage() {
+  const [showQuestionnaire, setShowQuestionnaire] = useState(false);
+  const [heroFade, setHeroFade] = useState<"visible" | "fading" | "questionnaire">("visible");
+  const router = useRouter();
+
+  const handleEmailSuccess = useCallback(() => {
+    setHeroFade("fading");
+    setTimeout(() => {
+      setShowQuestionnaire(true);
+      setHeroFade("questionnaire");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 300);
+  }, []);
+
+  const handleQuestionnaireComplete = useCallback(() => {
+    router.push("/ai-playbook");
+  }, [router]);
+
+  // Bottom CTA submit handler
+  const handleBottomCtaSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      const form = e.currentTarget as HTMLFormElement;
+      const input = form.querySelector("input") as HTMLInputElement;
+      if (!input) return;
+      const trimmed = input.value.trim().toLowerCase();
+      if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+        return;
+      }
+      try {
+        localStorage.setItem("gw_lead_email", trimmed);
+      } catch {}
+      fetch("/api/auth/magic-link", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: trimmed }),
+      }).catch(() => {});
+      handleEmailSuccess();
+    },
+    [handleEmailSuccess]
+  );
+
   return (
     <main className="dot-grid min-h-screen">
       {/* ═══════════════ HERO ═══════════════ */}
@@ -394,66 +709,83 @@ export default function FreeReportPage() {
               "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(0,0,0,0.02), transparent)",
           }}
         />
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          <RevealSection>
-            <div className="flex justify-center mb-8 sm:mb-10">
-              <LogoFull className="h-7 sm:h-8" />
-            </div>
-          </RevealSection>
 
-          <RevealSection delay={100}>
-            <div className="inline-flex items-center gap-2 bg-[var(--light-surface)] border border-black/5 rounded-full px-3 sm:px-4 py-1.5 mb-6 sm:mb-8 animate-float">
-              <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-              <span className="text-[10px] sm:text-xs font-medium text-[var(--mid-gray)]">
-                Free AI Profit Playbook — 2026 Edition
-              </span>
-            </div>
-          </RevealSection>
-
-          <RevealSection delay={200}>
-            <h1 className="text-[28px] sm:text-[44px] md:text-[54px] font-extrabold tracking-[-0.035em] leading-[1.08] mb-5 sm:mb-6 px-2">
-              Find Out Exactly How Much
-              <br className="hidden sm:block" /> AI Could Save Your
-              <br className="hidden sm:block" /> Business This Year
-            </h1>
-          </RevealSection>
-
-          <RevealSection delay={350}>
-            <p className="text-base sm:text-lg text-[var(--mid-gray)] max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
-              Get the 10 highest-ROI AI implementations for 2026 — with exact
-              dollar savings, recommended tools, and step-by-step instructions.
-              <span className="font-semibold text-[var(--black)]">
-                {" "}
-                Takes 3 seconds. 100% free.
-              </span>
-            </p>
-          </RevealSection>
-
-          <RevealSection delay={500}>
-            <Suspense><EmailForm id="hero-email" /></Suspense>
-            <p className="text-[11px] text-[var(--mid-gray)]/40 mt-3">
-              No spam · No credit card · Instant access
-            </p>
-            <div className="flex items-center justify-center gap-4 mt-5">
-              <div className="flex -space-x-2">
-                {["JF", "SK", "MR", "AL", "TC"].map((initials, i) => (
-                  <div
-                    key={i}
-                    className="w-7 h-7 rounded-full bg-[var(--light-surface)] border-2 border-white flex items-center justify-center text-[8px] font-bold text-[var(--mid-gray)]"
-                  >
-                    {initials}
-                  </div>
-                ))}
+        {/* Landing page content */}
+        {!showQuestionnaire && (
+          <div
+            className="max-w-3xl mx-auto text-center relative z-10 transition-opacity duration-300"
+            style={{ opacity: heroFade === "fading" ? 0 : 1 }}
+          >
+            <RevealSection>
+              <div className="flex justify-center mb-8 sm:mb-10">
+                <LogoFull className="h-7 sm:h-8" />
               </div>
-              <p className="text-[11px] text-[var(--mid-gray)]/50">
-                <span className="font-semibold text-[var(--mid-gray)]">
-                  2,847 business owners
-                </span>{" "}
-                downloaded this month
+            </RevealSection>
+
+            <RevealSection delay={100}>
+              <div className="inline-flex items-center gap-2 bg-[var(--light-surface)] border border-black/5 rounded-full px-3 sm:px-4 py-1.5 mb-6 sm:mb-8 animate-float">
+                <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-[10px] sm:text-xs font-medium text-[var(--mid-gray)]">
+                  Free AI Profit Playbook — 2026 Edition
+                </span>
+              </div>
+            </RevealSection>
+
+            <RevealSection delay={200}>
+              <h1 className="text-[28px] sm:text-[44px] md:text-[54px] font-extrabold tracking-[-0.035em] leading-[1.08] mb-5 sm:mb-6 px-2">
+                Find Out Exactly How Much
+                <br className="hidden sm:block" /> AI Could Save Your
+                <br className="hidden sm:block" /> Business This Year
+              </h1>
+            </RevealSection>
+
+            <RevealSection delay={350}>
+              <p className="text-base sm:text-lg text-[var(--mid-gray)] max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
+                Get the 10 highest-ROI AI implementations for 2026 — with exact
+                dollar savings, recommended tools, and step-by-step instructions.
+                <span className="font-semibold text-[var(--black)]">
+                  {" "}
+                  Takes 3 seconds. 100% free.
+                </span>
               </p>
-            </div>
-          </RevealSection>
-        </div>
+            </RevealSection>
+
+            <RevealSection delay={500}>
+              <Suspense><EmailForm id="hero-email" onSuccess={handleEmailSuccess} /></Suspense>
+              <p className="text-[11px] text-[var(--mid-gray)]/40 mt-3">
+                No spam · No credit card · Instant access
+              </p>
+              <div className="flex items-center justify-center gap-4 mt-5">
+                <div className="flex -space-x-2">
+                  {["JF", "SK", "MR", "AL", "TC"].map((initials, i) => (
+                    <div
+                      key={i}
+                      className="w-7 h-7 rounded-full bg-[var(--light-surface)] border-2 border-white flex items-center justify-center text-[8px] font-bold text-[var(--mid-gray)]"
+                    >
+                      {initials}
+                    </div>
+                  ))}
+                </div>
+                <p className="text-[11px] text-[var(--mid-gray)]/50">
+                  <span className="font-semibold text-[var(--mid-gray)]">
+                    2,847 business owners
+                  </span>{" "}
+                  downloaded this month
+                </p>
+              </div>
+            </RevealSection>
+          </div>
+        )}
+
+        {/* Questionnaire content */}
+        {showQuestionnaire && (
+          <div
+            className="w-full transition-opacity duration-300"
+            style={{ opacity: heroFade === "questionnaire" ? 1 : 0 }}
+          >
+            <Questionnaire onComplete={handleQuestionnaireComplete} />
+          </div>
+        )}
       </section>
 
       {/* ═══════════════ TRUST BAR ═══════════════ */}
@@ -578,17 +910,17 @@ export default function FreeReportPage() {
               {
                 step: "1",
                 title: "Enter Your Email",
-                desc: "One field. No surveys, no phone number, no company size dropdown. Just your email.",
+                desc: "One field. Takes 3 seconds.",
               },
               {
                 step: "2",
-                title: "Read the Playbook",
-                desc: "Instant access to all 10 implementations with dollar amounts, tools, and step-by-step instructions.",
+                title: "Answer 4 Quick Questions",
+                desc: "Tell us about your business so we can personalize your playbook. Takes 30 seconds.",
               },
               {
                 step: "3",
-                title: "Discover Your Savings",
-                desc: "Want numbers customized to YOUR business? Take our free assessment for a personalized AI report.",
+                title: "Get Your Personalized Playbook",
+                desc: "Instantly access AI implementations tailored to your industry and pain points, with a downloadable PDF.",
               },
             ].map((item, i) => (
               <RevealSection key={i} delay={i * 150}>
@@ -671,31 +1003,7 @@ export default function FreeReportPage() {
 
           <RevealSection delay={200}>
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const form = e.currentTarget;
-                const input = form.querySelector("input") as HTMLInputElement;
-                if (input) {
-                  const heroForm = document.getElementById("hero-email") as HTMLInputElement;
-                  if (heroForm) {
-                    // Sync the value and trigger the hero form logic
-                  }
-                  // Duplicate minimal submit logic here
-                  const trimmed = input.value.trim().toLowerCase();
-                  if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
-                    return;
-                  }
-                  try {
-                    localStorage.setItem("gw_lead_email", trimmed);
-                  } catch {}
-                  fetch("/api/auth/magic-link", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: trimmed }),
-                  }).catch(() => {});
-                  window.location.href = "/ai-playbook";
-                }
-              }}
+              onSubmit={handleBottomCtaSubmit}
               className="w-full max-w-md mx-auto"
             >
               <div className="flex flex-col sm:flex-row gap-3">
