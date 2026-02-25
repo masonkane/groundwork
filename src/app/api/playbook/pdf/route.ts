@@ -411,6 +411,195 @@ const goalSummaries: Record<string, string> = {
 const defaultSummary =
   "This playbook contains the 10 highest-ROI AI implementations for 2026, ranked by annual savings. Each includes specific tools with pricing, step-by-step instructions, and expected outcomes.";
 
+// Tool URLs for clickable links in the PDF
+const toolUrls: Record<string, string> = {
+  "HubSpot AI": "https://www.hubspot.com",
+  "Instantly.ai": "https://instantly.ai",
+  "Apollo.io": "https://www.apollo.io",
+  "Intercom Fin": "https://www.intercom.com/fin",
+  "Zendesk AI": "https://www.zendesk.com",
+  Drift: "https://www.drift.com",
+  Docsumo: "https://www.docsumo.com",
+  Rossum: "https://rossum.ai",
+  Stampli: "https://www.stampli.com",
+  Coefficient: "https://coefficient.io",
+  "Rows.com": "https://rows.com",
+  Equals: "https://equals.com",
+  Motion: "https://www.usemotion.com",
+  "Reclaim.ai": "https://reclaim.ai",
+  "Calendly AI": "https://calendly.com",
+  Jasper: "https://www.jasper.ai",
+  "Copy.ai": "https://www.copy.ai",
+  "Writer.com": "https://writer.com",
+  Madkudu: "https://www.madkudu.com",
+  "6sense": "https://6sense.com",
+  "Inventory Planner": "https://www.inventory-planner.com",
+  Flieber: "https://www.flieber.com",
+  Cogsy: "https://www.cogsy.com",
+  MonkeyLearn: "https://monkeylearn.com",
+  Brandwatch: "https://www.brandwatch.com",
+  "Sprout Social": "https://sproutsocial.com",
+  Lever: "https://www.lever.co",
+  "Greenhouse AI": "https://www.greenhouse.com",
+  HireVue: "https://www.hirevue.com",
+};
+
+// Industry-specific context for implementations
+const industryContext: Record<string, Record<number, string>> = {
+  "Construction & Trades": {
+    1: "In construction, leads from project bids and referrals have a 72-hour decision window. AI follow-up ensures you respond to RFQs and bid invitations before competitors.",
+    2: "Construction clients frequently ask about project timelines, change orders, and warranty claims. An AI chatbot trained on your project types reduces office phone volume by 50%+.",
+    3: "Construction invoicing involves progress billing, retention, and change orders. AI handles AIA-format invoices and matches against original estimates automatically.",
+    4: "Job costing reports, project status updates, and equipment utilization reports can be auto-generated from your project management system weekly.",
+    5: "Scheduling site inspections, subcontractor meetings, and client walkthroughs across multiple active job sites is a perfect use case for AI scheduling.",
+    6: "Before/after project photos, safety updates, and project milestone content builds trust with future clients and improves local SEO rankings.",
+  },
+  "Home Services (HVAC, Plumbing, Electrical)": {
+    1: "Homeowners requesting quotes typically contact 3-4 providers. The first to respond wins the job 78% of the time. AI follow-up is your biggest competitive advantage.",
+    2: "Common questions about service areas, pricing ranges, emergency availability, and maintenance schedules can be handled 24/7 by an AI chatbot on your website.",
+    3: "Home service invoicing with parts, labor, and warranty tracking gets automated. AI matches purchase orders to supplier invoices and flags pricing discrepancies.",
+    5: "Dispatch optimization with AI scheduling reduces drive time between appointments by 20-30%, fitting more jobs per day while respecting technician skill matching.",
+    8: "Track van inventory and warehouse stock of common parts (filters, fittings, breakers). AI predicts seasonal demand spikes for AC units in summer and furnaces in winter.",
+    9: "Monitor Google reviews, Yelp, and Nextdoor mentions. In home services, a single negative review can cost $10K+ in lost business over a year.",
+  },
+  "Real Estate": {
+    1: "Real estate leads go cold within hours. AI sequences nurture buyers and sellers with market updates, new listings, and neighborhood insights personalized to their search criteria.",
+    4: "Market analysis reports, comparable sales, and portfolio performance summaries can be auto-generated from MLS data and your transaction history.",
+    5: "Coordinate showings, open houses, and client meetings across multiple properties. AI scheduling with travel time buffers eliminates double-bookings.",
+    6: "Property descriptions, market updates, social media posts, and email newsletters are perfect for AI content generation. 10x your marketing output.",
+    7: "Score leads based on online behavior: property views, saved searches, mortgage calculator usage, and open house attendance predict who is ready to transact.",
+    9: "Track client satisfaction through post-closing surveys and online reviews. In real estate, referrals account for 40%+ of business.",
+  },
+  "Healthcare & Dental": {
+    1: "Patient inquiries about services, insurance acceptance, and availability need immediate response. AI follow-up reduces no-shows by 35% with automated appointment confirmations.",
+    2: "Answer questions about insurance, office hours, preparation instructions, and post-procedure care 24/7. Reduce front desk call volume by 60%.",
+    3: "Insurance claim processing, patient billing, and EOB reconciliation are perfect for AI automation. Reduce claim denials by catching coding errors before submission.",
+    5: "Patient scheduling with AI considers provider availability, room requirements, equipment needs, and insurance verification. Reduces scheduling staff workload by 70%.",
+    9: "Monitor patient reviews on Google, Healthgrades, and Zocdoc. Healthcare practices with 4.5+ star ratings see 28% more new patient bookings.",
+    10: "Screen clinical and administrative candidates with AI that evaluates certifications, experience requirements, and cultural fit markers from applications.",
+  },
+  "Legal & Accounting": {
+    1: "Legal and accounting leads expect professional, prompt responses. AI follow-up with case-type-specific templates demonstrates competence and availability immediately.",
+    3: "Time-and-materials billing, trust account reconciliation, and expense tracking are streamlined with AI that auto-categorizes billable time and generates invoices.",
+    4: "Client status reports, billable hours summaries, and matter updates can be auto-generated from your practice management system.",
+    6: "Thought leadership content, practice area guides, and regulatory updates position your firm as an authority. AI helps produce 5x more content consistently.",
+    7: "Score prospective clients based on case type, estimated value, engagement signals, and fit with your practice areas to prioritize high-value opportunities.",
+    10: "Screen associate and paralegal candidates with AI that evaluates bar admissions, practice area experience, and writing quality from applications.",
+  },
+  "Restaurant & Food Service": {
+    1: "Catering inquiries, event bookings, and large party reservations need fast follow-up. AI sequences with menu options and availability drive 40%+ more bookings.",
+    2: "Handle menu questions, dietary accommodations, hours, reservation status, and delivery tracking automatically. Free up staff to focus on in-house guests.",
+    3: "Vendor invoicing for food supplies, beverage distributors, and equipment maintenance. AI matches delivery receipts to purchase orders and flags price increases.",
+    5: "Staff scheduling that considers peak hours, certifications (food handler, alcohol service), availability preferences, and labor cost targets.",
+    8: "Predict ingredient needs based on reservation counts, seasonal menu changes, catering orders, and historical consumption patterns. Reduce food waste by 25-40%.",
+    9: "Restaurant reviews on Google, Yelp, and DoorDash directly impact revenue. AI monitors and alerts on negative sentiment so you can respond within hours.",
+  },
+  "Retail & E-Commerce": {
+    1: "Cart abandonment emails, post-purchase follow-ups, and re-engagement campaigns driven by AI recover 15-25% of lost revenue automatically.",
+    2: "Handle order status, return policies, sizing questions, and product recommendations 24/7. E-commerce chatbots typically deflect 70%+ of support tickets.",
+    6: "Product descriptions, social media posts, email campaigns, and ad copy at scale. AI generates personalized content for hundreds of SKUs efficiently.",
+    7: "Score leads based on browsing behavior, cart value, purchase history, and email engagement to prioritize outreach and personalize offers.",
+    8: "Demand forecasting for seasonal trends, promotional impacts, and new product launches. Reduce stockouts by 40% and overstock by 30%.",
+    9: "Monitor product reviews, social mentions, and support ticket sentiment to identify quality issues, trending products, and customer satisfaction shifts.",
+  },
+  "Professional Services & Consulting": {
+    1: "Consulting leads evaluating multiple firms respond to speed and personalization. AI follow-up with relevant case studies and availability drives 45%+ more meetings.",
+    3: "Project-based billing, retainer tracking, and expense reports are automated. AI matches time entries to project budgets and flags overages before they become disputes.",
+    4: "Client deliverable tracking, project status dashboards, and utilization reports generated automatically from your project management and time tracking tools.",
+    6: "Whitepapers, case studies, blog posts, and LinkedIn content establish thought leadership. AI helps consultants publish 5-10x more content consistently.",
+    7: "Score inbound leads based on company size, budget signals, project scope indicators, and engagement patterns to focus on highest-value opportunities.",
+    10: "Screen consultant and analyst candidates with AI that evaluates relevant experience, certifications, client-facing skills, and cultural alignment.",
+  },
+  "Fitness & Wellness": {
+    1: "Fitness leads researching memberships need immediate engagement. AI follow-up with class schedules, trial offers, and success stories converts 35%+ more prospects.",
+    2: "Answer questions about class schedules, membership options, cancellation policies, and facility amenities 24/7 without tying up front desk staff.",
+    5: "Class scheduling, personal training sessions, and room bookings with AI that considers instructor availability, capacity limits, and member preferences.",
+    6: "Workout tips, nutrition content, success stories, and challenge promotions keep members engaged and attract new prospects through social media.",
+    9: "Monitor Google reviews and social mentions. Fitness businesses with strong online reputation see 35%+ higher membership inquiry rates.",
+    10: "Screen trainer and instructor candidates with AI that evaluates certifications, specializations, teaching style indicators, and availability fit.",
+  },
+  "Auto Repair & Dealerships": {
+    1: "Service appointment requests and vehicle inquiries need fast response. AI follow-up with appointment availability and service specials drives 30%+ more bookings.",
+    2: "Handle questions about service pricing, appointment availability, parts status, and warranty coverage automatically. Reduce service advisor phone time by 50%.",
+    3: "Parts invoicing, warranty claims processing, and vendor payment reconciliation automated with AI that matches repair orders to supplier invoices.",
+    5: "Service bay scheduling with AI considers technician specializations, bay equipment, estimated repair times, and parts availability for optimal throughput.",
+    8: "Predict parts demand based on seasonal service trends, fleet contracts, and common failure patterns by vehicle make/model/year.",
+    9: "Auto repair reviews heavily influence consumer choice. AI monitoring ensures you respond to negative experiences before they become permanent reputation damage.",
+  },
+  Other: {
+    1: "Fast lead response is universally valuable. AI follow-up within 2 minutes increases conversion by 35-50% regardless of your specific industry.",
+    2: "Every business has common questions from customers. An AI chatbot trained on your specific FAQs frees up staff time and improves response consistency.",
+    3: "Invoice processing automation works for any business that handles 50+ invoices per month, regardless of industry vertical.",
+    5: "Scheduling automation eliminates the back-and-forth that wastes 4-5 hours per week per team member across all industries.",
+    6: "Content marketing drives organic growth in every industry. AI helps you create more content consistently without hiring a content team.",
+    9: "Online reputation management matters for every business. AI monitoring ensures you never miss important customer feedback.",
+  },
+};
+
+// Goal-specific framing for implementations
+const goalFraming: Record<string, Record<number, string>> = {
+  "cut-costs": {
+    1: "Eliminates the need for a dedicated lead qualification role ($45K-65K/yr). AI handles initial outreach, follow-up, and qualification at 5% of the cost.",
+    2: "Replaces 1-2 full-time support agents ($35K-50K/yr each). AI handles routine tickets while humans focus on complex, high-value interactions only.",
+    3: "Reduces invoice processing cost from $15-25 per invoice to under $0.50. For 200 invoices/month, that is $3,000-5,000/month in direct labor savings.",
+    4: "Eliminates 8-12 hours/week of manual report compilation. At $30-50/hr for the analyst doing it, that is $12K-30K/yr in recovered productivity.",
+    5: "Eliminates 4-5 hours/week of scheduling coordination per team member. For a 10-person team, that is $25K-50K/yr in recovered productive time.",
+    6: "Replaces $3K-8K/month in freelance content costs. AI generates first drafts, humans polish. Same quality at 20% of the cost.",
+    7: "Reduces wasted sales time on low-quality leads by 60%. Each sales rep recovers 10+ hours/week to focus on prospects that actually convert.",
+    8: "Reduces emergency ordering premiums (15-30% markup) and overstock carrying costs (20-30% of value annually). Typical savings: $50K-200K/yr for mid-size operations.",
+    9: "Prevents revenue loss from unaddressed negative reviews. Each prevented negative review saves an estimated 30 customers worth of lifetime value.",
+    10: "Reduces cost-per-hire by 35% and cuts bad-hire costs (estimated at 30% of annual salary) by screening more effectively upfront.",
+  },
+  "save-time": {
+    1: "Reclaim 10-15 hours/week currently spent on manual lead follow-up. AI handles the repetitive outreach so your team focuses on closing warm leads.",
+    2: "Save 20-30 hours/week of support staff time. AI resolves 60-70% of tickets instantly, giving your team back full days to focus on complex issues.",
+    3: "Reduce invoice processing from 15 minutes to under 2 minutes each. For 200 invoices/month, that is 40+ hours/month recovered.",
+    4: "Eliminate 8-12 hours/week of manual data pulling and report formatting. Reports generate automatically on schedule with AI-written summaries.",
+    5: "Eliminate 4-5 hours of scheduling back-and-forth per team member per week. Meetings book themselves based on real-time availability.",
+    6: "Produce 3-5x more content without increasing time investment. What used to take 4 hours per blog post now takes 45 minutes with AI drafting.",
+    7: "Stop wasting time on leads that will never convert. AI scoring tells your team exactly who to call first, recovering 10+ hours/week per rep.",
+    8: "Eliminate manual inventory counts and spreadsheet forecasting. AI predicts demand automatically, saving 5-10 hours/week of inventory management time.",
+    9: "Automate review monitoring across all platforms. Instead of manually checking 5+ sites daily, get instant alerts only when action is needed.",
+    10: "Reduce resume screening from 30 minutes per application to 2 minutes. For 100 applicants per role, that is 45+ hours saved per hire.",
+  },
+  "win-customers": {
+    1: "Convert 35-50% more leads by responding in 2 minutes instead of 4 hours. Speed-to-lead is the #1 factor in winning new business.",
+    2: "24/7 instant support creates a premium customer experience. Businesses with AI chatbots see 25% higher customer satisfaction and 15% more repeat purchases.",
+    3: "Faster, error-free invoicing improves client experience. Professional, timely billing builds trust and reduces payment disputes by 40%.",
+    4: "Proactive client reporting demonstrates value and transparency. Clients who receive regular performance updates renew at 2x the rate.",
+    5: "Frictionless booking converts more prospects into customers. Every extra step in scheduling loses 10-15% of potential bookings.",
+    6: "10x your content output to reach 10x more prospects. Content marketing generates 3x more leads than paid advertising at 62% lower cost.",
+    7: "Focus sales efforts on the 20% of leads most likely to buy. This increases close rates by 30% and shortens sales cycles by 20%.",
+    8: "Never lose a sale due to stockouts. AI ensures you have the right products available when customers want to buy.",
+    9: "Responding to negative reviews within 4 hours recovers 33% of dissatisfied customers. Proactive reputation management drives 15% more new business.",
+    10: "Hire better people, faster. Great employees create great customer experiences. AI screening reduces time-to-hire by 40%.",
+  },
+  "scale-without-hiring": {
+    1: "Handle 5x more leads without adding sales development reps. AI does the qualification and nurturing, humans only step in to close.",
+    2: "Support 3x more customers without hiring additional support staff. AI handles routine inquiries while your existing team manages escalations.",
+    3: "Process 10x more invoices without adding accounting headcount. AI scales linearly with volume at near-zero marginal cost.",
+    4: "Generate unlimited reports without dedicated analysts. AI pulls data, identifies trends, and writes summaries automatically on any schedule.",
+    5: "Manage 3x more appointments without hiring an office coordinator. AI handles all booking, rescheduling, and reminders automatically.",
+    6: "Publish 5-10x more marketing content without hiring writers or agencies. AI drafts, your team edits. Scale content like a team of 10.",
+    7: "Enable each sales rep to manage 3x more leads effectively. AI scoring and prioritization means fewer reps close more deals.",
+    8: "Manage larger inventory across more locations without additional warehouse staff. AI automates forecasting, reordering, and allocation.",
+    9: "Monitor customer sentiment across unlimited channels without hiring a community manager. AI flags what matters, you respond to what counts.",
+    10: "Screen 10x more applicants without adding HR headcount. AI handles the initial filter, your team interviews only the best candidates.",
+  },
+  "get-ahead": {
+    1: "Only 23% of businesses respond to leads within an hour. AI-powered 2-minute response puts you in the top 5% and creates an unfair advantage.",
+    2: "While competitors make customers wait until business hours, your AI chatbot provides instant support 24/7. This alone differentiates you in most markets.",
+    3: "Automated back-office operations free your team to focus on innovation and growth while competitors are still doing manual data entry.",
+    4: "Real-time business intelligence while competitors make decisions on month-old data. AI reporting gives you a speed advantage in every strategic decision.",
+    5: "While competitors lose leads to scheduling friction, your prospects book instantly. This removes a barrier that costs most businesses 10-15% of potential revenue.",
+    6: "Dominate your market's content landscape. While competitors publish 2-4 pieces/month, you publish 20-40. More content means more organic traffic and authority.",
+    7: "Know which leads will convert before your competitors even respond. Predictive scoring gives your sales team a structural advantage in every deal.",
+    8: "Never lose a sale to stockouts while competitors scramble with emergency orders. Predictive inventory is a competitive moat most small businesses lack.",
+    9: "Respond to customer feedback faster than any competitor. In markets where reputation drives revenue, real-time sentiment monitoring is a decisive advantage.",
+    10: "Win the talent war with faster, better hiring. While competitors take 45 days to fill roles, you fill them in 25. Better people, faster growth.",
+  },
+};
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const industry = searchParams.get("industry") || "";
@@ -428,22 +617,13 @@ export async function GET(request: Request) {
     const ranks = painPointToRanks[key];
     if (ranks) ranks.forEach((r) => recommendedRanksSet.add(r));
   }
-  // Take up to 3 unique recommended implementations, preserving rank order
-  const recommendedRanks = Array.from(recommendedRanksSet)
-    .sort((a, b) => a - b)
-    .slice(0, 3);
-  const recommendedImpls = recommendedRanks.map(
-    (r) => implementations.find((i) => i.rank === r)!
-  );
-  const remainingImpls = implementations.filter(
-    (i) => !recommendedRanks.includes(i.rank)
-  );
 
   // Dynamic import to avoid SSR issues
   const { jsPDF } = await import("jspdf");
 
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
   const W = doc.internal.pageSize.getWidth();
+  const H = doc.internal.pageSize.getHeight();
   const margin = 20;
   const contentW = W - margin * 2;
   let y = 20;
@@ -453,359 +633,358 @@ export async function GET(request: Request) {
     y = 20;
   };
   const checkSpace = (needed: number) => {
-    if (y + needed > 270) addPage();
+    if (y + needed > 265) addPage();
   };
 
-  // Helper: draw section header
-  const sectionHeader = (title: string) => {
+  // Helper: draw section header with green accent bar
+  const sectionHeader = (title: string, rank?: number) => {
     checkSpace(20);
-    doc.setFillColor(8, 8, 8);
-    doc.rect(margin, y, contentW, 10, "F");
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(11);
-    doc.setFont("helvetica", "bold");
-    doc.text(title, margin + 4, y + 7);
+    // Green accent bar
+    doc.setFillColor(34, 197, 94);
+    doc.rect(margin, y, 3, 16, "F");
+    // Title
     doc.setTextColor(8, 8, 8);
-    y += 16;
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    if (rank !== undefined) {
+      doc.text(`#${rank}`, margin + 7, y + 6);
+      doc.setFontSize(12);
+      doc.text(title, margin + 18, y + 6);
+    } else {
+      doc.text(title, margin + 7, y + 6);
+    }
+    doc.setFontSize(9);
+    y += 22;
   };
 
-  // ── Page: Cover ──
+  // ── Page 1: Cover ──
   doc.setFillColor(8, 8, 8);
-  doc.rect(0, 0, W, 100, "F");
-  doc.setTextColor(255, 255, 255);
-  doc.setFontSize(28);
-  doc.setFont("helvetica", "bold");
-  doc.text("The AI Profit Playbook", margin, 45);
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "normal");
-  if (industry) {
-    doc.text(`Personalized for ${industry}`, margin, 58);
-  } else {
-    doc.text("2026 Edition", margin, 58);
-  }
-  if (teamSize) {
-    doc.setFontSize(11);
-    doc.text(`Tailored for teams of ${teamSize}`, margin, 70);
-  }
-  doc.setFontSize(10);
-  doc.text(
-    `Generated ${new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}`,
-    margin,
-    teamSize ? 80 : 70
-  );
-  doc.text("Prepared by Groundwork", margin, teamSize ? 90 : 80);
+  doc.rect(0, 0, W, H, "F");
 
-  // ── Page: Executive Summary ──
-  doc.setTextColor(8, 8, 8);
-  y = 115;
-  sectionHeader("Executive Summary");
+  // GROUNDWORK wordmark
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "bold");
+  doc.text("G R O U N D W O R K", margin, 35);
+
+  // Green accent line
+  doc.setDrawColor(34, 197, 94);
+  doc.setLineWidth(0.5);
+  doc.line(margin, 45, margin + 40, 45);
+
+  // Large title
+  doc.setFontSize(32);
+  doc.setFont("helvetica", "bold");
+  doc.text("The AI Profit", margin, 75);
+  doc.text("Playbook", margin, 90);
+
+  // Subtitle
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "normal");
+  doc.setTextColor(255, 255, 255, 200);
+  if (industry) {
+    doc.text(`Personalized for ${industry}`, margin, 108);
+  } else {
+    doc.text("2026 Edition", margin, 108);
+  }
+
+  if (teamSize) {
+    doc.setFontSize(12);
+    doc.text(`Team size: ${teamSize}`, margin, 120);
+  }
+
+  // Generation date + prepared by
+  doc.setFontSize(10);
+  doc.setTextColor(180, 180, 180);
+  const dateStr = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  doc.text(`Generated ${dateStr}`, margin, 260);
+  doc.text("Prepared by Groundwork", margin, 270);
+
+  // ── Page 2: About + Table of Contents ──
+  addPage();
+
+  sectionHeader("What's Inside");
 
   doc.setFontSize(9);
   doc.setFont("helvetica", "normal");
-  const summaryText = goalSummaries[goal] || defaultSummary;
-  const summaryLines = doc.splitTextToSize(summaryText, contentW);
-  doc.text(summaryLines, margin, y);
-  y += summaryLines.length * 4.5 + 10;
+  doc.setTextColor(60, 60, 60);
+  const aboutText =
+    goalSummaries[goal] || defaultSummary;
+  const aboutLines = doc.splitTextToSize(aboutText, contentW);
+  doc.text(aboutLines, margin, y);
+  y += aboutLines.length * 4.5 + 12;
 
-  // Key metrics grid
-  const metrics = [
-    { label: "Total Annual Savings", value: "$180,800+" },
-    { label: "Implementations", value: "10" },
-    { label: "Average ROI", value: "500%+" },
-    { label: "Recommended Tools", value: "30+" },
-    { label: "Implementation Time", value: "1-4 weeks each" },
-    { label: "Difficulty", value: "60% Low, 40% Medium" },
-  ];
-
+  // Table of Contents heading
+  doc.setFontSize(11);
   doc.setFont("helvetica", "bold");
+  doc.setTextColor(8, 8, 8);
+  doc.text("Table of Contents", margin, y);
+  y += 10;
+
+  // List all 10 implementations
+  implementations.forEach((impl) => {
+    checkSpace(10);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(34, 197, 94);
+    doc.text(`#${impl.rank}`, margin + 2, y);
+    doc.setTextColor(8, 8, 8);
+    doc.text(impl.title, margin + 14, y);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(120, 120, 120);
+    doc.text(impl.category, margin + 100, y);
+    doc.setTextColor(34, 197, 94);
+    doc.setFont("helvetica", "bold");
+    doc.text(`$${impl.savings.toLocaleString()}/yr`, W - margin, y, { align: "right" });
+    doc.setTextColor(8, 8, 8);
+    y += 8;
+  });
+
+  y += 8;
+
+  // Key metrics summary
+  checkSpace(50);
+  doc.setFillColor(245, 245, 245);
+  doc.rect(margin, y, contentW, 42, "F");
+  y += 8;
   doc.setFontSize(10);
-  doc.text("Key Metrics", margin, y);
-  y += 7;
+  doc.setFont("helvetica", "bold");
+  doc.text("Key Metrics", margin + 6, y);
+  y += 8;
+
+  const metrics = [
+    ["Total Annual Savings", "$180,800+"],
+    ["Implementations", "10"],
+    ["Average ROI", "500%+"],
+    ["Recommended Tools", "30+"],
+    ["Implementation Time", "1-4 weeks each"],
+    ["Difficulty", "60% Low, 40% Medium"],
+  ];
 
   metrics.forEach((m, i) => {
     const col = i % 2;
     const row = Math.floor(i / 2);
-    const x = margin + col * (contentW / 2);
-    const yPos = y + row * 12;
-    doc.setFillColor(242, 242, 242);
-    doc.rect(x, yPos - 4, contentW / 2 - 3, 10, "F");
+    const x = margin + 6 + col * (contentW / 2);
+    const yPos = y + row * 8;
     doc.setFontSize(8);
     doc.setFont("helvetica", "normal");
-    doc.setTextColor(85, 85, 85);
-    doc.text(m.label, x + 3, yPos + 1);
+    doc.setTextColor(100, 100, 100);
+    doc.text(m[0], x, yPos);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(8, 8, 8);
-    doc.text(m.value, x + contentW / 2 - 6, yPos + 1, { align: "right" });
+    doc.text(m[1], x + 60, yPos);
   });
-  y += Math.ceil(metrics.length / 2) * 12 + 10;
 
-  // ── Pages: Top Recommended Implementations ──
-  if (recommendedImpls.length > 0) {
-    recommendedImpls.forEach((impl) => {
-      addPage();
-      const guide = detailedGuides[impl.rank];
+  // ── Pages 3-22: Implementation Pages (all 10, ~2 pages each) ──
+  implementations.forEach((impl) => {
+    addPage();
+    const guide = detailedGuides[impl.rank];
+    const isRecommended = recommendedRanksSet.has(impl.rank);
+    const industryData = industry ? industryContext[industry] : undefined;
+    const goalData = goal ? goalFraming[goal] : undefined;
 
-      sectionHeader(impl.title);
+    // Section header with rank
+    sectionHeader(impl.title, impl.rank);
 
-      // Recommended badge
+    // RECOMMENDED badge if matches pain points
+    if (isRecommended) {
       doc.setFontSize(8);
       doc.setFont("helvetica", "bold");
       doc.setTextColor(34, 197, 94);
       doc.text("RECOMMENDED BASED ON YOUR PAIN POINTS", margin, y);
       doc.setTextColor(8, 8, 8);
       y += 7;
-
-      // Description
-      doc.setFontSize(9);
-      doc.setFont("helvetica", "normal");
-      const descLines = doc.splitTextToSize(impl.description, contentW);
-      doc.text(descLines, margin, y);
-      y += descLines.length * 4.5 + 6;
-
-      // Savings, Difficulty, Timeline row
-      doc.setFontSize(9);
-      doc.setFont("helvetica", "bold");
-      doc.setTextColor(34, 197, 94);
-      doc.text(`$${impl.savings.toLocaleString()}/yr`, margin, y);
-      doc.setTextColor(8, 8, 8);
-      doc.setFont("helvetica", "normal");
-      doc.text(`Difficulty: ${impl.difficulty}`, margin + 45, y);
-      doc.text(`Timeline: ${impl.time}`, margin + 95, y);
-      y += 10;
-
-      // Recommended Tools table
-      checkSpace(30);
-      doc.setFontSize(9);
-      doc.setFont("helvetica", "bold");
-      doc.text("Recommended Tools", margin, y);
-      y += 6;
-
-      doc.setFillColor(242, 242, 242);
-      doc.rect(margin, y - 3, contentW, 7, "F");
-      doc.setFontSize(7);
-      doc.setFont("helvetica", "bold");
-      doc.setTextColor(85, 85, 85);
-      doc.text("Tool", margin + 2, y + 1);
-      doc.text("Price", margin + 80, y + 1);
-      doc.setTextColor(8, 8, 8);
-      y += 7;
-
-      impl.tools.forEach((tool) => {
-        doc.setFontSize(8);
-        doc.setFont("helvetica", "bold");
-        doc.text(tool.name, margin + 2, y);
-        doc.setFont("helvetica", "normal");
-        doc.text(tool.price, margin + 80, y);
-        y += 6;
-      });
-      y += 6;
-
-      // Detailed steps
-      checkSpace(20);
-      doc.setFontSize(9);
-      doc.setFont("helvetica", "bold");
-      doc.text("Step-by-Step Implementation", margin, y);
-      y += 7;
-
-      guide.steps.forEach((step, idx) => {
-        checkSpace(14);
-        doc.setFontSize(8);
-        doc.setFont("helvetica", "bold");
-        doc.text(`${idx + 1}. ${step.title}`, margin, y);
-        y += 4.5;
-        doc.setFont("helvetica", "normal");
-        doc.setTextColor(85, 85, 85);
-        const detailLines = doc.splitTextToSize(step.detail, contentW - 5);
-        doc.text(detailLines, margin + 5, y);
-        doc.setTextColor(8, 8, 8);
-        y += detailLines.length * 4 + 3;
-      });
-      y += 4;
-
-      // Common Pitfalls
-      checkSpace(20);
-      doc.setFontSize(9);
-      doc.setFont("helvetica", "bold");
-      doc.text("Common Pitfalls", margin, y);
-      y += 6;
-      guide.pitfalls.forEach((pitfall) => {
-        checkSpace(8);
-        doc.setFontSize(8);
-        doc.setFont("helvetica", "normal");
-        doc.setTextColor(180, 50, 50);
-        const pitfallLines = doc.splitTextToSize(`- ${pitfall}`, contentW);
-        doc.text(pitfallLines, margin + 3, y);
-        doc.setTextColor(8, 8, 8);
-        y += pitfallLines.length * 4 + 2;
-      });
-      y += 4;
-
-      // Key Performance Indicators
-      checkSpace(20);
-      doc.setFontSize(9);
-      doc.setFont("helvetica", "bold");
-      doc.text("Key Performance Indicators", margin, y);
-      y += 6;
-      guide.kpis.forEach((kpi) => {
-        checkSpace(8);
-        doc.setFontSize(8);
-        doc.setFont("helvetica", "normal");
-        doc.setTextColor(34, 197, 94);
-        const kpiLines = doc.splitTextToSize(`- ${kpi}`, contentW);
-        doc.text(kpiLines, margin + 3, y);
-        doc.setTextColor(8, 8, 8);
-        y += kpiLines.length * 4 + 2;
-      });
-    });
-  }
-
-  // ── Pages: Remaining Implementations Overview ──
-  addPage();
-  sectionHeader("All Implementations Overview");
-
-  // Table header
-  doc.setFillColor(242, 242, 242);
-  doc.rect(margin, y - 3, contentW, 7, "F");
-  doc.setFontSize(7);
-  doc.setFont("helvetica", "bold");
-  doc.setTextColor(85, 85, 85);
-  doc.text("#", margin + 2, y + 1);
-  doc.text("Implementation", margin + 10, y + 1);
-  doc.text("Category", margin + 75, y + 1);
-  doc.text("Savings", margin + 110, y + 1);
-  doc.text("Difficulty", margin + 135, y + 1);
-  doc.text("Timeline", margin + 155, y + 1);
-  doc.setTextColor(8, 8, 8);
-  y += 8;
-
-  remainingImpls.forEach((impl) => {
-    checkSpace(8);
-    doc.setFontSize(8);
-    doc.setFont("helvetica", "normal");
-    doc.text(String(impl.rank), margin + 2, y);
-    doc.text(impl.title, margin + 10, y);
-    doc.setTextColor(85, 85, 85);
-    doc.text(impl.category, margin + 75, y);
-    doc.setTextColor(8, 8, 8);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(34, 197, 94);
-    doc.text(`$${impl.savings.toLocaleString()}/yr`, margin + 110, y);
-    doc.setTextColor(8, 8, 8);
-    doc.setFont("helvetica", "normal");
-    doc.text(impl.difficulty, margin + 135, y);
-    doc.text(impl.time, margin + 155, y);
-    y += 7;
-  });
-
-  // ── Page: Industry Benchmarks ──
-  addPage();
-  sectionHeader("Industry Benchmark Comparison");
-
-  doc.setFontSize(9);
-  doc.setFont("helvetica", "normal");
-  const benchIntro =
-    "Without AI implementations, your business starts at 0% across these key areas. Here's what the average business in your industry has already adopted.";
-  const benchIntroLines = doc.splitTextToSize(benchIntro, contentW);
-  doc.text(benchIntroLines, margin, y);
-  y += benchIntroLines.length * 4.5 + 8;
-
-  const benchmarks = [
-    { area: "Customer Service AI", avg: "64%", priority: "Critical" },
-    { area: "Automated Billing", avg: "41%", priority: "High" },
-    { area: "AI Lead Generation", avg: "37%", priority: "Medium" },
-    { area: "Predictive Scheduling", avg: "52%", priority: "High" },
-    { area: "AI Content Marketing", avg: "29%", priority: "Medium" },
-    { area: "Data Analytics/BI", avg: "58%", priority: "Critical" },
-  ];
-
-  // Table header
-  doc.setFillColor(242, 242, 242);
-  doc.rect(margin, y - 3, contentW, 7, "F");
-  doc.setFontSize(7);
-  doc.setFont("helvetica", "bold");
-  doc.setTextColor(85, 85, 85);
-  doc.text("Area", margin + 2, y + 1);
-  doc.text("Industry Avg", margin + 80, y + 1);
-  doc.text("Gap Priority", margin + 120, y + 1);
-  doc.setTextColor(8, 8, 8);
-  y += 8;
-
-  benchmarks.forEach((b) => {
-    checkSpace(8);
-    doc.setFontSize(8);
-    doc.setFont("helvetica", "normal");
-    doc.text(b.area, margin + 2, y);
-    doc.setFont("helvetica", "bold");
-    doc.text(b.avg, margin + 80, y);
-    doc.setFont("helvetica", "normal");
-    // Color-code priority
-    if (b.priority === "Critical") {
-      doc.setTextColor(180, 50, 50);
-    } else if (b.priority === "High") {
-      doc.setTextColor(200, 140, 30);
-    } else {
-      doc.setTextColor(85, 85, 85);
     }
-    doc.text(b.priority, margin + 120, y);
+
+    // Description
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(60, 60, 60);
+    const descLines = doc.splitTextToSize(impl.description, contentW);
+    doc.text(descLines, margin, y);
     doc.setTextColor(8, 8, 8);
-    y += 7;
-  });
+    y += descLines.length * 4.5 + 6;
 
-  // ── Page: Implementation Roadmap ──
-  addPage();
-  sectionHeader("6-Month Implementation Roadmap");
-
-  const phases = [
-    {
-      phase: "Week 1-2: Quick Wins",
-      desc: "3 implementations, $7,300/mo savings.",
-      items: "Lead follow-up, Invoice automation, Smart scheduling",
-    },
-    {
-      phase: "Week 3-6: Core Automations",
-      desc: "3 implementations, $4,500/mo additional.",
-      items: "Support chatbot, Report generation, Content pipeline",
-    },
-    {
-      phase: "Month 2-3: Growth Engines",
-      desc: "2 implementations, $1,200/mo additional.",
-      items: "Predictive lead scoring, Inventory forecasting",
-    },
-    {
-      phase: "Month 3-6: Strategic Plays",
-      desc: "2 implementations, $1,100/mo additional.",
-      items: "Sentiment analysis, HR/hiring screening",
-    },
-  ];
-
-  phases.forEach((p) => {
-    checkSpace(22);
+    // Savings / Difficulty / Timeline row
+    checkSpace(12);
     doc.setFontSize(9);
     doc.setFont("helvetica", "bold");
-    doc.text(p.phase, margin, y);
-    y += 5;
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(8);
-    doc.text(p.desc, margin, y);
-    y += 5;
-    doc.setTextColor(85, 85, 85);
-    const itemLines = doc.splitTextToSize(p.items, contentW);
-    doc.text(itemLines, margin, y);
+    doc.setTextColor(34, 197, 94);
+    doc.text(`$${impl.savings.toLocaleString()}/yr savings`, margin, y);
     doc.setTextColor(8, 8, 8);
-    y += itemLines.length * 4 + 6;
+    doc.setFont("helvetica", "normal");
+    doc.text(`Difficulty: ${impl.difficulty}`, margin + 55, y);
+    doc.text(`Timeline: ${impl.time}`, margin + 105, y);
+    y += 10;
+
+    // Recommended Tools table with clickable links
+    checkSpace(30);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(8, 8, 8);
+    doc.text("Recommended Tools", margin, y);
+    y += 6;
+
+    // Table header
+    doc.setFillColor(245, 245, 245);
+    doc.rect(margin, y - 3, contentW, 7, "F");
+    doc.setFontSize(7);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(100, 100, 100);
+    doc.text("Tool", margin + 3, y + 1);
+    doc.text("Price", margin + 80, y + 1);
+    doc.setTextColor(8, 8, 8);
+    y += 7;
+
+    impl.tools.forEach((tool) => {
+      checkSpace(8);
+      doc.setFontSize(8);
+      const url = toolUrls[tool.name];
+      if (url) {
+        doc.setTextColor(37, 99, 235);
+        doc.setFont("helvetica", "bold");
+        doc.textWithLink(tool.name, margin + 3, y, { url });
+      } else {
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(8, 8, 8);
+        doc.text(tool.name, margin + 3, y);
+      }
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(8, 8, 8);
+      doc.text(tool.price, margin + 80, y);
+      y += 6;
+    });
+    y += 6;
+
+    // Step-by-Step Implementation
+    checkSpace(20);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(8, 8, 8);
+    doc.text("Step-by-Step Implementation", margin, y);
+    y += 7;
+
+    guide.steps.forEach((step, idx) => {
+      checkSpace(16);
+      doc.setFontSize(8);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(8, 8, 8);
+      doc.text(`${idx + 1}. ${step.title}`, margin, y);
+      y += 4.5;
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(85, 85, 85);
+      const detailLines = doc.splitTextToSize(step.detail, contentW - 5);
+      doc.text(detailLines, margin + 5, y);
+      doc.setTextColor(8, 8, 8);
+      y += detailLines.length * 4 + 3;
+    });
+    y += 4;
+
+    // Common Pitfalls
+    checkSpace(20);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(8, 8, 8);
+    doc.text("Common Pitfalls", margin, y);
+    y += 6;
+    guide.pitfalls.forEach((pitfall) => {
+      checkSpace(10);
+      doc.setFontSize(8);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(180, 50, 50);
+      const pitfallLines = doc.splitTextToSize(`- ${pitfall}`, contentW);
+      doc.text(pitfallLines, margin + 3, y);
+      doc.setTextColor(8, 8, 8);
+      y += pitfallLines.length * 4 + 2;
+    });
+    y += 4;
+
+    // Key Performance Indicators
+    checkSpace(20);
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(8, 8, 8);
+    doc.text("Key Performance Indicators", margin, y);
+    y += 6;
+    guide.kpis.forEach((kpi) => {
+      checkSpace(10);
+      doc.setFontSize(8);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(34, 197, 94);
+      const kpiLines = doc.splitTextToSize(`- ${kpi}`, contentW);
+      doc.text(kpiLines, margin + 3, y);
+      doc.setTextColor(8, 8, 8);
+      y += kpiLines.length * 4 + 2;
+    });
+    y += 4;
+
+    // Industry Context box (if industry matches)
+    if (industryData && industryData[impl.rank]) {
+      checkSpace(28);
+      const contextText = industryData[impl.rank];
+      const contextLines = doc.splitTextToSize(contextText, contentW - 14);
+      const boxHeight = contextLines.length * 4 + 12;
+      doc.setFillColor(239, 246, 255);
+      doc.rect(margin, y - 2, contentW, boxHeight, "F");
+      doc.setFontSize(8);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(37, 99, 235);
+      doc.text("Industry Insight:", margin + 5, y + 5);
+      doc.setFont("helvetica", "normal");
+      doc.text(contextLines, margin + 5, y + 11);
+      doc.setTextColor(8, 8, 8);
+      y += boxHeight + 6;
+    }
+
+    // Goal Framing box (if goal matches)
+    if (goalData && goalData[impl.rank]) {
+      checkSpace(28);
+      const framingText = goalData[impl.rank];
+      const framingLines = doc.splitTextToSize(framingText, contentW - 14);
+      const boxHeight = framingLines.length * 4 + 12;
+      doc.setFillColor(255, 251, 235);
+      doc.rect(margin, y - 2, contentW, boxHeight, "F");
+      doc.setFontSize(8);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(180, 100, 0);
+      const goalLabel =
+        goal === "cut-costs"
+          ? "Cost Savings:"
+          : goal === "save-time"
+            ? "Time Savings:"
+            : goal === "win-customers"
+              ? "Customer Growth:"
+              : goal === "scale-without-hiring"
+                ? "Scale Without Hiring:"
+                : "Competitive Edge:";
+      doc.text(goalLabel, margin + 5, y + 5);
+      doc.setFont("helvetica", "normal");
+      doc.text(framingLines, margin + 5, y + 11);
+      doc.setTextColor(8, 8, 8);
+      y += boxHeight + 6;
+    }
   });
 
   // ── Footer on every page ──
   const totalPages = doc.getNumberOfPages();
   for (let i = 1; i <= totalPages; i++) {
     doc.setPage(i);
+    // Thin line
+    doc.setDrawColor(200, 200, 200);
+    doc.setLineWidth(0.3);
+    doc.line(margin, 282, W - margin, 282);
+    // GROUNDWORK left
     doc.setFontSize(7);
-    doc.setFont("helvetica", "normal");
+    doc.setFont("helvetica", "bold");
     doc.setTextColor(180, 180, 180);
-    doc.text("Groundwork AI Profit Playbook | Confidential", margin, 290);
-    doc.text(`Page ${i} of ${totalPages}`, W - margin, 290, {
-      align: "right",
-    });
+    doc.text("GROUNDWORK", margin, 288);
+    // Page number right
+    doc.setFont("helvetica", "normal");
+    doc.text(`Page ${i} of ${totalPages}`, W - margin, 288, { align: "right" });
   }
 
   const buffer = doc.output("arraybuffer");

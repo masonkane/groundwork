@@ -159,6 +159,206 @@ const painPointToRanks: Record<string, number[]> = {
   "Hiring takes forever": [10],
 };
 
+const toolUrls: Record<string, string> = {
+  "HubSpot AI": "https://www.hubspot.com",
+  "Instantly.ai": "https://instantly.ai",
+  "Apollo.io": "https://www.apollo.io",
+  "Intercom Fin": "https://www.intercom.com",
+  "Zendesk AI": "https://www.zendesk.com",
+  "Drift": "https://www.drift.com",
+  "Docsumo": "https://www.docsumo.com",
+  "Rossum": "https://rossum.ai",
+  "Stampli": "https://www.stampli.com",
+  "Coefficient": "https://coefficient.io",
+  "Rows.com": "https://rows.com",
+  "Equals": "https://equals.com",
+  "Motion": "https://www.usemotion.com",
+  "Reclaim.ai": "https://reclaim.ai",
+  "Calendly AI": "https://calendly.com",
+  "Jasper": "https://www.jasper.ai",
+  "Copy.ai": "https://www.copy.ai",
+  "Writer.com": "https://writer.com",
+  "Madkudu": "https://www.madkudu.com",
+  "6sense": "https://6sense.com",
+  "Inventory Planner": "https://inventory-planner.com",
+  "Flieber": "https://www.flieber.com",
+  "Cogsy": "https://cogsy.com",
+  "MonkeyLearn": "https://monkeylearn.com",
+  "Brandwatch": "https://www.brandwatch.com",
+  "Sprout Social": "https://sproutsocial.com",
+  "Lever": "https://www.lever.co",
+  "Greenhouse AI": "https://www.greenhouse.com",
+  "HireVue": "https://www.hirevue.com",
+};
+
+const painPointToKey: Record<string, string> = {
+  "Lead follow-up is slow or inconsistent": "lead-followup",
+  "Customer support takes too much time": "support",
+  "Invoicing & documents are manual": "invoicing",
+  "Reporting eats hours every week": "reporting",
+  "Scheduling is a mess": "scheduling",
+  "Content creation is a bottleneck": "content",
+  "Don\u2019t know which leads to prioritize": "lead-scoring",
+  "Don't know which leads to prioritize": "lead-scoring",
+  "Inventory/supply issues": "inventory",
+  "Hard to track customer sentiment": "sentiment",
+  "Hiring takes forever": "hiring",
+};
+
+const industryContext: Record<string, Record<number, string>> = {
+  "Construction & Trades": {
+    1: "Subcontractors and GCs who respond to bid requests within minutes win 3x more projects. AI follow-up is your biggest quick win.",
+    3: "Construction invoicing involves change orders, retainage, and AIA billing formats. AI document processing handles these complexities automatically.",
+    5: "Coordinating crews, equipment, and inspections across job sites makes scheduling your biggest time sink. AI eliminates the chaos.",
+    8: "Material costs fluctuate 15-30% seasonally. AI forecasting helps you buy at the right time and avoid project delays from stockouts.",
+    4: "Daily logs, progress reports, and compliance documentation eat hours. Automate them so your PMs stay on the job site.",
+    6: "Before/after project photos + AI-written case studies generate 5x more leads than generic ads for trades businesses.",
+  },
+  "Home Services (HVAC, Plumbing, Electrical)": {
+    1: "Homeowners call 2-3 companies and go with whoever responds first. AI follow-up within 60 seconds captures the job before your competition even picks up the phone.",
+    2: "Appointment confirmations, warranty questions, and service estimates make up 75% of your calls. A chatbot handles these while your techs stay on the job.",
+    5: "Route optimization + AI scheduling fills drive-time gaps with nearby jobs and reduces windshield time by 25-35%.",
+    9: "Google Reviews are your #1 lead source. AI sentiment monitoring lets you catch and respond to negative reviews within hours, not weeks.",
+    6: "Seasonal content (winterization tips, AC prep guides) published consistently generates inbound leads year-round. AI makes it effortless to maintain.",
+    4: "Automated end-of-day reports with job completion status, parts used, and revenue per truck give you visibility without chasing techs for updates.",
+  },
+  "Real Estate": {
+    1: "Leads from Zillow, Realtor.com, and open houses go cold within 10 minutes. AI instant response keeps you in the conversation while you are showing a property.",
+    7: "Not all leads are ready to buy. AI scoring separates tire-kickers from serious buyers based on search behavior, price range, and engagement patterns.",
+    5: "Showing coordination across multiple agents, properties, and buyer schedules is a nightmare. AI scheduling handles the logistics automatically.",
+    6: "AI-generated property descriptions, neighborhood guides, and market updates keep your brand visible without spending hours writing content.",
+    9: "Client reviews on Google and Zillow directly impact your referral pipeline. AI monitoring ensures you respond promptly and amplify positive experiences.",
+    4: "Weekly market reports, CMA preparation, and pipeline updates can be auto-generated from MLS data and your CRM, saving 6-8 hours per week.",
+  },
+  "Healthcare & Dental": {
+    2: "Appointment scheduling, insurance verification, and prescription refill requests account for 80% of patient calls. AI handles them 24/7 without adding front desk staff.",
+    5: "No-shows cost the average practice $200 per empty slot. AI scheduling with smart reminders and easy rescheduling reduces no-shows by 40-60%.",
+    1: "New patient inquiries that go unanswered for more than 30 minutes have a 90% drop-off rate. AI follow-up captures them instantly.",
+    3: "Insurance claims, EOBs, and patient billing involve complex document processing. AI extracts and validates data 10x faster than manual entry.",
+    9: "Patient satisfaction scores directly impact reimbursement rates and online reputation. AI sentiment tracking catches issues before they become patterns.",
+    4: "Clinical reporting, compliance documentation, and practice analytics consume staff time. Automate the routine reports so your team focuses on patient care.",
+  },
+  "Legal & Accounting": {
+    1: "Potential clients researching attorneys contact 3-5 firms. The first to respond with a thoughtful, relevant reply wins the consultation 67% of the time.",
+    3: "Engagement letters, billing statements, and document intake are high-volume, repetitive processes. AI reduces processing time by 85% while improving accuracy.",
+    4: "Client billing reports, matter status updates, and financial dashboards consume 10+ hours per week for most firms. AI generates them automatically.",
+    6: "Thought leadership content (tax tips, legal updates, compliance guides) establishes expertise and drives inbound leads. AI helps you publish consistently.",
+    7: "Not every consultation becomes a case. AI scoring based on practice area fit, case value, and engagement signals helps prioritize high-value prospects.",
+    10: "Hiring qualified paralegals and associates is competitive. AI screening reduces time-to-hire by 40% while improving candidate quality.",
+  },
+  "Restaurant & Food Service": {
+    2: "Reservation changes, menu questions, hours, and catering inquiries make up 85% of calls. A chatbot handles them so your staff focuses on guests.",
+    5: "Shift scheduling across multiple positions with varying availability, labor law compliance, and last-minute changes is uniquely painful. AI solves this.",
+    8: "Food cost is your biggest controllable expense. AI forecasting reduces waste by 20-30% by predicting demand based on weather, events, and historical patterns.",
+    9: "One bad Yelp review can cost a restaurant $8,000 in lost revenue. Real-time sentiment alerts let you address issues before they go public.",
+    6: "Social media content (daily specials, behind-the-scenes, seasonal menus) drives foot traffic. AI helps you post consistently without pulling staff from the kitchen.",
+    1: "Catering leads and private event inquiries are high-value. AI follow-up ensures every inquiry gets a prompt, professional response with menu options and pricing.",
+  },
+  "Retail & E-Commerce": {
+    1: "Cart abandonment follow-up within 30 minutes recovers 15-25% of lost sales. AI sends personalized recovery emails based on the exact items left behind.",
+    2: "Order status, return policies, and sizing questions make up 70% of customer contacts. AI chatbots handle these instantly, even at 2am during flash sales.",
+    8: "Overstocking ties up cash; stockouts lose sales. AI demand forecasting across channels reduces both by 30-40%, especially during seasonal peaks.",
+    9: "Product reviews and social mentions directly influence purchase decisions. AI sentiment analysis identifies trending complaints before they impact sales.",
+    6: "Product descriptions, email campaigns, and social content at scale are impossible without AI. Generate hundreds of unique product descriptions in hours, not weeks.",
+    7: "Customer lifetime value prediction helps you spend marketing dollars on the 20% of customers who drive 80% of revenue.",
+  },
+  "Professional Services & Consulting": {
+    1: "B2B sales cycles start with responsiveness. Firms that respond to RFPs and inquiries within 1 hour are 7x more likely to win the engagement.",
+    4: "Client reports, utilization dashboards, and project status updates consume 15-20% of consultant time. AI generates them from your project management and billing data.",
+    6: "Whitepapers, case studies, and LinkedIn thought leadership drive inbound leads for consulting firms. AI helps your experts publish 5x more content.",
+    7: "Lead scoring based on company size, budget signals, and engagement patterns helps your BD team focus on winnable opportunities.",
+    5: "Coordinating client meetings, team standups, and project milestones across time zones is a scheduling nightmare. AI handles the complexity.",
+    10: "Attracting top talent is existential for services firms. AI screening identifies candidates who match your culture and skill requirements faster.",
+  },
+  "Fitness & Wellness": {
+    1: "People searching for a gym or trainer decide within 24 hours. AI follow-up with a free trial offer within 5 minutes converts 3x more inquiries into members.",
+    2: "Class schedules, membership questions, and billing inquiries are repetitive. A chatbot handles them 24/7 so your staff focuses on member experience.",
+    5: "Class scheduling, trainer availability, and room booking across multiple locations is complex. AI scheduling optimizes utilization and reduces conflicts.",
+    9: "Google Reviews and social media presence are the #1 driver of new members. AI monitors and helps you respond to every review promptly.",
+    6: "Workout tips, nutrition content, and success stories keep members engaged and attract new ones. AI helps you maintain a consistent content calendar.",
+    7: "Membership cancellation prevention starts with identifying at-risk members. AI analyzes attendance patterns and engagement to flag members before they leave.",
+  },
+  "Auto Repair & Dealerships": {
+    1: "Car owners calling for service appointments choose the shop that responds first. AI follow-up with instant online booking captures the appointment before they call your competitor.",
+    2: "Service status updates, parts availability, and warranty coverage questions drive 60% of phone volume. AI chatbots handle them while your advisors sell.",
+    5: "Bay scheduling, loaner car coordination, and technician assignments are juggling acts. AI scheduling maximizes bay utilization and reduces customer wait times.",
+    8: "Parts inventory across thousands of SKUs with variable demand requires AI forecasting. Reduce obsolete parts by 25% while cutting stockouts in half.",
+    9: "Online reviews make or break auto shops. AI sentiment monitoring helps you respond to every review and identify recurring service issues early.",
+    3: "Repair orders, warranty claims, and vendor invoices involve document-heavy processes. AI extraction speeds up processing and reduces errors.",
+  },
+  "Other": {
+    1: "Regardless of industry, the business that responds first wins. AI lead follow-up is universally the highest-ROI implementation for any company.",
+    2: "Every business has repetitive customer questions. AI chatbots handle 60-70% of them, freeing your team for higher-value work.",
+    4: "Manual reporting is a hidden time drain in every industry. Automating it gives your team hours back each week for strategic work.",
+    5: "Scheduling inefficiency is universal. AI scheduling tools pay for themselves within the first month through time savings alone.",
+    6: "Content marketing drives growth in every industry. AI lets you produce more content without proportionally increasing costs.",
+    3: "If your business processes documents, invoices, or forms, AI extraction and automation is a straightforward win with fast payback.",
+  },
+};
+
+const goalFraming: Record<string, Record<number, string>> = {
+  "cut-costs": {
+    1: "Automated follow-up eliminates the need for dedicated sales development reps, saving $45-65K per position annually.",
+    2: "Each support ticket handled by AI costs $0.10 vs. $15-25 for human agents. At scale, this is your largest cost reduction.",
+    3: "Processing invoices manually costs $15-25 each. AI drops this to under $0.50, saving 95% on document processing labor.",
+    4: "Every hour your team spends building reports costs $35-75 in loaded labor. AI reporting eliminates 80% of that manual effort.",
+    5: "Scheduling overhead costs the average 10-person team $62K/year in lost productive time. AI reclaims most of that.",
+    6: "Hiring freelance writers costs $200-500 per blog post. AI-assisted content drops your cost to $20-50 per piece with human editing.",
+    7: "Sales reps waste 65% of their time on unqualified leads. AI scoring focuses their effort on deals that actually close, cutting acquisition cost by 30%.",
+    8: "Excess inventory carrying costs eat 20-30% of stock value annually. AI forecasting reduces overstock by 30%, directly cutting carrying costs.",
+    9: "One unresolved negative review costs an average of $8,000 in lost revenue. Early detection through AI saves multiples of the tool cost.",
+    10: "A bad hire costs 30% of annual salary. AI screening reduces mis-hires by 35%, saving $15-25K per avoided bad hire.",
+  },
+  "save-time": {
+    1: "Your sales team spends 8-12 hours per week on manual follow-up. AI reclaims that time for relationship building and closing.",
+    2: "Support teams spend 70% of their time answering the same 20 questions. AI handles repetitive tickets so your team tackles complex issues.",
+    3: "Manual invoice processing takes 15-25 minutes each. AI cuts this to 30 seconds, saving hundreds of hours per year.",
+    4: "Finance and ops teams spend 8-12 hours per week building reports. AI auto-generates them, giving back an entire workday weekly.",
+    5: "The average professional wastes 4.8 hours per week on scheduling logistics. AI eliminates virtually all of that back-and-forth.",
+    6: "Creating a single blog post takes 4-6 hours from research to publish. AI cuts that to 45 minutes with human review included.",
+    7: "Sales reps spend 5+ hours weekly researching which leads to call. AI scoring does this instantly, giving them more selling time.",
+    8: "Manual demand planning and inventory counts consume 10+ hours weekly. AI automates the analysis so your team focuses on execution.",
+    9: "Monitoring reviews across 5+ platforms manually takes hours daily. AI aggregates and alerts you in real-time with zero effort.",
+    10: "Screening 200 resumes manually takes 40+ hours. AI pre-screens in minutes, cutting time-to-hire by 40%.",
+  },
+  "win-customers": {
+    1: "The first business to respond gets the customer 78% of the time. AI instant follow-up puts you first, every time.",
+    2: "Customers expect instant support. 24/7 AI chatbots mean no more missed messages or business-hours limitations that push customers to competitors.",
+    3: "Faster invoicing means faster payments and a more professional client experience. Clients notice when you are organized.",
+    4: "Sharing automated, polished reports with clients builds trust and positions you as data-driven. Clients stay longer with firms that prove their value.",
+    5: "Frictionless scheduling removes a major client frustration point. Easy booking directly increases consultation rates and client satisfaction.",
+    6: "Consistent, valuable content positions you as the industry authority. Customers choose the brand they trust most, and content builds that trust.",
+    7: "Reaching the right leads with the right message at the right time dramatically improves conversion. AI ensures your best prospects get VIP treatment.",
+    8: "Nothing loses customers faster than 'out of stock.' AI-optimized inventory means you always have what customers want, when they want it.",
+    9: "Responding to every review quickly and professionally shows prospects you care. 89% of consumers read review responses before choosing a business.",
+    10: "Faster hiring means better customer-facing teams sooner. AI helps you hire people who genuinely fit your culture and deliver better service.",
+  },
+  "scale-without-hiring": {
+    1: "AI follow-up handles 10x more leads with zero additional headcount. Scale your pipeline without hiring more sales reps.",
+    2: "An AI chatbot handles the work of 3-5 support agents. Triple your customer base without tripling your support team.",
+    3: "AI invoice processing scales from 50 to 5,000 invoices per month with the same team. Growth doesn't mean more AP clerks.",
+    4: "Automated reporting scales infinitely. Whether you have 5 clients or 500, the reports generate themselves.",
+    5: "AI scheduling handles unlimited complexity without an office manager or scheduling coordinator. Add team members without adding overhead.",
+    6: "AI content creation scales your marketing output 5-10x without hiring a content team. One editor can manage what previously required five writers.",
+    7: "Lead scoring automates the work of a sales operations analyst. Your existing team works smarter, not harder.",
+    8: "AI forecasting replaces the need for a dedicated demand planner. Your operations team can manage 3x more SKUs without additional hires.",
+    9: "Automated sentiment monitoring does the work of a full-time social media and reputation manager across all platforms simultaneously.",
+    10: "AI screening handles the resume review workload of a full-time recruiter. Your HR team can manage 3x more open roles.",
+  },
+  "get-ahead": {
+    1: "Only 23% of SMBs use AI for lead follow-up. Implementing this now puts you in a small minority that converts dramatically more leads.",
+    2: "64% of your competitors will have AI support within 2 years. Getting there first means you set customer expectations they will have to match.",
+    3: "Businesses that automate AP processing reinvest the saved time into growth initiatives. Your competitors still doing it manually are falling behind.",
+    4: "Companies using AI analytics make decisions 5x faster than those relying on manual reports. Speed of decision-making is a competitive advantage.",
+    5: "AI scheduling adoption is still under 30% in most industries. Being the easiest company to book with is a real differentiator.",
+    6: "Businesses publishing consistent AI-assisted content dominate search rankings within 6-12 months. The content moat gets harder to cross every day.",
+    7: "Predictive lead scoring is the tool enterprise companies use that SMBs do not. Implementing it levels the playing field immediately.",
+    8: "Supply chain disruptions hurt unprepared businesses hardest. AI forecasting gives you the visibility to adapt weeks before competitors even notice.",
+    9: "Brands that respond to reviews within 24 hours are perceived as 2x more trustworthy. This perception gap widens as AI adoption increases.",
+    10: "The war for talent favors fast movers. AI-powered hiring gets you top candidates before competitors even finish screening resumes.",
+  },
+};
+
 /* ── Detailed implementation walkthroughs ──────── */
 
 const detailedImplementations: Record<
@@ -1122,11 +1322,15 @@ function ImplementationCard({
   defaultOpen = false,
   recommended = false,
   showDetailed = false,
+  industryTip,
+  goalTip,
 }: {
   impl: (typeof implementations)[0];
   defaultOpen?: boolean;
   recommended?: boolean;
   showDetailed?: boolean;
+  industryTip?: string;
+  goalTip?: string;
 }) {
   const [open, setOpen] = useState(defaultOpen);
   const detailed = showDetailed ? detailedImplementations[impl.rank] : null;
@@ -1192,15 +1396,32 @@ function ImplementationCard({
               Recommended Tools
             </h4>
             <div className="flex flex-wrap gap-2">
-              {impl.tools.map((tool) => (
-                <span
-                  key={tool.name}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[var(--light-surface)] rounded-full text-xs font-medium"
-                >
-                  {tool.name}
-                  <span className="text-[var(--mid-gray)]">{tool.price}</span>
-                </span>
-              ))}
+              {impl.tools.map((tool) => {
+                const url = toolUrls[tool.name];
+                return url ? (
+                  <a
+                    key={tool.name}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[var(--light-surface)] rounded-full text-xs font-medium hover:bg-black/5 transition-colors"
+                  >
+                    {tool.name}
+                    <span className="text-[var(--mid-gray)]">{tool.price}</span>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-[var(--mid-gray)]">
+                      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                    </svg>
+                  </a>
+                ) : (
+                  <span
+                    key={tool.name}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[var(--light-surface)] rounded-full text-xs font-medium"
+                  >
+                    {tool.name}
+                    <span className="text-[var(--mid-gray)]">{tool.price}</span>
+                  </span>
+                );
+              })}
             </div>
           </div>
 
@@ -1307,6 +1528,30 @@ function ImplementationCard({
             </div>
           )}
 
+          {/* Industry-specific tip */}
+          {industryTip && (
+            <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-xl">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-blue-700 mb-1">
+                For Your Industry
+              </h4>
+              <p className="text-sm text-blue-900 leading-relaxed">
+                {industryTip}
+              </p>
+            </div>
+          )}
+
+          {/* Goal-specific tip */}
+          {goalTip && (
+            <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-xl">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">
+                For Your Goal
+              </h4>
+              <p className="text-sm text-amber-900 leading-relaxed">
+                {goalTip}
+              </p>
+            </div>
+          )}
+
           {/* Why it works */}
           <div className="bg-[var(--light-surface)] rounded-xl p-4">
             <h4 className="text-xs font-bold uppercase tracking-wider text-[var(--mid-gray)] mb-1.5">
@@ -1377,12 +1622,6 @@ export default function AIPlaybookPage() {
     return [...recommended, ...rest];
   }, [recommendedRanks]);
 
-  // Top 3 recommended ranks for detailed view (in sorted order)
-  const topDetailedRanks = useMemo(() => {
-    const recommended = sortedImplementations.filter((impl) => recommendedRanks.has(impl.rank));
-    return new Set(recommended.slice(0, 3).map((impl) => impl.rank));
-  }, [sortedImplementations, recommendedRanks]);
-
   // Default top 3 for the bottom CTA when not personalized
   const ctaImplementations = useMemo(() => {
     if (recommendedRanks.size > 0) {
@@ -1399,7 +1638,12 @@ export default function AIPlaybookPage() {
       const params = new URLSearchParams();
       if (answers?.industry) params.set("industry", answers.industry);
       if (answers?.teamSize) params.set("teamSize", answers.teamSize);
-      if (answers?.painPoints?.length) params.set("painPoints", answers.painPoints.join(","));
+      if (answers?.painPoints?.length) {
+        const keys = answers.painPoints
+          .map((pp) => painPointToKey[pp] || "")
+          .filter(Boolean);
+        if (keys.length) params.set("painPoints", keys.join(","));
+      }
       if (answers?.goal) params.set("goal", answers.goal);
 
       const url = `/api/playbook/pdf${params.toString() ? `?${params.toString()}` : ""}`;
@@ -1538,6 +1782,30 @@ export default function AIPlaybookPage() {
                 </>
               )}
             </button>
+
+            {/* Scroll indicator */}
+            <button
+              onClick={() => document.getElementById("implementations")?.scrollIntoView({ behavior: "smooth" })}
+              className="mt-8 flex flex-col items-center gap-2 text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors cursor-pointer mx-auto"
+            >
+              <span className="text-xs font-medium">
+                {recommendedRanks.size > 0
+                  ? `${recommendedRanks.size} personalized implementations below`
+                  : "10 implementations below"}
+              </span>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                className="animate-scroll-bounce"
+              >
+                <polyline points="6,9 12,15 18,9" />
+              </svg>
+            </button>
           </RevealSection>
         </div>
       </section>
@@ -1556,6 +1824,7 @@ export default function AIPlaybookPage() {
 
       {/* ═══════════════ IMPLEMENTATION CARDS ═══════════════ */}
       <section
+        id="implementations"
         aria-label="Implementations"
         className="py-14 sm:py-20 px-4 sm:px-6"
       >
@@ -1578,7 +1847,9 @@ export default function AIPlaybookPage() {
                   impl={impl}
                   defaultOpen={i < 3}
                   recommended={recommendedRanks.has(impl.rank)}
-                  showDetailed={topDetailedRanks.has(impl.rank)}
+                  showDetailed={true}
+                  industryTip={answers?.industry ? industryContext[answers.industry]?.[impl.rank] : undefined}
+                  goalTip={answers?.goal ? goalFraming[answers.goal]?.[impl.rank] : undefined}
                 />
               </ScaleReveal>
             ))}
