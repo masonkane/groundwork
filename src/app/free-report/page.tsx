@@ -444,7 +444,7 @@ function Questionnaire({ onComplete }: { onComplete: () => void }) {
       </p>
       <div className="w-full max-w-xs mx-auto h-1.5 bg-[var(--light-surface)] rounded-full mb-10 overflow-hidden">
         <div
-          className="h-full bg-[var(--black)] rounded-full transition-all duration-500 ease-out"
+          className="h-full accent-progress rounded-full transition-all duration-500 ease-out"
           style={{ width: `${progressPercent}%` }}
         />
       </div>
@@ -485,7 +485,7 @@ function Questionnaire({ onComplete }: { onComplete: () => void }) {
                 }
                 className={`px-5 py-3 rounded-full text-sm font-semibold transition-all duration-200 min-h-[48px] ${
                   isSelected
-                    ? "bg-[var(--black)] text-white border border-[var(--black)]"
+                    ? "bg-[var(--accent)] text-[var(--black)] border border-[var(--accent)]"
                     : "bg-white border border-black/10 hover:border-black/30 text-[var(--black)]"
                 }`}
               >
@@ -754,11 +754,7 @@ export default function FreeReportPage() {
         className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center px-4 sm:px-6 pt-12 pb-16"
       >
         <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(0,0,0,0.02), transparent)",
-          }}
+          className="absolute inset-0 pointer-events-none mesh-gradient-hero"
         />
 
         {/* Landing page content */}
@@ -783,10 +779,10 @@ export default function FreeReportPage() {
             </RevealSection>
 
             <RevealSection delay={200}>
-              <h1 className="text-[28px] sm:text-[44px] md:text-[54px] font-extrabold tracking-[-0.035em] leading-[1.08] mb-5 sm:mb-6 px-2">
+              <h1 className="text-[28px] sm:text-[44px] md:text-[54px] font-light tracking-[-0.035em] leading-[1.08] mb-5 sm:mb-6 px-2">
                 Find Out Exactly How Much
-                <br className="hidden sm:block" /> AI Could Save Your
-                <br className="hidden sm:block" /> Business This Year
+                <br className="hidden sm:block" /> AI Could <span className="font-extrabold">Save Your
+                <br className="hidden sm:block" /> Business</span> This Year
               </h1>
             </RevealSection>
 
@@ -811,7 +807,7 @@ export default function FreeReportPage() {
                   {["JF", "SK", "MR", "AL", "TC"].map((initials, i) => (
                     <div
                       key={i}
-                      className="w-7 h-7 rounded-full bg-[var(--light-surface)] border-2 border-white flex items-center justify-center text-[8px] font-bold text-[var(--mid-gray)]"
+                      className="w-7 h-7 rounded-full bg-[var(--light-surface)] border-2 border-[var(--accent)] flex items-center justify-center text-[8px] font-bold text-[var(--mid-gray)]"
                     >
                       {initials}
                     </div>
@@ -852,7 +848,7 @@ export default function FreeReportPage() {
             { value: "100%", label: "free" },
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-2">
-              <span className="text-sm sm:text-base font-extrabold">
+              <span className="text-sm sm:text-base font-extrabold text-[var(--accent)]">
                 {s.value}
               </span>
               <span className="text-[10px] sm:text-[11px] text-[var(--mid-gray)]">
@@ -884,8 +880,8 @@ export default function FreeReportPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {problemStats.map((stat, i) => (
               <ScaleReveal key={i} delay={i * 120}>
-                <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-8 text-center">
-                  <div className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2">
+                <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-8 text-center card-accent-hover">
+                  <div className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2 text-[var(--accent)]">
                     <AnimatedStat
                       value={stat.value}
                       prefix={stat.prefix || ""}
@@ -926,8 +922,8 @@ export default function FreeReportPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {valueCards.map((card, i) => (
               <ScaleReveal key={i} delay={i * 80}>
-                <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6 h-full">
-                  <div className="w-10 h-10 bg-[var(--light-surface)] rounded-xl flex items-center justify-center mb-4">
+                <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6 h-full card-accent-hover group">
+                  <div className="w-10 h-10 bg-[var(--light-surface)] rounded-xl flex items-center justify-center mb-4 group-hover:bg-[var(--accent-light)] transition-colors">
                     {card.icon}
                   </div>
                   <h3 className="text-sm font-bold mb-2">{card.title}</h3>
@@ -974,9 +970,9 @@ export default function FreeReportPage() {
                 desc: "Instantly access AI implementations tailored to your industry and pain points, with a downloadable PDF.",
               },
             ].map((item, i) => (
-              <RevealSection key={i} delay={i * 150}>
+              <RevealSection key={i} delay={i * 150} className={i < 2 ? "step-connector" : ""}>
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-[var(--black)] text-white rounded-2xl flex items-center justify-center text-lg font-bold mx-auto mb-5">
+                  <div className="w-12 h-12 bg-[var(--accent)] text-[var(--black)] rounded-2xl flex items-center justify-center text-lg font-bold mx-auto mb-5">
                     {item.step}
                   </div>
                   <h3 className="text-base font-bold mb-2">{item.title}</h3>
@@ -1038,7 +1034,7 @@ export default function FreeReportPage() {
       {/* ═══════════════ FINAL CTA ═══════════════ */}
       <section
         aria-label="Get the playbook"
-        className="py-14 sm:py-28 px-4 sm:px-6 bg-[var(--black)] text-white"
+        className="py-14 sm:py-28 px-4 sm:px-6 mesh-gradient-dark text-white"
       >
         <div className="max-w-3xl mx-auto text-center">
           <RevealSection>

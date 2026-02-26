@@ -9,6 +9,9 @@
   --dot-color: rgba(8, 8, 8, 0.12);
   --dot-spacing: 24px;
   --dot-size: 1px;
+  --accent: #C8A960;
+  --accent-light: rgba(200, 169, 96, 0.12);
+  --accent-glow: rgba(200, 169, 96, 0.25);
 }
 
 *, *::before, *::after {
@@ -197,12 +200,6 @@ input, textarea, button, select {
   animation: gradientMove 3s ease infinite;
 }
 
-/* Selection */
-::selection {
-  background: var(--black);
-  color: var(--white);
-}
-
 /* Focus-visible for keyboard navigation */
 button:focus-visible,
 a:focus-visible,
@@ -274,6 +271,132 @@ select:focus-visible,
   details summary {
     min-height: 44px;
   }
+}
+
+/* ── Design overhaul: textures, gradients, glass ── */
+
+/* Grain/noise texture overlay */
+.grain-overlay {
+  position: relative;
+}
+.grain-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+.grain-overlay > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Mesh gradient backgrounds */
+.mesh-gradient-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(200, 169, 96, 0.06), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 70%, rgba(200, 169, 96, 0.04), transparent 50%),
+    radial-gradient(ellipse 70% 40% at 50% 10%, rgba(8, 8, 8, 0.02), transparent 50%);
+}
+
+.mesh-gradient-dark {
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 20%, rgba(200, 169, 96, 0.10), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 70% 80%, rgba(200, 169, 96, 0.06), transparent 50%),
+    var(--black);
+}
+
+/* Glassmorphism utility */
+.glass {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.60);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+}
+
+.glass-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-hover:hover {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.80);
+  border-color: rgba(200, 169, 96, 0.20);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(200, 169, 96, 0.08);
+}
+
+/* Shimmer for accent highlights */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.accent-shimmer {
+  background: linear-gradient(
+    110deg,
+    var(--accent) 0%,
+    #E0C97A 30%,
+    var(--accent) 60%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+/* Magnetic card hover */
+@keyframes magneticFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.005); }
+}
+
+.card-magnetic:hover {
+  animation: magneticFloat 2s ease-in-out infinite;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(200, 169, 96, 0.10);
+}
+
+/* Accent border hover for cards */
+.card-accent-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(8, 8, 8, 0.05);
+}
+.card-accent-hover:hover {
+  border-color: rgba(200, 169, 96, 0.30);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* Accent progress bar with shimmer */
+.accent-progress {
+  background: linear-gradient(90deg, var(--accent), #E0C97A, var(--accent));
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Connecting line for steps */
+.step-connector {
+  position: relative;
+}
+.step-connector::after {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: calc(50% + 32px);
+  width: calc(100% - 64px);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(200, 169, 96, 0.30), rgba(200, 169, 96, 0.08));
+  pointer-events: none;
+}
+
+/* Selection with accent */
+::selection {
+  background: var(--accent);
+  color: var(--black);
 }
 
 /* Print styles for PDF export */

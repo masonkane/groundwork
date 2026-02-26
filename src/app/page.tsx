@@ -124,7 +124,7 @@ export default function Home() {
 
       {/* ═══════════════ HERO ═══════════════ */}
       <section aria-label="Hero" className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20 sm:pt-0">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(0,0,0,0.02), transparent)" }} />
+        <div className="absolute inset-0 pointer-events-none mesh-gradient-hero" />
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <RevealSection>
             <div className="inline-flex items-center gap-2 bg-[var(--light-surface)] border border-black/5 rounded-full px-3 sm:px-4 py-1.5 mb-6 sm:mb-8 animate-float">
@@ -133,9 +133,9 @@ export default function Home() {
             </div>
           </RevealSection>
           <RevealSection delay={150}>
-            <h1 className="text-[32px] sm:text-[52px] md:text-[62px] font-extrabold tracking-[-0.035em] leading-[1.08] mb-5 sm:mb-6">
+            <h1 className="text-[32px] sm:text-[52px] md:text-[62px] tracking-[-0.035em] leading-[1.08] mb-5 sm:mb-6 font-light">
               We implement AI<br />into your business.<br />
-              <span className="text-[var(--mid-gray)]">You grow and scale.</span>
+              <span className="text-[var(--accent)] font-extrabold">You grow and scale.</span>
             </h1>
           </RevealSection>
           <RevealSection delay={300}>
@@ -172,7 +172,7 @@ export default function Home() {
             { value: "$0", label: "to get your report" },
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-2">
-              <span className="text-sm sm:text-base font-extrabold">{s.value}</span>
+              <span className="text-sm sm:text-base font-extrabold text-[var(--accent)]">{s.value}</span>
               <span className="text-[10px] sm:text-[11px] text-[var(--mid-gray)]">{s.label}</span>
             </div>
           ))}
@@ -212,8 +212,8 @@ export default function Home() {
               { value: 40, suffix: "%", label: "productivity increase for workers using AI tools in daily operations", source: "Harvard Business School & BCG, 2024" },
             ].map((stat, i) => (
               <ScaleReveal key={i} delay={i * 150}>
-                <div className="text-center p-6 sm:p-8 bg-white border border-black/5 rounded-2xl hover:border-black/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-3"><AnimatedStat value={stat.value} prefix={stat.prefix} suffix={stat.suffix} /></div>
+                <div className="text-center p-6 sm:p-8 bg-white border border-black/5 rounded-2xl hover:border-black/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 card-accent-hover">
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-3 text-[var(--accent)]"><AnimatedStat value={stat.value} prefix={stat.prefix} suffix={stat.suffix} /></div>
                   <p className="text-sm text-[var(--mid-gray)] leading-relaxed mb-2">{stat.label}</p>
                   <p className="text-[9px] text-[var(--mid-gray)]/30 italic">{stat.source}</p>
                 </div>
@@ -329,7 +329,7 @@ export default function Home() {
                 <div className="group grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 bg-white border border-black/5 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 hover:border-black/10 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500">
                   <div className="flex flex-col justify-center">
                     <div className="flex items-center gap-3 mb-4 sm:mb-5">
-                      <span className="w-7 sm:w-8 h-7 sm:h-8 bg-[var(--black)] text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">{i + 1}</span>
+                      <span className="w-7 sm:w-8 h-7 sm:h-8 bg-[var(--accent)] text-[var(--black)] rounded-full flex items-center justify-center text-xs font-bold shrink-0">{i + 1}</span>
                       <span className="h-px flex-1 bg-black/5" />
                     </div>
                     <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-2 sm:mb-3">{step.title}</h3>
@@ -356,8 +356,8 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {valueStack.map((item, i) => (
               <ScaleReveal key={i} delay={i * 80}>
-                <div className="group h-full bg-white border border-black/5 rounded-2xl p-7 hover:border-black/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
-                  <div className="w-10 h-10 bg-[var(--light-surface)] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[var(--black)] group-hover:text-white group-hover:scale-110 transition-all duration-300">{item.icon}</div>
+                <div className="group h-full bg-white border border-black/5 rounded-2xl p-7 hover:border-black/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 card-accent-hover">
+                  <div className="w-10 h-10 bg-[var(--light-surface)] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[var(--accent-light)] group-hover:text-[var(--accent)] group-hover:scale-110 transition-all duration-300">{item.icon}</div>
                   <h3 className="text-base font-bold mb-2">{item.title}</h3>
                   <p className="text-[var(--mid-gray)] text-sm leading-relaxed">{item.desc}</p>
                 </div>
@@ -478,7 +478,7 @@ export default function Home() {
         <section className="relative overflow-hidden">
           {/* Top edge */}
 
-          <div className="bg-[var(--black)] text-white relative px-4 sm:px-6 py-16 sm:py-24">
+          <div className="bg-[var(--black)] mesh-gradient-dark grain-overlay text-white relative px-4 sm:px-6 py-16 sm:py-24">
             {/* Dot grid */}
             <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
 
@@ -491,7 +491,7 @@ export default function Home() {
               <h2 className="text-2xl sm:text-4xl md:text-[56px] font-extrabold tracking-tight mb-8 sm:mb-10 leading-tight">
                 While you are figuring out AI,
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-500">your competitors already did.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-500 font-black">your competitors already did.</span>
               </h2>
 
               {/* Stats row */}
@@ -579,17 +579,17 @@ export default function Home() {
 
       {/* ═══════════════ FINAL CTA ═══════════════ */}
       <RevealSection>
-        <section className="py-16 sm:py-28 px-4 sm:px-6">
+        <section className="mesh-gradient-dark text-white py-16 sm:py-28 px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
             <LogoIcon className="h-8 sm:h-10 w-8 sm:w-10 mx-auto mb-6 sm:mb-8 opacity-10 animate-float" />
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
               The businesses that move first<br />win the most.
             </h2>
-            <p className="text-[var(--mid-gray)] text-base sm:text-lg mb-8 sm:mb-12 max-w-lg mx-auto leading-relaxed">
+            <p className="text-white/60 text-base sm:text-lg mb-8 sm:mb-12 max-w-lg mx-auto leading-relaxed">
               Get the free report. See the numbers. Then let us implement it.
-              <br /><span className="font-medium text-[var(--black)]">There is literally nothing to lose.</span>
+              <br /><span className="font-medium text-white">There is literally nothing to lose.</span>
             </p>
-            <HeroCTA />
+            <HeroCTA dark />
           </div>
         </section>
       </RevealSection>
@@ -605,15 +605,15 @@ export default function Home() {
             <div className="flex gap-8 sm:gap-12">
               <div className="flex flex-col gap-2">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--mid-gray)]/30">Product</span>
-                <Link href="/questionnaire" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Free Report</Link>
-                <Link href="#how-it-works" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">How It Works</Link>
-                <Link href="#features" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Features</Link>
+                <Link href="/questionnaire" className="text-xs text-[var(--mid-gray)] hover:text-[var(--accent)] transition-colors">Free Report</Link>
+                <Link href="#how-it-works" className="text-xs text-[var(--mid-gray)] hover:text-[var(--accent)] transition-colors">How It Works</Link>
+                <Link href="#features" className="text-xs text-[var(--mid-gray)] hover:text-[var(--accent)] transition-colors">Features</Link>
               </div>
               <div className="flex flex-col gap-2">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--mid-gray)]/30">Company</span>
-                <Link href="/privacy" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Privacy</Link>
-                <Link href="/terms" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Terms</Link>
-                <a href="mailto:hello@groundwork.ai" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Contact</a>
+                <Link href="/privacy" className="text-xs text-[var(--mid-gray)] hover:text-[var(--accent)] transition-colors">Privacy</Link>
+                <Link href="/terms" className="text-xs text-[var(--mid-gray)] hover:text-[var(--accent)] transition-colors">Terms</Link>
+                <a href="mailto:hello@groundwork.ai" className="text-xs text-[var(--mid-gray)] hover:text-[var(--accent)] transition-colors">Contact</a>
               </div>
             </div>
           </div>
