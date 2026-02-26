@@ -205,6 +205,24 @@ const painPointToKey: Record<string, string> = {
   "Hiring takes forever": "hiring",
 };
 
+/* Map questionnaire goal labels → goalFraming keys */
+const goalToKey: Record<string, string> = {
+  "Cut costs and save money": "cut-costs",
+  "Save time on repetitive tasks": "save-time",
+  "Win more customers": "win-customers",
+  "Scale without hiring": "scale-without-hiring",
+  "Get ahead of competitors": "get-ahead",
+};
+
+/* Map questionnaire industry labels → industryContext keys */
+const industryToKey: Record<string, string> = {
+  "Healthcare": "Healthcare & Dental",
+  "E-Commerce & Retail": "Retail & E-Commerce",
+  "Professional Services": "Professional Services & Consulting",
+  "Hospitality": "Restaurant & Food Service",
+  "Finance & Insurance": "Legal & Accounting",
+};
+
 const industryContext: Record<string, Record<number, string>> = {
   "Construction & Trades": {
     1: "Subcontractors and GCs who respond to bid requests within minutes win 3x more projects. AI follow-up is your biggest quick win.",
@@ -1339,7 +1357,7 @@ function ImplementationCard({
     <div className="bg-white border border-black/5 rounded-2xl overflow-hidden transition-shadow hover:shadow-sm">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full p-5 sm:p-6 flex items-start gap-4 text-left min-h-[48px]"
+        className="w-full p-4 sm:p-6 flex items-start gap-3 sm:gap-4 text-left min-h-[48px]"
       >
         <div className="w-9 h-9 bg-[var(--black)] text-white rounded-xl flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
           {impl.rank}
@@ -1385,7 +1403,7 @@ function ImplementationCard({
       </button>
 
       {open && (
-        <div className="px-5 sm:px-6 pb-5 sm:pb-6 border-t border-black/5 pt-4 space-y-5">
+        <div className="px-4 sm:px-6 pb-4 sm:pb-6 border-t border-black/5 pt-4 space-y-5">
           <p className="text-sm text-[var(--mid-gray)] leading-relaxed">
             {impl.description}
           </p>
@@ -1724,7 +1742,7 @@ export default function AIPlaybookPage() {
           </RevealSection>
 
           <RevealSection delay={350}>
-            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 mb-8">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-10 mb-8">
               {[
                 {
                   label: "total annual savings",
@@ -1786,7 +1804,7 @@ export default function AIPlaybookPage() {
             {/* Scroll indicator */}
             <button
               onClick={() => document.getElementById("implementations")?.scrollIntoView({ behavior: "smooth" })}
-              className="mt-8 flex flex-col items-center gap-2 text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors cursor-pointer mx-auto"
+              className="mt-8 flex flex-col items-center gap-2 text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors cursor-pointer mx-auto min-h-[44px] justify-center"
             >
               <span className="text-xs font-medium">
                 {recommendedRanks.size > 0
@@ -1848,8 +1866,8 @@ export default function AIPlaybookPage() {
                   defaultOpen={i < 3}
                   recommended={recommendedRanks.has(impl.rank)}
                   showDetailed={true}
-                  industryTip={answers?.industry ? industryContext[answers.industry]?.[impl.rank] : undefined}
-                  goalTip={answers?.goal ? goalFraming[answers.goal]?.[impl.rank] : undefined}
+                  industryTip={answers?.industry ? industryContext[industryToKey[answers.industry] ?? answers.industry]?.[impl.rank] : undefined}
+                  goalTip={answers?.goal ? goalFraming[goalToKey[answers.goal] ?? answers.goal]?.[impl.rank] : undefined}
                 />
               </ScaleReveal>
             ))}
@@ -1879,7 +1897,7 @@ export default function AIPlaybookPage() {
           <RevealSection delay={100}>
             <div className="bg-white border border-black/5 rounded-2xl overflow-hidden">
               {/* Header */}
-              <div className="grid grid-cols-[1fr_60px_80px_60px] sm:grid-cols-[1fr_80px_100px_80px] gap-2 p-4 border-b border-black/5 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[var(--mid-gray)]">
+              <div className="grid grid-cols-[1fr_40px_65px_45px] sm:grid-cols-[1fr_80px_100px_80px] gap-1.5 sm:gap-2 p-3 sm:p-4 border-b border-black/5 text-[9px] sm:text-xs font-bold uppercase tracking-wider text-[var(--mid-gray)]">
                 <span>Area</span>
                 <span className="text-center">You</span>
                 <span className="text-center">Industry Avg</span>
@@ -1889,9 +1907,9 @@ export default function AIPlaybookPage() {
               {competitorStats.map((stat) => (
                 <div
                   key={stat.area}
-                  className="grid grid-cols-[1fr_60px_80px_60px] sm:grid-cols-[1fr_80px_100px_80px] gap-2 p-4 border-b border-black/5 last:border-b-0 items-center"
+                  className="grid grid-cols-[1fr_40px_65px_45px] sm:grid-cols-[1fr_80px_100px_80px] gap-1.5 sm:gap-2 p-3 sm:p-4 border-b border-black/5 last:border-b-0 items-center"
                 >
-                  <span className="text-xs sm:text-sm font-medium">
+                  <span className="text-[11px] sm:text-sm font-medium leading-tight">
                     {stat.area}
                   </span>
                   <span className="text-center text-xs font-bold text-red-500">
@@ -1991,11 +2009,11 @@ export default function AIPlaybookPage() {
           </RevealSection>
 
           <RevealSection delay={200}>
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8">
               {ctaImplementations.map((impl) => (
                 <div
                   key={impl.rank}
-                  className="inline-flex items-center gap-2 bg-white/10 border border-white/10 rounded-full px-4 py-2.5"
+                  className="inline-flex items-center gap-2 bg-white/10 border border-white/10 rounded-full px-3 sm:px-4 py-2.5 min-h-[44px]"
                 >
                   <span className="w-6 h-6 bg-white text-[var(--black)] rounded-lg flex items-center justify-center text-[10px] font-bold shrink-0">
                     {impl.rank}

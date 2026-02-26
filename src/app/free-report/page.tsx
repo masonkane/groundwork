@@ -844,7 +844,7 @@ export default function FreeReportPage() {
         aria-label="Key stats"
         className="border-t border-black/5 bg-[var(--light-surface)]"
       >
-        <div className="max-w-4xl mx-auto py-4 sm:py-5 px-4 sm:px-6 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+        <div className="max-w-4xl mx-auto py-4 sm:py-5 px-4 sm:px-6 flex flex-wrap items-center justify-center gap-4 sm:gap-10">
           {[
             { value: "$142K", label: "avg savings identified" },
             { value: "10", label: "AI implementations" },
@@ -864,7 +864,7 @@ export default function FreeReportPage() {
       </section>
 
       {/* ═══════════════ PROBLEM / AGITATE ═══════════════ */}
-      <section aria-label="Problem" className="py-20 sm:py-28 px-4 sm:px-6">
+      <section aria-label="Problem" className="py-14 sm:py-28 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <RevealSection className="text-center mb-14 sm:mb-16">
             <p className="text-xs font-semibold tracking-widest uppercase text-[var(--mid-gray)] mb-3">
@@ -906,7 +906,7 @@ export default function FreeReportPage() {
       {/* ═══════════════ WHAT YOU GET (VALUE STACK) ═══════════════ */}
       <section
         aria-label="What you get"
-        className="py-20 sm:py-28 px-4 sm:px-6 bg-[var(--light-surface)] border-t border-black/5"
+        className="py-14 sm:py-28 px-4 sm:px-6 bg-[var(--light-surface)] border-t border-black/5"
       >
         <div className="max-w-5xl mx-auto">
           <RevealSection className="text-center mb-14 sm:mb-16">
@@ -923,10 +923,10 @@ export default function FreeReportPage() {
             </p>
           </RevealSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {valueCards.map((card, i) => (
               <ScaleReveal key={i} delay={i * 80}>
-                <div className="bg-white border border-black/5 rounded-2xl p-6 h-full">
+                <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6 h-full">
                   <div className="w-10 h-10 bg-[var(--light-surface)] rounded-xl flex items-center justify-center mb-4">
                     {card.icon}
                   </div>
@@ -944,7 +944,7 @@ export default function FreeReportPage() {
       {/* ═══════════════ HOW IT WORKS ═══════════════ */}
       <section
         aria-label="How it works"
-        className="py-20 sm:py-28 px-4 sm:px-6"
+        className="py-14 sm:py-28 px-4 sm:px-6"
       >
         <div className="max-w-4xl mx-auto">
           <RevealSection className="text-center mb-14 sm:mb-16">
@@ -956,7 +956,7 @@ export default function FreeReportPage() {
             </h2>
           </RevealSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
                 step: "1",
@@ -1014,7 +1014,7 @@ export default function FreeReportPage() {
       </section>
 
       {/* ═══════════════ FAQ ═══════════════ */}
-      <section aria-label="FAQ" className="py-20 sm:py-28 px-4 sm:px-6">
+      <section aria-label="FAQ" className="py-14 sm:py-28 px-4 sm:px-6">
         <div className="max-w-2xl mx-auto">
           <RevealSection className="text-center mb-14 sm:mb-16">
             <p className="text-xs font-semibold tracking-widest uppercase text-[var(--mid-gray)] mb-3">
@@ -1038,7 +1038,7 @@ export default function FreeReportPage() {
       {/* ═══════════════ FINAL CTA ═══════════════ */}
       <section
         aria-label="Get the playbook"
-        className="py-20 sm:py-28 px-4 sm:px-6 bg-[var(--black)] text-white"
+        className="py-14 sm:py-28 px-4 sm:px-6 bg-[var(--black)] text-white"
       >
         <div className="max-w-3xl mx-auto text-center">
           <RevealSection>
