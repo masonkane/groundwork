@@ -751,7 +751,7 @@ export default function FreeReportPage() {
       {/* ═══════════════ HERO ═══════════════ */}
       <section
         aria-label="Hero"
-        className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center px-4 sm:px-6 pt-12 pb-16"
+        className="relative flex items-center justify-center px-4 sm:px-6 pt-10 pb-12 sm:pt-14 sm:pb-16 min-h-[100svh]"
       >
         <div
           className="absolute inset-0 pointer-events-none mesh-gradient-hero"
@@ -764,13 +764,13 @@ export default function FreeReportPage() {
             style={{ opacity: heroFade === "fading" ? 0 : 1 }}
           >
             <RevealSection>
-              <div className="flex justify-center mb-8 sm:mb-10">
-                <LogoFull className="h-7 sm:h-8" />
+              <div className="flex justify-center mb-5 sm:mb-6">
+                <LogoFull className="h-6 sm:h-7" />
               </div>
             </RevealSection>
 
             <RevealSection delay={100}>
-              <div className="inline-flex items-center gap-2 bg-[var(--light-surface)] border border-black/5 rounded-full px-3 sm:px-4 py-1.5 mb-6 sm:mb-8 animate-float">
+              <div className="inline-flex items-center gap-2 bg-[var(--light-surface)] border border-black/5 rounded-full px-3 sm:px-4 py-1.5 mb-4 sm:mb-5 animate-float">
                 <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
                 <span className="text-[10px] sm:text-xs font-medium text-[var(--mid-gray)]">
                   Free AI Profit Playbook — 2026 Edition
@@ -779,15 +779,15 @@ export default function FreeReportPage() {
             </RevealSection>
 
             <RevealSection delay={200}>
-              <h1 className="text-[32px] sm:text-[52px] md:text-[68px] font-light tracking-[-0.035em] leading-[1.08] mb-5 sm:mb-6 px-2">
+              <h1 className="text-[26px] sm:text-[40px] md:text-[50px] font-light tracking-[-0.035em] leading-[1.1] mb-4 sm:mb-5 px-2">
                 Find Out Exactly How Much
-                <br className="hidden sm:block" /> AI Could <span className="font-extrabold">Save Your
-                <br className="hidden sm:block" /> Business</span> This Year
+                <br className="hidden sm:block" /> AI Could <span className="font-extrabold">Save Your Business</span>
+                <br className="hidden sm:block" /> This Year
               </h1>
             </RevealSection>
 
             <RevealSection delay={350}>
-              <p className="text-base sm:text-lg text-[var(--mid-gray)] max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
+              <p className="text-sm sm:text-base text-[var(--mid-gray)] max-w-lg mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
                 Get the 10 highest-ROI AI implementations for 2026 — with exact
                 dollar savings, recommended tools, and step-by-step instructions.
                 <span className="font-semibold text-[var(--black)]">
