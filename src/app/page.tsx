@@ -133,9 +133,9 @@ export default function Home() {
             </div>
           </RevealSection>
           <RevealSection delay={150}>
-            <h1 className="text-[32px] sm:text-[52px] md:text-[62px] tracking-[-0.035em] leading-[1.08] mb-5 sm:mb-6 font-light">
+            <h1 className="text-[36px] sm:text-[64px] md:text-[80px] tracking-[-0.04em] leading-[1.05] mb-6 sm:mb-8 font-light">
               We implement AI<br />into your business.<br />
-              <span className="text-[var(--accent)] font-extrabold">You grow and scale.</span>
+              <span className="font-extrabold">You grow and scale.</span>
             </h1>
           </RevealSection>
           <RevealSection delay={300}>
@@ -172,7 +172,7 @@ export default function Home() {
             { value: "$0", label: "to get your report" },
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-2">
-              <span className="text-sm sm:text-base font-extrabold text-[var(--accent)]">{s.value}</span>
+              <span className="text-sm sm:text-base font-extrabold">{s.value}</span>
               <span className="text-[10px] sm:text-[11px] text-[var(--mid-gray)]">{s.label}</span>
             </div>
           ))}
@@ -198,11 +198,11 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ THE PROBLEM ═══════════════ */}
-      <section aria-label="The problem AI solves" className="py-16 sm:py-28 px-4 sm:px-6">
+      <section aria-label="The problem AI solves" className="py-20 sm:py-32 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <RevealSection className="text-center mb-10 sm:mb-16">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-4">The Problem</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-4 sm:mb-6">AI is not optional anymore. It is the new standard.</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-[-0.03em] mb-4 sm:mb-6">AI is not optional anymore. It is the new standard.</h2>
             <p className="text-[var(--mid-gray)] text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">The businesses that figure out AI first will dominate their market. The ones that wait will spend the next five years wondering what happened.</p>
           </RevealSection>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
@@ -213,7 +213,7 @@ export default function Home() {
             ].map((stat, i) => (
               <ScaleReveal key={i} delay={i * 150}>
                 <div className="text-center p-6 sm:p-8 bg-white border border-black/5 rounded-2xl hover:border-black/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 card-accent-hover">
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-3 text-[var(--accent)]"><AnimatedStat value={stat.value} prefix={stat.prefix} suffix={stat.suffix} /></div>
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-3 text-[var(--black)]"><AnimatedStat value={stat.value} prefix={stat.prefix} suffix={stat.suffix} /></div>
                   <p className="text-sm text-[var(--mid-gray)] leading-relaxed mb-2">{stat.label}</p>
                   <p className="text-[9px] text-[var(--mid-gray)]/30 italic">{stat.source}</p>
                 </div>
@@ -226,11 +226,11 @@ export default function Home() {
       <div className="h-px w-full animate-gradient-line" />
 
       {/* ═══════════════ WHO THIS IS FOR ═══════════════ */}
-      <section aria-label="Who this is for" className="py-16 sm:py-24 px-4 sm:px-6">
+      <section aria-label="Who this is for" className="py-20 sm:py-32 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <RevealSection className="text-center mb-10 sm:mb-14">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-4">Who This Is For</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">You know AI matters. You just need someone to show you where.</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-[-0.03em]">You know AI matters. You just need someone to show you where.</h2>
           </RevealSection>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {[
@@ -256,11 +256,11 @@ export default function Home() {
       <div className="h-px w-full animate-gradient-line" />
 
       {/* ═══════════════ HOW IT WORKS ═══════════════ */}
-      <section id="how-it-works" className="py-16 sm:py-28 px-4 sm:px-6 bg-[var(--light-surface)]">
+      <section id="how-it-works" className="py-20 sm:py-32 px-4 sm:px-6 bg-[var(--light-surface)]">
         <div className="max-w-5xl mx-auto">
           <RevealSection className="text-center mb-12 sm:mb-20">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">How It Works</p>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight">From blind spots to bottom line</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-[-0.03em]">From blind spots to bottom line</h2>
             <p className="text-[var(--mid-gray)] mt-3 sm:mt-4 max-w-lg mx-auto text-sm sm:text-base">From analysis to action in three steps.</p>
           </RevealSection>
 
@@ -308,7 +308,7 @@ export default function Home() {
                 visual: (
                   <div className="space-y-3">
                     <div className="text-xs font-bold text-[var(--mid-gray)]">Projected Annual Savings</div>
-                    <div className="text-3xl font-extrabold tracking-tight">$142,800</div>
+                    <div className="text-3xl font-extrabold tracking-[-0.03em]">$142,800</div>
                     <div className="flex gap-2">
                       <span className="bg-green-50 text-green-700 text-[11px] font-semibold px-2.5 py-1 rounded-full">↑ 580% ROI</span>
                       <span className="bg-black/[0.03] text-[var(--mid-gray)] text-[11px] font-semibold px-2.5 py-1 rounded-full">18 opportunities</span>
@@ -329,7 +329,7 @@ export default function Home() {
                 <div className="group grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 bg-white border border-black/5 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 hover:border-black/10 hover:shadow-2xl hover:-translate-y-1 transition-all duration-500">
                   <div className="flex flex-col justify-center">
                     <div className="flex items-center gap-3 mb-4 sm:mb-5">
-                      <span className="w-7 sm:w-8 h-7 sm:h-8 bg-[var(--accent)] text-[var(--black)] rounded-full flex items-center justify-center text-xs font-bold shrink-0">{i + 1}</span>
+                      <span className="w-7 sm:w-8 h-7 sm:h-8 bg-[var(--black)] text-white rounded-full flex items-center justify-center text-xs font-bold shrink-0">{i + 1}</span>
                       <span className="h-px flex-1 bg-black/5" />
                     </div>
                     <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-2 sm:mb-3">{step.title}</h3>
@@ -346,18 +346,18 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ WHAT YOU GET ═══════════════ */}
-      <section id="features" className="py-16 sm:py-28 px-4 sm:px-6">
+      <section id="features" className="py-20 sm:py-32 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <RevealSection className="text-center mb-12 sm:mb-20">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">What You Get</p>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight">Not just a report. A growth engine.</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-[-0.03em]">Not just a report. A growth engine.</h2>
             <p className="text-[var(--mid-gray)] mt-3 sm:mt-4 max-w-lg mx-auto text-sm sm:text-base">We find the AI opportunities hiding in your business, build the implementation plan, and walk you through every step until it is running.</p>
           </RevealSection>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {valueStack.map((item, i) => (
               <ScaleReveal key={i} delay={i * 80}>
                 <div className="group h-full bg-white border border-black/5 rounded-2xl p-7 hover:border-black/10 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 card-accent-hover">
-                  <div className="w-10 h-10 bg-[var(--light-surface)] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[var(--accent-light)] group-hover:text-[var(--accent)] group-hover:scale-110 transition-all duration-300">{item.icon}</div>
+                  <div className="w-10 h-10 bg-[var(--light-surface)] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[var(--black)] group-hover:text-white group-hover:scale-110 transition-all duration-300">{item.icon}</div>
                   <h3 className="text-base font-bold mb-2">{item.title}</h3>
                   <p className="text-[var(--mid-gray)] text-sm leading-relaxed">{item.desc}</p>
                 </div>
@@ -368,11 +368,11 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ COMPARISON ═══════════════ */}
-      <section aria-label="Comparison" className="py-16 sm:py-24 px-4 sm:px-6 bg-[var(--light-surface)]">
+      <section aria-label="Comparison" className="py-20 sm:py-32 px-4 sm:px-6 bg-[var(--light-surface)]">
         <div className="max-w-4xl mx-auto">
           <RevealSection className="text-center mb-10 sm:mb-14">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">The Alternative</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-3">Why not just hire a consultant?</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-[-0.03em] mb-3">Why not just hire a consultant?</h2>
             <p className="text-[var(--mid-gray)] text-sm sm:text-base max-w-xl mx-auto">61% of businesses that hired AI consultants saw no measurable ROI. We built Groundwork so you do not become a statistic.</p>
           </RevealSection>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -417,11 +417,11 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ DASHBOARD PREVIEW ═══════════════ */}
-      <section aria-label="Dashboard preview" className="py-16 sm:py-24 px-4 sm:px-6">
+      <section aria-label="Dashboard preview" className="py-20 sm:py-32 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <RevealSection className="text-center mb-10 sm:mb-14">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">See It In Action</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-3">Your dashboard is built before you spend a dime.</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-[-0.03em] mb-3">Your dashboard is built before you spend a dime.</h2>
             <p className="text-[var(--mid-gray)] text-sm sm:text-base max-w-xl mx-auto">Every number is yours. Every recommendation is specific to your business. This is what you get for free.</p>
           </RevealSection>
           <ScaleReveal>
@@ -478,7 +478,7 @@ export default function Home() {
         <section className="relative overflow-hidden">
           {/* Top edge */}
 
-          <div className="bg-[var(--black)] mesh-gradient-dark grain-overlay text-white relative px-4 sm:px-6 py-16 sm:py-24">
+          <div className="bg-[var(--black)] mesh-gradient-dark grain-overlay text-white relative px-4 sm:px-6 py-20 sm:py-32">
             {/* Dot grid */}
             <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
 
@@ -488,7 +488,7 @@ export default function Home() {
             <div className="max-w-3xl mx-auto text-center relative z-10">
               <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/30 mb-4 sm:mb-6">The Reality Check</p>
 
-              <h2 className="text-2xl sm:text-4xl md:text-[56px] font-extrabold tracking-tight mb-8 sm:mb-10 leading-tight">
+              <h2 className="text-2xl sm:text-4xl md:text-[56px] font-extrabold tracking-[-0.03em] mb-8 sm:mb-10 leading-tight">
                 While you are figuring out AI,
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-500 font-black">your competitors already did.</span>
@@ -524,11 +524,11 @@ export default function Home() {
 
       {/* ═══════════════ FAQ ═══════════════ */}
       <RevealSection>
-        <section className="py-16 sm:py-24 px-4 sm:px-6">
+        <section className="py-20 sm:py-32 px-4 sm:px-6">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-10 sm:mb-14">
               <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--mid-gray)]/40 mb-3">Questions</p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">Before you ask.</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-[-0.03em]">Before you ask.</h2>
             </div>
             <div className="space-y-3">
               {[
@@ -579,10 +579,10 @@ export default function Home() {
 
       {/* ═══════════════ FINAL CTA ═══════════════ */}
       <RevealSection>
-        <section className="mesh-gradient-dark text-white py-16 sm:py-28 px-4 sm:px-6">
+        <section className="mesh-gradient-dark text-white py-20 sm:py-32 px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
             <LogoIcon className="h-8 sm:h-10 w-8 sm:w-10 mx-auto mb-6 sm:mb-8 opacity-10 animate-float" />
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-[-0.03em] mb-4 leading-tight">
               The businesses that move first<br />win the most.
             </h2>
             <p className="text-white/60 text-base sm:text-lg mb-8 sm:mb-12 max-w-lg mx-auto leading-relaxed">
@@ -605,15 +605,15 @@ export default function Home() {
             <div className="flex gap-8 sm:gap-12">
               <div className="flex flex-col gap-2">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--mid-gray)]/30">Product</span>
-                <Link href="/questionnaire" className="text-xs text-[var(--mid-gray)] hover:text-[var(--accent)] transition-colors">Free Report</Link>
-                <Link href="#how-it-works" className="text-xs text-[var(--mid-gray)] hover:text-[var(--accent)] transition-colors">How It Works</Link>
-                <Link href="#features" className="text-xs text-[var(--mid-gray)] hover:text-[var(--accent)] transition-colors">Features</Link>
+                <Link href="/questionnaire" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Free Report</Link>
+                <Link href="#how-it-works" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">How It Works</Link>
+                <Link href="#features" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Features</Link>
               </div>
               <div className="flex flex-col gap-2">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--mid-gray)]/30">Company</span>
-                <Link href="/privacy" className="text-xs text-[var(--mid-gray)] hover:text-[var(--accent)] transition-colors">Privacy</Link>
-                <Link href="/terms" className="text-xs text-[var(--mid-gray)] hover:text-[var(--accent)] transition-colors">Terms</Link>
-                <a href="mailto:hello@groundwork.ai" className="text-xs text-[var(--mid-gray)] hover:text-[var(--accent)] transition-colors">Contact</a>
+                <Link href="/privacy" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Privacy</Link>
+                <Link href="/terms" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Terms</Link>
+                <a href="mailto:hello@groundwork.ai" className="text-xs text-[var(--mid-gray)] hover:text-[var(--black)] transition-colors">Contact</a>
               </div>
             </div>
           </div>

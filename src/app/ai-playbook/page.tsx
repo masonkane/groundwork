@@ -1354,7 +1354,7 @@ function ImplementationCard({
   const detailed = showDetailed ? detailedImplementations[impl.rank] : null;
 
   return (
-    <div className={`bg-white border rounded-2xl overflow-hidden transition-shadow hover:shadow-sm card-accent-hover ${recommended ? "border-[var(--accent)]" : "border-black/5"}`}>
+    <div className={`bg-white border rounded-2xl overflow-hidden transition-shadow hover:shadow-sm card-accent-hover ${recommended ? "border-[var(--black)]" : "border-black/5"}`}>
       <button
         onClick={() => setOpen(!open)}
         className="w-full p-4 sm:p-6 flex items-start gap-3 sm:gap-4 text-left min-h-[48px]"
@@ -1382,7 +1382,7 @@ function ImplementationCard({
             {impl.title}
           </h3>
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-[var(--mid-gray)]">
-            <span className="font-extrabold text-[var(--accent)] text-sm">
+            <span className="font-extrabold text-sm">
               ${impl.savings.toLocaleString()}/yr
             </span>
             <span>{impl.time}</span>
@@ -1720,7 +1720,7 @@ export default function AIPlaybookPage() {
           </RevealSection>
 
           <RevealSection delay={200}>
-            <h1 className="text-[28px] sm:text-[44px] md:text-[54px] font-light tracking-[-0.035em] leading-[1.08] mb-2 sm:mb-3">
+            <h1 className="text-[32px] sm:text-[52px] md:text-[68px] font-light tracking-[-0.035em] leading-[1.08] mb-2 sm:mb-3">
               {answers ? (
                 <>Your <span className="font-extrabold">AI Profit Playbook</span></>
               ) : (
@@ -1745,7 +1745,7 @@ export default function AIPlaybookPage() {
                 {
                   label: "total annual savings",
                   node: (
-                    <span className="text-lg sm:text-xl font-extrabold text-[var(--accent)]">
+                    <span className="text-lg sm:text-xl font-extrabold">
                       <AnimatedStat
                         value={180}
                         prefix="$"
@@ -1757,7 +1757,7 @@ export default function AIPlaybookPage() {
                 {
                   label: "implementations",
                   node: (
-                    <span className="text-lg sm:text-xl font-extrabold text-[var(--accent)]">
+                    <span className="text-lg sm:text-xl font-extrabold">
                       10
                     </span>
                   ),
@@ -1765,7 +1765,7 @@ export default function AIPlaybookPage() {
                 {
                   label: "recommended tools",
                   node: (
-                    <span className="text-lg sm:text-xl font-extrabold text-[var(--accent)]">
+                    <span className="text-lg sm:text-xl font-extrabold">
                       30+
                     </span>
                   ),
@@ -1827,7 +1827,7 @@ export default function AIPlaybookPage() {
       </section>
 
       {/* ═══════════════ TOTAL SAVINGS BAR ═══════════════ */}
-      <section className="border-t border-b border-black/5 accent-progress text-white">
+      <section className="border-t border-b border-black/5 bg-[var(--black)] text-white">
         <div className="max-w-4xl mx-auto py-5 px-4 sm:px-6 text-center">
           <p className="text-xs text-white/50 uppercase tracking-widest mb-1">
             Combined Annual Savings
@@ -1842,7 +1842,7 @@ export default function AIPlaybookPage() {
       <section
         id="implementations"
         aria-label="Implementations"
-        className="py-14 sm:py-20 px-4 sm:px-6"
+        className="py-20 sm:py-32 px-4 sm:px-6"
       >
         <div className="max-w-3xl mx-auto">
           <RevealSection className="mb-8 sm:mb-10">
@@ -1876,7 +1876,7 @@ export default function AIPlaybookPage() {
       {/* ═══════════════ INDUSTRY BENCHMARKS ═══════════════ */}
       <section
         aria-label="Industry benchmarks"
-        className="py-14 sm:py-20 px-4 sm:px-6 bg-[var(--light-surface)] border-t border-black/5"
+        className="py-20 sm:py-32 px-4 sm:px-6 bg-[var(--light-surface)] border-t border-black/5"
       >
         <div className="max-w-3xl mx-auto">
           <RevealSection className="mb-8 sm:mb-10">
@@ -1916,7 +1916,7 @@ export default function AIPlaybookPage() {
                   <div className="flex items-center justify-center gap-2">
                     <div className="flex-1 h-1.5 bg-black/5 rounded-full overflow-hidden max-w-[50px]">
                       <div
-                        className="h-full accent-progress rounded-full"
+                        className="h-full bg-[var(--black)] rounded-full"
                         style={{ width: `${stat.industry}%` }}
                       />
                     </div>
@@ -1939,7 +1939,7 @@ export default function AIPlaybookPage() {
       {/* ═══════════════ IMPLEMENTATION TIMELINE ═══════════════ */}
       <section
         aria-label="Implementation timeline"
-        className="py-14 sm:py-20 px-4 sm:px-6"
+        className="py-20 sm:py-32 px-4 sm:px-6"
       >
         <div className="max-w-3xl mx-auto">
           <RevealSection className="mb-8 sm:mb-10">
@@ -1960,7 +1960,7 @@ export default function AIPlaybookPage() {
               <RevealSection key={i} delay={i * 100}>
                 <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6">
                   <div className="flex flex-wrap items-center gap-3 mb-3">
-                    <span className="text-xs font-bold bg-[var(--accent)] text-[var(--black)] px-3 py-1 rounded-full">
+                    <span className="text-xs font-bold bg-[var(--black)] text-white px-3 py-1 rounded-full">
                       {phase.phase}
                     </span>
                     <span className="text-sm font-bold">{phase.title}</span>
@@ -2020,7 +2020,7 @@ export default function AIPlaybookPage() {
                   <span className="text-sm font-medium text-white">
                     {impl.title}
                   </span>
-                  <span className="text-xs text-[var(--accent)]">
+                  <span className="text-xs text-white/60">
                     ${impl.savings.toLocaleString()}/yr
                   </span>
                 </div>

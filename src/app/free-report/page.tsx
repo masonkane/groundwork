@@ -444,7 +444,7 @@ function Questionnaire({ onComplete }: { onComplete: () => void }) {
       </p>
       <div className="w-full max-w-xs mx-auto h-1.5 bg-[var(--light-surface)] rounded-full mb-10 overflow-hidden">
         <div
-          className="h-full accent-progress rounded-full transition-all duration-500 ease-out"
+          className="h-full bg-[var(--black)] rounded-full transition-all duration-500 ease-out"
           style={{ width: `${progressPercent}%` }}
         />
       </div>
@@ -485,7 +485,7 @@ function Questionnaire({ onComplete }: { onComplete: () => void }) {
                 }
                 className={`px-5 py-3 rounded-full text-sm font-semibold transition-all duration-200 min-h-[48px] ${
                   isSelected
-                    ? "bg-[var(--accent)] text-[var(--black)] border border-[var(--accent)]"
+                    ? "bg-[var(--black)] text-white border border-[var(--black)]"
                     : "bg-white border border-black/10 hover:border-black/30 text-[var(--black)]"
                 }`}
               >
@@ -779,7 +779,7 @@ export default function FreeReportPage() {
             </RevealSection>
 
             <RevealSection delay={200}>
-              <h1 className="text-[28px] sm:text-[44px] md:text-[54px] font-light tracking-[-0.035em] leading-[1.08] mb-5 sm:mb-6 px-2">
+              <h1 className="text-[32px] sm:text-[52px] md:text-[68px] font-light tracking-[-0.035em] leading-[1.08] mb-5 sm:mb-6 px-2">
                 Find Out Exactly How Much
                 <br className="hidden sm:block" /> AI Could <span className="font-extrabold">Save Your
                 <br className="hidden sm:block" /> Business</span> This Year
@@ -807,7 +807,7 @@ export default function FreeReportPage() {
                   {["JF", "SK", "MR", "AL", "TC"].map((initials, i) => (
                     <div
                       key={i}
-                      className="w-7 h-7 rounded-full bg-[var(--light-surface)] border-2 border-[var(--accent)] flex items-center justify-center text-[8px] font-bold text-[var(--mid-gray)]"
+                      className="w-7 h-7 rounded-full bg-[var(--light-surface)] border-2 border-[var(--black)] flex items-center justify-center text-[8px] font-bold text-[var(--mid-gray)]"
                     >
                       {initials}
                     </div>
@@ -848,7 +848,7 @@ export default function FreeReportPage() {
             { value: "100%", label: "free" },
           ].map((s) => (
             <div key={s.label} className="flex items-center gap-2">
-              <span className="text-sm sm:text-base font-extrabold text-[var(--accent)]">
+              <span className="text-sm sm:text-base font-extrabold text-[var(--black)]">
                 {s.value}
               </span>
               <span className="text-[10px] sm:text-[11px] text-[var(--mid-gray)]">
@@ -860,7 +860,7 @@ export default function FreeReportPage() {
       </section>
 
       {/* ═══════════════ PROBLEM / AGITATE ═══════════════ */}
-      <section aria-label="Problem" className="py-14 sm:py-28 px-4 sm:px-6">
+      <section aria-label="Problem" className="py-20 sm:py-32 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <RevealSection className="text-center mb-14 sm:mb-16">
             <p className="text-xs font-semibold tracking-widest uppercase text-[var(--mid-gray)] mb-3">
@@ -881,7 +881,7 @@ export default function FreeReportPage() {
             {problemStats.map((stat, i) => (
               <ScaleReveal key={i} delay={i * 120}>
                 <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-8 text-center card-accent-hover">
-                  <div className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2 text-[var(--accent)]">
+                  <div className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2 text-[var(--black)]">
                     <AnimatedStat
                       value={stat.value}
                       prefix={stat.prefix || ""}
@@ -902,7 +902,7 @@ export default function FreeReportPage() {
       {/* ═══════════════ WHAT YOU GET (VALUE STACK) ═══════════════ */}
       <section
         aria-label="What you get"
-        className="py-14 sm:py-28 px-4 sm:px-6 bg-[var(--light-surface)] border-t border-black/5"
+        className="py-20 sm:py-32 px-4 sm:px-6 bg-[var(--light-surface)] border-t border-black/5"
       >
         <div className="max-w-5xl mx-auto">
           <RevealSection className="text-center mb-14 sm:mb-16">
@@ -923,7 +923,7 @@ export default function FreeReportPage() {
             {valueCards.map((card, i) => (
               <ScaleReveal key={i} delay={i * 80}>
                 <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-6 h-full card-accent-hover group">
-                  <div className="w-10 h-10 bg-[var(--light-surface)] rounded-xl flex items-center justify-center mb-4 group-hover:bg-[var(--accent-light)] transition-colors">
+                  <div className="w-10 h-10 bg-[var(--light-surface)] rounded-xl flex items-center justify-center mb-4 group-hover:bg-[var(--black)] group-hover:text-white transition-colors">
                     {card.icon}
                   </div>
                   <h3 className="text-sm font-bold mb-2">{card.title}</h3>
@@ -940,7 +940,7 @@ export default function FreeReportPage() {
       {/* ═══════════════ HOW IT WORKS ═══════════════ */}
       <section
         aria-label="How it works"
-        className="py-14 sm:py-28 px-4 sm:px-6"
+        className="py-20 sm:py-32 px-4 sm:px-6"
       >
         <div className="max-w-4xl mx-auto">
           <RevealSection className="text-center mb-14 sm:mb-16">
@@ -972,7 +972,7 @@ export default function FreeReportPage() {
             ].map((item, i) => (
               <RevealSection key={i} delay={i * 150} className={i < 2 ? "step-connector" : ""}>
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-[var(--accent)] text-[var(--black)] rounded-2xl flex items-center justify-center text-lg font-bold mx-auto mb-5">
+                  <div className="w-12 h-12 bg-[var(--black)] text-white rounded-2xl flex items-center justify-center text-lg font-bold mx-auto mb-5">
                     {item.step}
                   </div>
                   <h3 className="text-base font-bold mb-2">{item.title}</h3>
@@ -1010,7 +1010,7 @@ export default function FreeReportPage() {
       </section>
 
       {/* ═══════════════ FAQ ═══════════════ */}
-      <section aria-label="FAQ" className="py-14 sm:py-28 px-4 sm:px-6">
+      <section aria-label="FAQ" className="py-20 sm:py-32 px-4 sm:px-6">
         <div className="max-w-2xl mx-auto">
           <RevealSection className="text-center mb-14 sm:mb-16">
             <p className="text-xs font-semibold tracking-widest uppercase text-[var(--mid-gray)] mb-3">
@@ -1034,7 +1034,7 @@ export default function FreeReportPage() {
       {/* ═══════════════ FINAL CTA ═══════════════ */}
       <section
         aria-label="Get the playbook"
-        className="py-14 sm:py-28 px-4 sm:px-6 mesh-gradient-dark text-white"
+        className="py-20 sm:py-32 px-4 sm:px-6 mesh-gradient-dark text-white"
       >
         <div className="max-w-3xl mx-auto text-center">
           <RevealSection>
