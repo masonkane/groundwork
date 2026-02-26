@@ -146,6 +146,7 @@ function EmailForm({
   ctaLabel?: string;
   onSuccess?: () => void;
 }) {
+  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -156,6 +157,7 @@ function EmailForm({
     e.preventDefault();
     setError("");
 
+    const trimmedName = firstName.trim();
     const trimmed = email.trim().toLowerCase();
     if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
       setError("Please enter a valid email address.");
@@ -164,15 +166,16 @@ function EmailForm({
 
     setSubmitting(true);
 
-    // Store email
+    // Store locally (used for playbook access gating + questionnaire update)
     try {
       localStorage.setItem("gw_lead_email", trimmed);
+      if (trimmedName) localStorage.setItem("gw_lead_firstName", trimmedName);
     } catch {}
 
     // Capture UTM params
+    const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+    const utms: Record<string, string> = {};
     try {
-      const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
-      const utms: Record<string, string> = {};
       utmKeys.forEach((k) => {
         const v = searchParams.get(k);
         if (v) utms[k] = v;
@@ -182,11 +185,16 @@ function EmailForm({
       }
     } catch {}
 
-    // Fire-and-forget magic link for future dashboard access
-    fetch("/api/auth/magic-link", {
+    // Persist lead to server
+    fetch("/api/leads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: trimmed }),
+      body: JSON.stringify({
+        email: trimmed,
+        firstName: trimmedName || undefined,
+        source: "hero-email-form",
+        utm: Object.keys(utms).length > 0 ? utms : undefined,
+      }),
     }).catch(() => {});
 
     if (onSuccess) {
@@ -198,38 +206,48 @@ function EmailForm({
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto">
-      <div className="flex flex-col sm:flex-row gap-3">
+      <div className="flex flex-col gap-3">
         <input
-          id={id}
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@company.com"
-          aria-label="Email address"
-          className="flex-1 px-5 py-4 rounded-full border border-black/10 bg-white text-sm placeholder:text-[var(--mid-gray)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--black)] transition-shadow min-h-[48px]"
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          placeholder="First name"
+          aria-label="First name"
+          className="w-full px-5 py-4 rounded-full border border-black/10 bg-white text-sm placeholder:text-[var(--mid-gray)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--black)] transition-shadow min-h-[48px]"
         />
-        <button
-          type="submit"
-          disabled={submitting}
-          className="group relative inline-flex items-center justify-center gap-2 font-semibold px-7 py-4 rounded-full text-sm overflow-hidden transition-all duration-300 active:scale-[0.97] bg-[var(--black)] text-white hover:shadow-[0_4px_50px_rgba(0,0,0,0.3)] animate-pulse-glow disabled:opacity-70 min-h-[48px]"
-        >
-          <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[800ms] ease-out bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          <span className="relative z-10">{ctaLabel}</span>
-          <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              aria-hidden="true"
-            >
-              <path d="M4 9H14M10 4.5L14.5 9L10 13.5" />
-            </svg>
-          </span>
-        </button>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <input
+            id={id}
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@company.com"
+            aria-label="Email address"
+            className="flex-1 px-5 py-4 rounded-full border border-black/10 bg-white text-sm placeholder:text-[var(--mid-gray)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--black)] transition-shadow min-h-[48px]"
+          />
+          <button
+            type="submit"
+            disabled={submitting}
+            className="group relative inline-flex items-center justify-center gap-2 font-semibold px-7 py-4 rounded-full text-sm overflow-hidden transition-all duration-300 active:scale-[0.97] bg-[var(--black)] text-white hover:shadow-[0_4px_50px_rgba(0,0,0,0.3)] animate-pulse-glow disabled:opacity-70 min-h-[48px]"
+          >
+            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[800ms] ease-out bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            <span className="relative z-10">{ctaLabel}</span>
+            <span className="relative z-10 group-hover:translate-x-1 transition-transform duration-300">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                aria-hidden="true"
+              >
+                <path d="M4 9H14M10 4.5L14.5 9L10 13.5" />
+              </svg>
+            </span>
+          </button>
+        </div>
       </div>
       {error && (
         <p className="text-red-500 text-xs mt-2 text-center">{error}</p>
@@ -343,6 +361,28 @@ function Questionnaire({ onComplete }: { onComplete: () => void }) {
           try {
             localStorage.setItem("gw_playbook_answers", JSON.stringify(finalAnswers));
           } catch {}
+
+          // Update lead record with questionnaire answers
+          try {
+            const email = localStorage.getItem("gw_lead_email");
+            if (email) {
+              const utmRaw = localStorage.getItem("gw_utm");
+              const utm = utmRaw ? JSON.parse(utmRaw) : undefined;
+              const firstName = localStorage.getItem("gw_lead_firstName") || undefined;
+              fetch("/api/leads", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  email,
+                  firstName,
+                  source: "questionnaire-complete",
+                  answers: finalAnswers,
+                  utm,
+                }),
+              }).catch(() => {});
+            }
+          } catch {}
+
           onComplete();
         }, 300);
       }
@@ -672,23 +712,34 @@ export default function FreeReportPage() {
   }, [router]);
 
   // Bottom CTA submit handler
+  const [bottomCtaError, setBottomCtaError] = useState("");
   const handleBottomCtaSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
+      setBottomCtaError("");
       const form = e.currentTarget as HTMLFormElement;
-      const input = form.querySelector("input") as HTMLInputElement;
-      if (!input) return;
-      const trimmed = input.value.trim().toLowerCase();
+      const inputs = form.querySelectorAll("input");
+      const nameInput = inputs[0] as HTMLInputElement;
+      const emailInput = inputs[1] as HTMLInputElement;
+      if (!emailInput) return;
+      const trimmedName = nameInput?.value.trim() || "";
+      const trimmed = emailInput.value.trim().toLowerCase();
       if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+        setBottomCtaError("Please enter a valid email address.");
         return;
       }
       try {
         localStorage.setItem("gw_lead_email", trimmed);
+        if (trimmedName) localStorage.setItem("gw_lead_firstName", trimmedName);
       } catch {}
-      fetch("/api/auth/magic-link", {
+      fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: trimmed }),
+        body: JSON.stringify({
+          email: trimmed,
+          firstName: trimmedName || undefined,
+          source: "bottom-cta",
+        }),
       }).catch(() => {});
       handleEmailSuccess();
     },
@@ -833,7 +884,7 @@ export default function FreeReportPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {problemStats.map((stat, i) => (
               <ScaleReveal key={i} delay={i * 120}>
-                <div className="bg-white border border-black/5 rounded-2xl p-6 sm:p-8 text-center">
+                <div className="bg-white border border-black/5 rounded-2xl p-5 sm:p-8 text-center">
                   <div className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2">
                     <AnimatedStat
                       value={stat.value}
@@ -1006,7 +1057,14 @@ export default function FreeReportPage() {
               onSubmit={handleBottomCtaSubmit}
               className="w-full max-w-md mx-auto"
             >
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col gap-3">
+                <input
+                  type="text"
+                  placeholder="First name"
+                  aria-label="First name"
+                  className="w-full px-5 py-4 rounded-full border border-white/10 bg-white/10 text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-white/40 transition-shadow min-h-[48px]"
+                />
+                <div className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="email"
                   placeholder="you@company.com"
@@ -1034,8 +1092,12 @@ export default function FreeReportPage() {
                     </svg>
                   </span>
                 </button>
+                </div>
               </div>
             </form>
+            {bottomCtaError && (
+              <p className="text-red-400 text-xs mt-2 text-center">{bottomCtaError}</p>
+            )}
             <p className="text-[11px] text-white/30 mt-3">
               No spam · No credit card · Instant access
             </p>
